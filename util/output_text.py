@@ -84,6 +84,18 @@ def call_auction_action_be_performed_text():
     return "Can Cait auction the specific share? Y/N "
 
 
+def ask_company_minimum_share_price():
+    return "Please input the minimum share price of the chosen company... "
+
+
+def cait_blind_bid_ready():
+    return "Cait's bid is ready, please press enter to reveal... "
+
+
+def cait_blind_bid_reveal(bid):
+    return f"Cait's bid is £{bid}"
+
+
 def call_dividends_action_text():
     return "Call for dividends\n"
 

@@ -1,98 +1,58 @@
-from random import randint
-
-import util.global_vars as global_vars
+import action.auction as auction
+import action.dividends as dividends
+import action.special_interest as special_interest
+import action.track as track
 import util.output_text as output
+import util.tools as tools
 from util.constants import *
 
 
-def explain_action():
-    action = global_vars.last_action
-    if action == ACTION_SPECIAL_INTEREST:
-        print(output.special_interest_action_explain_text())
-    elif action == ACTION_PLACE_TRACKS:
-        print(output.place_tracks_action_explain_text())
-    elif action == ACTION_CALL_AUCTION:
-        print(output.call_auction_action_explain_text())
-    elif action == ACTION_CALL_DIVIDENDS:
-        print(output.call_dividends_action_explain_text())
+def make_decision():
+    """
+    Decision making algorithm.
 
-
-def special_interest_action():
-    print(output.special_interest_action_text())
-    global_vars.last_action = ACTION_SPECIAL_INTEREST
-
-
-def place_tracks_action():
-    print(output.place_tracks_action_text())
-    global_vars.last_action = ACTION_PLACE_TRACKS
-
-
-def call_auction_action():
-    print(output.call_auction_action_text())
-    global_vars.last_action = ACTION_CALL_AUCTION
-    if not ask_user_prompt(output.call_auction_action_be_performed_text()):
-        call_dividends_action()
-
-
-def call_dividends_action():
-    print(output.call_dividends_action_text())
-    global_vars.last_action = ACTION_CALL_DIVIDENDS
-    if not ask_user_prompt(output.call_dividends_action_be_performed_text()):
-        special_interest_action()
-
-
-def ask_user_prompt(text):
-    while True:
-        answer = input(text).lower()
-        if answer == YES_SRT or answer == YES_LNG:
-            return True
-        elif answer == NO_SRT or answer == NO_LNG:
-            return False
-        elif answer == EXIT:
-            print(output.exit_text(True))
-            exit()
-        elif answer == EXPLAIN:
-            explain_action()
-        else:
-            print(output.invalid_input())
-            continue
-
-
-def roll_dice(dice_max):
-    count, lst = 20, []
-    for i in range(count):
-        lst.append(randint(1, dice_max))
-    return lst[randint(0, count - 1)]
-
-
-def take_turn():
-    result = roll_dice(6)
+    As is: Arbitrary d6 dice roll.
+    To be: Use data to calculate what is the best action to take.
+    """
+    result = tools.roll_dice(6)
     print(output.cait_turn_text(), end='')
 
     if result in DICE_RANGE_SPECIAL_INTEREST:
-        special_interest_action()
+        special_interest.special_interest_action()
     elif result in DICE_RANGE_PLACE_TRACKS:
-        place_tracks_action()
+        track.place_tracks_action()
     elif result in DICE_RANGE_CALL_AUCTION:
-        call_auction_action()
+        auction.call_auction_action()
     elif result in DICE_RANGE_CALL_DIVIDENDS:
-        call_dividends_action()
-
-
-def perform_setup():
-    print(output.welcome_text())
+        dividends.call_dividends_action()
 
 
 def start_event_loop():
+    """
+    The main event loop after every turn of Cait or other players.
+
+    As is: It is simply concerned for Cait's turn.
+    To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
+    """
     while True:
         current_input = input(output.cait_waiting_turn_text()).lower()
         if current_input == EXIT:
             print(output.exit_text(False))
             exit()
         if current_input == EXPLAIN:
-            explain_action()
+            tools.explain_action()
         else:
-            take_turn()
+            make_decision()
+
+
+def perform_setup():
+    """
+    Performs introduction the player, data and game information setup
+
+    As is: No player, data or game information setup performed. It only performs introduction.
+    To be: Setup player, data and game information to be used thought the application.
+    """
+    print(output.welcome_text())
 
 
 if __name__ == '__main__':
