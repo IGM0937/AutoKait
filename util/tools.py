@@ -40,7 +40,26 @@ def ask_user_number_prompt(text):
             try:
                 return int(answer)
             except ValueError:
-                print(output.invalid_input())
+                pass
+            print(output.invalid_input())
+
+
+def ask_user_cait_bid_prompt(text):
+    while True:
+        answer = input(text)
+        if answer == EXIT:
+            print(output.exit_text(True))
+            exit()
+        elif answer == EXPLAIN:
+            explain_action()
+        elif answer == YES_SRT or answer == YES_LNG:
+            return True
+        else:
+            try:
+                return int(answer)
+            except ValueError:
+                pass
+            print(output.invalid_input())
 
 
 def explain_action():

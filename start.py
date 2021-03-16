@@ -33,6 +33,8 @@ def start_event_loop():
 
     As is: It is simply concerned for Cait's turn.
     To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
+
+    TODO: allow for Cait to enter out of turn budding manually
     """
     while True:
         current_input = input(output.cait_waiting_turn_text()).lower()

@@ -13,7 +13,8 @@ EXPLAIN = 'explain'
 # actions tags
 ACTION_SPECIAL_INTEREST = 'action.special_interest'
 ACTION_PLACE_TRACKS = 'action.place_tracks'
-ACTION_CALL_AUCTION = 'action.place_auction'
+ACTION_CALL_AUCTION = 'action.call_auction'
+ACTION_BIDDING = 'action.bidding'
 ACTION_CALL_DIVIDENDS = 'action.call_dividends'
 
 # dice actions range

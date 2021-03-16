@@ -16,6 +16,7 @@ def call_auction_action():
         call_dividends_action()
     else:
         share_min = ask_user_number_prompt(output.ask_company_minimum_share_price())
-        cait_bid = bidding.get_bidding_max(share_min)
-        input(output.cait_blind_bid_ready())
-        print(output.cait_blind_bid_reveal(cait_bid))
+        # cait_bid = bidding.get_bidding_max(share_min)
+        # input(output.cait_blind_bid_ready())
+        # print(output.cait_blind_bid_reveal(cait_bid))
+        bidding.bidding_process(share_min)
