@@ -3,12 +3,18 @@ List of constant variables
 """
 
 # user inputs
+BLANK = ''
 YES_SRT = 'y'
 YES_LNG = 'yes'
 NO_SRT = 'n'
 NO_LNG = 'no'
 EXIT = 'exit'
+BACK = 'back'
 EXPLAIN = 'explain'
+BIDDING_SRT = 'bid'
+BIDDING_LNG = 'bidding'
+DIVIDEND_SRT = 'div'
+DIVIDEND_LNG = 'dividend'
 
 # actions tags
 ACTION_SPECIAL_INTEREST = 'action.special_interest'

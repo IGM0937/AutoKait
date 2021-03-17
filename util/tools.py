@@ -15,14 +15,14 @@ def roll_dice(dice_max):
 def ask_user_yes_no_prompt(text):
     while True:
         answer = input(text).lower()
-        if answer == YES_SRT or answer == YES_LNG:
+        if is_str_yes(answer):
             return True
-        elif answer == NO_SRT or answer == NO_LNG:
+        elif is_str_no(answer):
             return False
-        elif answer == EXIT:
+        elif is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif answer == EXPLAIN:
+        elif is_str_explain(answer):
             explain_action()
         else:
             print(output.invalid_input())
@@ -31,11 +31,13 @@ def ask_user_yes_no_prompt(text):
 def ask_user_number_prompt(text):
     while True:
         answer = input(text)
-        if answer == EXIT:
+        if is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif answer == EXPLAIN:
+        elif is_str_explain(answer):
             explain_action()
+        elif is_str_back(answer):
+            return BACK
         else:
             try:
                 return int(answer)
@@ -47,13 +49,15 @@ def ask_user_number_prompt(text):
 def ask_user_cait_bid_prompt(text):
     while True:
         answer = input(text)
-        if answer == EXIT:
+        if is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif answer == EXPLAIN:
+        elif is_str_explain(answer):
             explain_action()
-        elif answer == YES_SRT or answer == YES_LNG:
-            return True
+        elif is_str_yes(answer):
+            return YES_SRT
+        elif is_str_back(answer):
+            return BACK
         else:
             try:
                 return int(answer)
@@ -70,5 +74,27 @@ def explain_action():
         print(output.place_tracks_action_explain_text())
     elif action == ACTION_CALL_AUCTION:
         print(output.call_auction_action_explain_text())
+    elif action == ACTION_BIDDING:
+        print(output.place_bid_action_explain_text())
     elif action == ACTION_CALL_DIVIDENDS:
         print(output.call_dividends_action_explain_text())
+
+
+def is_str_yes(value):
+    return type(value) is str and (value == YES_SRT or value == YES_LNG)
+
+
+def is_str_no(value):
+    return type(value) is str and (value == NO_SRT or value == YES_LNG)
+
+
+def is_str_explain(value):
+    return type(value) is str and value == EXPLAIN
+
+
+def is_str_back(value):
+    return type(value) is str and value == BACK
+
+
+def is_str_exit(value):
+    return type(value) is str and value == EXIT

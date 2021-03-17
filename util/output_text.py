@@ -14,7 +14,7 @@ def exit_text(forced):
 
 
 def cait_waiting_turn_text():
-    return "Press enter when it is Cait's turn... "
+    return "Type bid or dividend or press enter to take Cait's turn... "
 
 
 def cait_turn_text():
@@ -70,12 +70,14 @@ def call_auction_action_explain_text():
     res += '\n\n'
     res += "If Cait does not have enough money for that share, she performs Call for Dividends instead."
     res += '\n\n'
-    res += "If Cait is in the bidding war, roll a d10 (9 max) and add the number to the minimum value of share to " \
-           "calculate her maximum bid. The rest of the players choose what their maximum bid as well."
+    res += "If Cait is in the bidding war, she will determine the maximum bid based on:"
     res += '\n\n'
-    res += "The winner of the share is the player who bid the most, but pays the bid of the second highest bid."
+    res += "    (minimum company share + d10 dice roll) capped at Cait's overall money available"
     res += '\n\n'
-    res += "If there is a tie, the player closes to the auctioneer in turn order (including the auctioneer) wins."
+    res += "Cait will raise the bid at random by from £1 to £3 at a time. She will pass if she is unable to raise " \
+           "the bid or is unable to got past the funds of her maximum bid for the share."
+    res += '\n\n'
+    res += "The winner of the share is the player who placed the highest bid."
     res += '\n'
     return res
 
@@ -84,16 +86,36 @@ def call_auction_action_be_performed_text():
     return "Can Cait auction the specific share? Y/N "
 
 
+def place_bid_action_text():
+    return "Cait is participating in bids\n"
+
+
+def place_bid_action_explain_text():
+    return "Participating in bidding. Follow the instructions. Type 'back' to back out of bidding.\n"
+
+
 def ask_company_minimum_share_price():
-    return "Please input the minimum share price of the chosen company... "
+    return "Please input the minimum share price of the company being actioned... £ "
 
 
-def cait_blind_bid_ready():
-    return "Cait's bid is ready, please press enter to reveal... "
+def ask_current_bid_price():
+    return "Please input the current bid price £ "
 
 
-def cait_blind_bid_reveal(bid):
-    return f"Cait's bid is £{bid}"
+def cait_bid_bidding_text(caits_bid):
+    return f"Cait is bidding £{caits_bid}\n"
+
+
+def cait_bid_winning_question_text():
+    return "Did Cait win the share or is there a new bid? Y/£ "
+
+
+def cait_bid_won_text(caits_bid):
+    return f"Cait has won the bid at £{caits_bid}\n"
+
+
+def cait_bid_passing_text():
+    return "Cait is passing\n"
 
 
 def call_dividends_action_text():

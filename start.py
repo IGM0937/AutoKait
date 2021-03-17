@@ -1,4 +1,5 @@
 import action.auction as auction
+import action.bidding as bidding
 import action.dividends as dividends
 import action.special_interest as special_interest
 import action.track as track
@@ -34,15 +35,19 @@ def start_event_loop():
     As is: It is simply concerned for Cait's turn.
     To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
 
-    TODO: allow for Cait to enter out of turn budding manually
+    TODO: allow for Cait to enter out of turn dividends manually
     """
     while True:
-        current_input = input(output.cait_waiting_turn_text()).lower()
-        if current_input == EXIT:
+        req = input(output.cait_waiting_turn_text()).lower()
+        if tools.is_str_exit(req):
             print(output.exit_text(False))
             exit()
-        if current_input == EXPLAIN:
+        elif tools.is_str_explain(req):
             tools.explain_action()
+        elif req == BIDDING_SRT or req == BIDDING_LNG:
+            bidding.take_bidding_action()
+        elif req != BLANK:
+            print(output.invalid_input())
         else:
             make_decision()
 
