@@ -28,3 +28,6 @@ DICE_RANGE_SPECIAL_INTEREST = range(1, 2)
 DICE_RANGE_PLACE_TRACKS = range(2, 5)
 DICE_RANGE_CALL_AUCTION = range(5, 6)
 DICE_RANGE_CALL_DIVIDENDS = range(6, 7)
+
+# data point tags
+CAIT_WALLET = 'data.cait.wallet'

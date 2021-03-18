@@ -13,5 +13,9 @@ from util.tools import *
 def call_auction_action():
     print(output.call_auction_action_text())
     global_vars.last_action = ACTION_CALL_AUCTION
-    yes_answer = ask_user_yes_no_prompt(output.call_auction_action_be_performed_text())
-    take_bidding_action() if yes_answer else call_dividends_action()
+    # TODO: Is there a way to determine if an action can be performed without asking the question?
+    if ask_user_yes_no_prompt(output.call_auction_action_be_performed_text()):
+        take_bidding_action(True)
+    else:
+        print(output.cait_turn_text(), end='')
+        call_dividends_action()

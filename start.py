@@ -6,6 +6,7 @@ import action.track as track
 import util.output_text as output
 import util.tools as tools
 from util.constants import *
+from util.global_vars import *
 
 
 def make_decision():
@@ -34,8 +35,6 @@ def start_event_loop():
 
     As is: It is simply concerned for Cait's turn.
     To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
-
-    TODO: allow for Cait to enter out of turn dividends manually
     """
     while True:
         req = input(output.cait_waiting_turn_text()).lower()
@@ -45,7 +44,9 @@ def start_event_loop():
         elif tools.is_str_explain(req):
             tools.explain_action()
         elif req == BIDDING_SRT or req == BIDDING_LNG:
-            bidding.take_bidding_action()
+            bidding.take_bidding_action(False)
+        elif req == DIVIDEND_SRT or req == DIVIDEND_LNG:
+            dividends.dividends_process()
         elif req != BLANK:
             print(output.invalid_input())
         else:
@@ -59,6 +60,7 @@ def perform_setup():
     As is: No player, data or game information setup performed. It only performs introduction.
     To be: Setup player, data and game information to be used thought the application.
     """
+    data_points[CAIT_WALLET] = 20
     print(output.welcome_text())
 
 

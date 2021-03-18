@@ -110,8 +110,8 @@ def cait_bid_winning_question_text():
     return "Did Cait win the share or is there a new bid? Y/£ "
 
 
-def cait_bid_won_text(caits_bid):
-    return f"Cait has won the bid at £{caits_bid}\n"
+def cait_bid_won_text(caits_bid, new_total):
+    return f"Cait has won the bid at £{caits_bid}, she now has £{new_total} left.\n"
 
 
 def cait_bid_passing_text():
@@ -129,3 +129,11 @@ def call_dividends_action_explain_text():
 
 def call_dividends_action_be_performed_text():
     return "Do the dividend cubes exist in the bag or does Cait stand to gain money? Y/N "
+
+
+def reward_dividends_text():
+    return "How much dividends has Cait won? £ "
+
+
+def cait_wallet_update_text(dividend, new_total):
+    return f"Cait has won £{dividend} in dividends, she now has £{new_total}.\n"
