@@ -14,7 +14,7 @@ def roll_dice(dice_max):
 
 def ask_user_yes_no_prompt(text):
     while True:
-        answer = input(text).lower()
+        answer = input(text)
         if is_str_yes(answer):
             return True
         elif is_str_no(answer):
@@ -81,20 +81,20 @@ def explain_action():
 
 
 def is_str_yes(value):
-    return type(value) is str and (value == YES_SRT or value == YES_LNG)
+    return type(value) is str and (value.lower() == YES_SRT or value.lower() == YES_LNG)
 
 
 def is_str_no(value):
-    return type(value) is str and (value == NO_SRT or value == YES_LNG)
+    return type(value) is str and (value.lower() == NO_SRT or value.lower() == NO_LNG)
 
 
 def is_str_explain(value):
-    return type(value) is str and value == EXPLAIN
+    return type(value) is str and value.lower() == EXPLAIN
 
 
 def is_str_back(value):
-    return type(value) is str and value == BACK
+    return type(value) is str and value.lower() == BACK
 
 
 def is_str_exit(value):
-    return type(value) is str and value == EXIT
+    return type(value) is str and value.lower() == EXIT

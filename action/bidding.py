@@ -33,7 +33,7 @@ def get_bidding_max(share_min):
 
 
 def calculate_caits_bid(current_bid, max_bid):
-    new_bid = current_bid + roll_dice(4) - 1
+    new_bid = current_bid + BID_STEPS[roll_dice(len(BID_STEPS)) - 1]
     return 0 if (new_bid == current_bid or new_bid > max_bid) else new_bid
 
 
