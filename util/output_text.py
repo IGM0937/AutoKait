@@ -1,5 +1,11 @@
+"""
+TODO: revisit explain texts
+"""
+
+
 def welcome_text():
-    res = "Welcome to AutoCait."
+    res = '\n'
+    res += "Welcome to AutoCait."
     res += '\n'
     res += "Let's play Irish Gauge!"
     res += '\n'
@@ -30,8 +36,9 @@ def special_interest_action_text():
 
 
 def special_interest_action_explain_text():
-    res = "Place a special interest cube for the company Cait has the most share value, prioritising companies " \
-          "it owns first. In case of a tie, place for the company Cait owns that has the most trains on the map."
+    res = '\n'
+    res += "Place a special interest cube for the company Cait has the most share value, prioritising companies " \
+           "it owns first. In case of a tie, place for the company Cait owns that has the most trains on the map."
     res += '\n\n'
     res += "Choose a colour that isn't present on that trainline yet. If there are 2 colours, choose at random."
     res += '\n\n'
@@ -51,8 +58,9 @@ def place_tracks_action_text():
 
 
 def place_tracks_action_explain_text():
-    res = "Place trains for the company that Cait owns, but has the least trains on the map. " \
-          "If tied, place for the company with the most share value."
+    res = '\n'
+    res += "Place trains for the company that Cait owns, but has the least trains on the map. " \
+           "If tied, place for the company with the most share value."
     res += '\n\n'
     res += "Build towards the closest Town or City. If tied, follow the rule: " \
            "City with special interest not present on line > City > Town"
@@ -65,8 +73,9 @@ def call_auction_action_text():
 
 
 def call_auction_action_explain_text():
-    res = "Perform a blind auction a share for a company that currently has the most connections to Towns or Cities. " \
-          "If tied, pick the share with the lowest face value."
+    res = '\n'
+    res += "Perform a blind auction a share for a company that currently has the most connections to Towns or Cities. " \
+           "If tied, pick the share with the lowest face value."
     res += '\n\n'
     res += "If Cait does not have enough money for that share, she performs Call for Dividends instead."
     res += '\n\n'
@@ -91,7 +100,7 @@ def place_bid_action_text():
 
 
 def place_bid_action_explain_text():
-    return "Participating in bidding. Follow the instructions. Type 'back' to back out of bidding.\n"
+    return "\nParticipating in bidding. Follow the instructions. Type 'back' to back out of bidding.\n"
 
 
 def ask_company_minimum_share_price():
@@ -123,7 +132,7 @@ def call_dividends_action_text():
 
 
 def call_dividends_action_explain_text():
-    return "In the event where there are no dividend cubes in the bag with the same colours owned by Cait's " \
+    return "\nIn the event where there are no dividend cubes in the bag with the same colours owned by Cait's " \
            "companies or she does not stand to gain any dividends, she will place a special interest cube instead.\n"
 
 

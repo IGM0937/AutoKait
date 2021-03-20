@@ -13,3 +13,4 @@ from util.constants import *
 def special_interest_action():
     print(output.special_interest_action_text())
     global_vars.last_action = ACTION_SPECIAL_INTEREST
+    # TODO: alternative, place tracks
