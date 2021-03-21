@@ -6,7 +6,7 @@ import action.track as track
 import util.output_text as output
 import util.tools as tools
 from util.constants import *
-from util.global_vars import *
+from util.game_vars import *
 
 
 def make_decision():
@@ -14,11 +14,9 @@ def make_decision():
     Decision making algorithm.
 
     As is: Arbitrary d6 dice roll.
-    To be: Use data to calculate what is the best action to take.
+    To be: Use data points to calculate what is the best action to take.
     """
     result = tools.roll_dice(6)
-    print(output.cait_turn_text(), end='')
-
     if result in DICE_RANGE_SPECIAL_INTEREST:
         special_interest.special_interest_action()
     elif result in DICE_RANGE_PLACE_TRACKS:
@@ -55,12 +53,12 @@ def start_event_loop():
 
 def perform_setup():
     """
-    Performs introduction the player, data and game information setup
+    Performs introductions, player, data and game information setup.
 
-    As is: No player, data or game information setup performed. It only performs introduction.
+    As is: Basic Cait player data and game information setup.
     To be: Setup player, data and game information to be used thought the application.
     """
-    data_points[CAIT_WALLET] = 20
+    data_point[CAIT_WALLET] = 20
     print(output.welcome_text())
 
 

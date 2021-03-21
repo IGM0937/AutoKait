@@ -1,6 +1,6 @@
 from random import randint
 
-import util.global_vars as global_vars
+import util.game_vars as game_vars
 import util.output_text as output
 from util.constants import *
 
@@ -67,7 +67,7 @@ def ask_user_cait_bid_prompt(text):
 
 
 def explain_action():
-    action = global_vars.last_action
+    action = game_vars.last_action
     if action == ACTION_SPECIAL_INTEREST:
         print(output.special_interest_action_explain_text())
     elif action == ACTION_PLACE_TRACKS:

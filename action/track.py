@@ -5,11 +5,11 @@ As is: It's purely based on the current company train count and closes towns and
 To be: Use data to decide which company to place tracks for an where.
 """
 
-import util.global_vars as global_vars
+import util.game_vars as game_vars
 import util.output_text as output
 from util.constants import *
 
 
 def place_tracks_action():
     print(output.place_tracks_action_text())
-    global_vars.last_action = ACTION_PLACE_TRACKS
+    game_vars.last_action = ACTION_PLACE_TRACKS

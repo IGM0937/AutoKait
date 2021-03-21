@@ -7,10 +7,10 @@ To be: Use data to decide to choose a bidding maximum, iteration and style.
 
 import util.output_text as output
 from util.constants import *
-from util.global_vars import *
+from util.game_vars import *
 from util.tools import ask_user_cait_bid_prompt
 from util.tools import ask_user_number_prompt
-from util.tools import global_vars
+from util.tools import game_vars
 from util.tools import is_str_back
 from util.tools import is_str_yes
 from util.tools import roll_dice
@@ -18,7 +18,7 @@ from util.tools import roll_dice
 
 def take_bidding_action(is_cait_first_bid):
     print(output.place_bid_action_text())
-    global_vars.last_action = ACTION_BIDDING
+    game_vars.last_action = ACTION_BIDDING
     share_min = ask_user_number_prompt(output.ask_company_minimum_share_price())
     if is_str_back(share_min):
         print(output.cait_bid_passing_text())
@@ -27,12 +27,12 @@ def take_bidding_action(is_cait_first_bid):
 
 
 def get_bidding_max(share_min):
-    money_max = data_points[CAIT_WALLET]
+    money_max = data_point[CAIT_WALLET]
     bid_max = share_min + roll_dice(10)
     return bid_max if bid_max <= money_max else money_max
 
 
-def calculate_caits_bid(current_bid, max_bid):
+def calculate_new_bid(current_bid, max_bid):
     new_bid = current_bid + BID_STEPS[roll_dice(len(BID_STEPS)) - 1]
     return 0 if (new_bid == current_bid or new_bid > max_bid) else new_bid
 
@@ -58,9 +58,10 @@ def bidding_process(min_price, is_cait_first_bid):
             break
 
     if start_bidding:
+        new_bid = None
         while True:
             if valid_input:
-                new_bid = calculate_caits_bid(bid, max_bid)
+                new_bid = calculate_new_bid(bid, max_bid)
                 if new_bid == 0:
                     print(output.cait_bid_passing_text())
                     break
@@ -69,8 +70,8 @@ def bidding_process(min_price, is_cait_first_bid):
 
             result = ask_user_cait_bid_prompt(output.cait_bid_winning_question_text())
             if is_str_yes(result):
-                data_points[CAIT_WALLET] -= new_bid
-                print(output.cait_bid_won_text(new_bid, data_points[CAIT_WALLET]))
+                data_point[CAIT_WALLET] -= new_bid
+                print(output.cait_bid_won_text(new_bid, data_point[CAIT_WALLET]))
                 break
             elif is_str_back(result):
                 print(output.cait_bid_passing_text())
