@@ -12,7 +12,7 @@ from util.tools import *
 
 
 def call_auction_action():
-    if data_point[CAIT_WALLET] <= 0:
+    if data_point[PLAYER_CAIT].balance() <= 0:
         call_dividends_action()
         return
 

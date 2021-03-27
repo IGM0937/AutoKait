@@ -5,7 +5,6 @@ import action.special_interest as special_interest
 import action.track as track
 import util.output_text as output
 import util.tools as tools
-from util.constants import *
 from util.game_vars import *
 
 
@@ -58,7 +57,7 @@ def perform_setup():
     As is: Basic Cait player data and game information setup.
     To be: Setup player, data and game information to be used thought the application.
     """
-    data_point[CAIT_WALLET] = 20
+    data_point[PLAYER_CAIT] = Player("Cait")
     print(output.welcome_text())
 
 

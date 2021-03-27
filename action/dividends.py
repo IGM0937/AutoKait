@@ -6,6 +6,7 @@ To be: Most of the decision to choose dividends happens prior to taking action i
 """
 
 from action.special_interest import special_interest_action
+from util.game_objects import *
 from util.game_vars import *
 from util.tools import *
 
@@ -32,5 +33,6 @@ def call_dividends_action():
 def dividends_process():
     dividend = ask_user_number_prompt(output.reward_dividends_text())
     if not is_str_back(dividend):
-        data_point[CAIT_WALLET] += dividend
-        print(output.cait_wallet_update_text(dividend, data_point[CAIT_WALLET]))
+        cait: Player = data_point[PLAYER_CAIT]
+        cait.deposit(dividend)
+        print(output.cait_wallet_update_text(dividend, cait.balance()))

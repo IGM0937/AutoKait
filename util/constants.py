@@ -31,3 +31,7 @@ DICE_RANGE_CALL_DIVIDENDS = range(6, 7)
 
 # bidding step range and ratio
 BID_STEPS = (0, 1, 1, 2, 3)
+
+# tile terrain difficulties
+TILE_EASY = 'tile.terrain.easy'
+TILE_DIFF = 'tile.terrain.difficult'

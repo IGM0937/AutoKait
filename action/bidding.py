@@ -7,6 +7,7 @@ To be: Use data to decide to choose a bidding maximum, iteration and style.
 
 import util.output_text as output
 from util.constants import *
+from util.game_objects import *
 from util.game_vars import *
 from util.tools import ask_user_cait_bid_prompt
 from util.tools import ask_user_number_prompt
@@ -27,7 +28,7 @@ def take_bidding_action(is_cait_first_bid):
 
 
 def get_bidding_max(share_min):
-    money_max = data_point[CAIT_WALLET]
+    money_max = data_point[PLAYER_CAIT].balance()
     bid_max = share_min + roll_dice(10)
     return bid_max if bid_max <= money_max else money_max
 
@@ -70,8 +71,9 @@ def bidding_process(min_price, is_cait_first_bid):
 
             result = ask_user_cait_bid_prompt(output.cait_bid_winning_question_text())
             if is_str_yes(result):
-                data_point[CAIT_WALLET] -= new_bid
-                print(output.cait_bid_won_text(new_bid, data_point[CAIT_WALLET]))
+                cait: Player = data_point[PLAYER_CAIT]
+                cait.withdraw(new_bid)
+                print(output.cait_bid_won_text(new_bid, cait.balance()))
                 break
             elif is_str_back(result):
                 print(output.cait_bid_passing_text())
