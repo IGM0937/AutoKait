@@ -27,6 +27,8 @@ POTENTIAL FUTURE VARIABLES:
         - Terrain
             - Type: Easy, Medium (Easy + Tracks), Hard (Difficult)
 """
+import util.constants as constants
+import util.game_vars as game_vars
 
 
 class Player:
@@ -60,13 +62,10 @@ class Tile:
         self.__location = location
         self.__tile_type = tile_type
 
-    def init_name(self, name):
+    def __init__(self, location, tile_type, name):
+        self.__location = location
+        self.__tile_type = tile_type
         self.__name = name
-        return self
-
-    def init_special_interest(self, init_special_interest):
-        self.__special_interest = init_special_interest
-        return self
 
     def init_trains(self, *trails):
         self.add_train(trails)
@@ -83,7 +82,7 @@ class Tile:
 
     def set_adjacent(self, *tiles):
         if self.__adjacent_set:
-            raise RuntimeError("Adjacent tiles already set.")
+            raise RuntimeError('Adjacent tiles already set.')
             exit()
         else:
             self.__adjacent.append(tiles)
@@ -99,7 +98,30 @@ class Tile:
         return self.__name
 
     def set_special_interest(self, cube):
-        self.__special_interest = cube
+        if cube is not constants.SI_BLACK and cube is not constants.SI_WHITE and cube is not constants.SI_PINK:
+            raise RuntimeError('Special interest cube specified is invalid')
+            exit()
+        if self.__name is None:
+            raise RuntimeError('Special interest cube cannot be set against an unnamed location.')
+            exit()
+        if self.__special_interest is None:
+            self.__special_interest = cube
+            if cube is constants.SI_BLACK:
+                game_vars.tile_black_si_cubes.append(self.__location)
+            elif cube is constants.SI_WHITE:
+                game_vars.tile_white_si_cubes.append(self.__location)
+            elif cube is constants.SI_PINK:
+                game_vars.tile_pink_si_cubes.append(self.__location)
+            else:
+                raise RuntimeError('Special interest cube cannot find appropriate list to reference.')
+                exit()
+            self.__tile_type = constants.TILE_CITY
+        else:
+            raise RuntimeError('Special interest cube already exists:',
+                               self.__special_interest,
+                               'at',
+                               self.__special_interest)
+            exit()
 
     def special_interest(self):
         return self.__special_interest
