@@ -37,6 +37,13 @@ RAILWAY_BCD = 'company.belfast.country.down.railway'
 RAILWAY_GSW = 'company.great.southern.western.railway'
 RAILWAY_MGW = 'company.midland.great.western.railway'
 
+# company trains
+TRAIN_CBSC = 'train.cork.bandon.south.coast.railway'
+TRAIN_WLW = 'train.waterford.limerick.western.railway'
+TRAIN_BCD = 'train.belfast.country.down.railway'
+TRAIN_GSW = 'train.great.southern.western.railway'
+TRAIN_MGW = 'train.midland.great.western.railway'
+
 # special interest cubes
 SI_BLACK = 'special.interest.cube.black'
 SI_WHITE = 'special.interest.cube.white'

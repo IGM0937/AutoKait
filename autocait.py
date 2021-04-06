@@ -57,7 +57,8 @@ def perform_setup():
     As is: Basic Cait player data and game information setup.
     To be: Setup player, data and game information to be used thought the application.
     """
-    data_point[PLAYER_CAIT] = Player("Cait")
+    setup_players()
+    setup_board()
     print(output.welcome_text())
 
 

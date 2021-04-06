@@ -27,8 +27,9 @@ POTENTIAL FUTURE VARIABLES:
         - Terrain
             - Type: Easy, Medium (Easy + Tracks), Hard (Difficult)
 """
-import util.constants as constants
-import util.game_vars as game_vars
+from util.constants import SI_BLACK
+from util.constants import SI_PINK
+from util.constants import SI_WHITE
 
 
 class Player:
@@ -58,18 +59,18 @@ class Tile:
     __special_interest = None
     __adjacent_set = False
 
-    def __init__(self, location, tile_type):
-        self.__location = location
-        self.__tile_type = tile_type
-
-    def __init__(self, location, tile_type, name):
-        self.__location = location
-        self.__tile_type = tile_type
-        self.__name = name
-
-    def init_trains(self, *trails):
-        self.add_train(trails)
-        return self
+    def __init__(self, *args):
+        """
+        :argument [0]: Location of the tile. Eg. a1, h4, etc...
+        :argument [1]: Tile Type. Tile terrain difficulties in Constants.
+        :argument [2]: Name. For named locations such as town or a city.
+        """
+        if len(args) < 2 or len(args) > 3:
+            raise RuntimeError(f"Invalid number of args for {self.__class__.__name__}")
+        self.__location = args[0]
+        self.__tile_type = args[1]
+        if len(args) == 3:
+            self.__name = args[2]
 
     def add_train(self, train):
         self.__trains.append(train)
@@ -98,7 +99,7 @@ class Tile:
         return self.__name
 
     def set_special_interest(self, cube):
-        if cube is not constants.SI_BLACK and cube is not constants.SI_WHITE and cube is not constants.SI_PINK:
+        if cube is not SI_BLACK and cube is not SI_WHITE and cube is not SI_PINK:
             raise RuntimeError('Special interest cube specified is invalid')
             exit()
         if self.__name is None:
@@ -107,11 +108,11 @@ class Tile:
         if self.__special_interest is None:
             self.__special_interest = cube
             if cube is constants.SI_BLACK:
-                game_vars.tile_black_si_cubes.append(self.__location)
+                tile_black_si_cubes.append(self.__location)
             elif cube is constants.SI_WHITE:
-                game_vars.tile_white_si_cubes.append(self.__location)
+                tile_white_si_cubes.append(self.__location)
             elif cube is constants.SI_PINK:
-                game_vars.tile_pink_si_cubes.append(self.__location)
+                tile_pink_si_cubes.append(self.__location)
             else:
                 raise RuntimeError('Special interest cube cannot find appropriate list to reference.')
                 exit()
