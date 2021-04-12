@@ -53,8 +53,8 @@ class Player:
 class Tile:
     __location = None
     __tile_type = None
-    __adjacent = []
-    __trains = []
+    __adjacent = None
+    __trains = None
     __name = None
     __special_interest = None
     __adjacent_set = False
@@ -71,6 +71,8 @@ class Tile:
         self.__tile_type = args[1]
         if len(args) == 3:
             self.__name = args[2]
+        self.__trains = []
+        self.__adjacent = ()
 
     def add_train(self, train):
         self.__trains.append(train)
@@ -86,7 +88,7 @@ class Tile:
             raise RuntimeError('Adjacent tiles already set.')
             exit()
         else:
-            self.__adjacent.append(tiles)
+            self.__adjacent = self.adjacent() + tiles
             self.__adjacent_set = True
 
     def adjacent(self):

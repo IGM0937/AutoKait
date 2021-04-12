@@ -134,7 +134,7 @@ def setup_board():
     k2 = Tile('k2', TILE_EASY)
     k3 = Tile('k3', TILE_TOWN, 'Shannon')
     k4 = Tile('k4', TILE_EASY)
-    k5 = Tile('k4', TILE_DIFF)
+    k5 = Tile('k5', TILE_DIFF)
     k6 = Tile('k6', TILE_DIFF)
     k7 = Tile('k7', TILE_EASY)
     k8 = Tile('k8', TILE_EASY)
@@ -176,10 +176,9 @@ def setup_board():
     o1 = Tile('o1', TILE_DIFF)
     o2 = Tile('o2', TILE_DIFF)
     o3 = Tile('o3', TILE_EASY)
-    o4 = Tile('o3', TILE_CITY, 'Cork')
+    o4 = Tile('o4', TILE_CITY, 'Cork')
     # p-row
     p2 = Tile('p2', TILE_DIFF)
-
     # a-row adjacent
     a5.set_adjacent(a6, b6, b5)
     a6.set_adjacent(a7, b6, a5)
@@ -521,7 +520,6 @@ def setup_board():
     tile_board.update({
         p2.location(): p2
     })
-
     # setup tile variables
     o4.add_train(TRAIN_CBSC)
     tile_company_start.update({RAILWAY_CBSC: o4})
@@ -529,9 +527,9 @@ def setup_board():
     tile_company_start.update({RAILWAY_WLW: l4})
     c12.add_train(TRAIN_BCD)
     tile_company_start.update({RAILWAY_BCD: c12})
-    f11.add_train(TRAIN_GSW)
-    tile_company_start.update({RAILWAY_GSW: f11})
-    f11.add_train(TRAIN_MGW)
-    tile_company_start.update({RAILWAY_MGW: f11})
+    h11.add_train(TRAIN_GSW)
+    tile_company_start.update({RAILWAY_GSW: h11})
+    h11.add_train(TRAIN_MGW)
+    tile_company_start.update({RAILWAY_MGW: h11})
     global tile_named_locations
     tile_named_locations = (b8, c12, d4, d9, f2, f11, h3, h7, h11, j12, k3, k12, l4, l8, l9, m9, n1, o4)

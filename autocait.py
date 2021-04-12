@@ -1,7 +1,7 @@
-import action.auction as auction
+# import action.auction as auction
 import action.bidding as bidding
 import action.dividends as dividends
-import action.special_interest as special_interest
+# import action.special_interest as special_interest
 import action.track as track
 import util.output_text as output
 import util.tools as tools
@@ -15,15 +15,16 @@ def make_decision():
     As is: Arbitrary d6 dice roll.
     To be: Use data points to calculate what is the best action to take.
     """
-    result = tools.roll_dice(6)
-    if result in DICE_RANGE_SPECIAL_INTEREST:
-        special_interest.special_interest_action()
-    elif result in DICE_RANGE_PLACE_TRACKS:
-        track.place_tracks_action()
-    elif result in DICE_RANGE_CALL_AUCTION:
-        auction.call_auction_action()
-    elif result in DICE_RANGE_CALL_DIVIDENDS:
-        dividends.call_dividends_action()
+    # result = tools.roll_dice(6)
+    # if result in DICE_RANGE_SPECIAL_INTEREST:
+    #     special_interest.special_interest_action()
+    # elif result in DICE_RANGE_PLACE_TRACKS:
+    #     track.place_tracks_action()
+    # elif result in DICE_RANGE_CALL_AUCTION:
+    #     auction.call_auction_action()
+    # elif result in DICE_RANGE_CALL_DIVIDENDS:
+    #     dividends.call_dividends_action()
+    track.place_tracks_action()
 
 
 def start_event_loop():
