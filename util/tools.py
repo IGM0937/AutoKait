@@ -66,6 +66,44 @@ def ask_user_cait_bid_prompt(text):
             print(output.invalid_input())
 
 
+def ask_user_get_company_train(text):
+    while True:
+        answer = input(text)
+        if is_str_exit(answer):
+            print(output.exit_text(True))
+            exit()
+        elif is_str_explain(answer):
+            explain_action()
+        elif is_str_company(answer, CBSC_ABV, CBSC_COLOUR_SRT, CBSC_COLOUR_LNG):
+            return TRAIN_CBSC
+        elif is_str_company(answer, WLW_ABV, WLW_COLOUR_SRT, WLW_COLOUR_LNG):
+            return TRAIN_WLW
+        elif is_str_company(answer, BCD_ABV, BCD_COLOUR_SRT, BCD_COLOUR_LNG):
+            return TRAIN_BCD
+        elif is_str_company(answer, GSW_ABV, GSW_COLOUR_SRT, GSW_COLOUR_LNG):
+            return TRAIN_GSW
+        elif is_str_company(answer, MGW_ABV, MGW_COLOUR_SRT, MGW_COLOUR_LNG):
+            return TRAIN_MGW
+        else:
+            print(output.invalid_input())
+
+
+def ask_user_get_board_tiles(text):
+    while True:
+        tile_locations = input(text).lower().split(' ')
+        if len(tile_locations) <= 0 or len(tile_locations) >= 4:
+            print(output.invalid_input())
+        elif any(tile_locations.count(location) > 1 for location in tile_locations):
+            print(output.invalid_input("duplicate tile locations present, try again."))
+        elif any(location not in game_vars.tile_board.keys() for location in tile_locations):
+            print(output.invalid_input("invalid tile locations present, try again."))
+        else:
+            result = []
+            for tile_location in tile_locations:
+                result.append(game_vars.tile_board[tile_location])
+            return result
+
+
 def explain_action():
     action = game_vars.last_action
     if action == ACTION_SPECIAL_INTEREST:
@@ -81,20 +119,28 @@ def explain_action():
 
 
 def is_str_yes(value):
-    return type(value) is str and (value.lower() == YES_SRT or value.lower() == YES_LNG)
+    return is_str(value) and (value.lower() == YES_SRT or value.lower() == YES_LNG)
 
 
 def is_str_no(value):
-    return type(value) is str and (value.lower() == NO_SRT or value.lower() == NO_LNG)
+    return is_str(value) and (value.lower() == NO_SRT or value.lower() == NO_LNG)
 
 
 def is_str_explain(value):
-    return type(value) is str and value.lower() == EXPLAIN
+    return is_str(value) and value.lower() == EXPLAIN
 
 
 def is_str_back(value):
-    return type(value) is str and value.lower() == BACK
+    return is_str(value) and value.lower() == BACK
 
 
 def is_str_exit(value):
-    return type(value) is str and value.lower() == EXIT
+    return is_str(value) and value.lower() == EXIT
+
+
+def is_str_company(value, abv, srt, lng):
+    return is_str(value) and (value.lower() == abv or value.lower() == srt or value.lower() == lng)
+
+
+def is_str(value):
+    return type(value) is str

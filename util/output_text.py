@@ -21,8 +21,8 @@ def cait_turn_text():
     return "Cait would like to..."
 
 
-def invalid_input():
-    return "Invalid input. Try again.\n"
+def invalid_input(text='Try again'):
+    return f"Invalid input, {text}.\n"
 
 
 def special_interest_action_text():

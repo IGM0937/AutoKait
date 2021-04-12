@@ -11,10 +11,29 @@ NO_LNG = 'no'
 EXIT = 'exit'
 BACK = 'back'
 EXPLAIN = 'explain'
+
+# user inputs, actions
 BIDDING_SRT = 'bid'
 BIDDING_LNG = 'bidding'
 DIVIDEND_SRT = 'div'
 DIVIDEND_LNG = 'dividend'
+
+# user inputs, companies
+CBSC_ABV = 'cbsc'
+CBSC_COLOUR_SRT = 'y'
+CBSC_COLOUR_LNG = 'yellow'
+WLW_ABV = 'wlw'
+WLW_COLOUR_SRT = 'p'
+WLW_COLOUR_LNG = 'purple'
+BCD_ABV = 'bcd'
+BCD_COLOUR_SRT = 'o'
+BCD_COLOUR_LNG = 'orange'
+GSW_ABV = 'gsw'
+GSW_COLOUR_SRT = 'b'
+GSW_COLOUR_LNG = 'blue'
+MGW_ABV = 'mgw'
+MGW_COLOUR_SRT = 'r'
+MGW_COLOUR_LNG = 'red'
 
 # actions tags
 ACTION_SPECIAL_INTEREST = 'action.special_interest'
