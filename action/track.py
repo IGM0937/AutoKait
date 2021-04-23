@@ -11,10 +11,10 @@ from util.tools import *
 def place_tracks_action():
     print(output.place_tracks_action_text())
     game_vars.last_action = ACTION_PLACE_TRACKS
-    get_company_train()
+    choose_company_train()
 
 
-def get_company_train():
+def choose_company_train():
     track_placement_complete = False
     while not track_placement_complete:
         company_train = ask_user_get_company_train("Which railway company are you placing the trains for? ")
@@ -31,12 +31,12 @@ def tracks_process(company_train):
 
         # duplicate trains in the same location
         if any(company_train in tile.trains() for tile in tiles):
-            print(output.invalid_input(f"one of the locations already contains required trains, try again."))
+            print(output.invalid_input(f"one of the locations already contains required trains, try again"))
             continue
 
         # invalidate placement for difficult location containing a train
         if any((tile.tile_type() == TILE_DIFF and len(tile.trains()) > 0) for tile in tiles):
-            print(output.invalid_input("one of the locations is difficult terrain containing a train, try again."))
+            print(output.invalid_input("one of the locations is difficult terrain containing a train, try again"))
             continue
 
         # validate build costs
@@ -83,5 +83,5 @@ def tracks_process(company_train):
             for curr_hex_tile in curr_hex_tiles:
                 curr_hex_tile.add_train(company_train)
 
-            # todo: completed comment required
+            print("New train tracks have been added to the tiles.\n")
             return True

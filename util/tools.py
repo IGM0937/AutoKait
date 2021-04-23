@@ -92,15 +92,17 @@ def ask_user_get_company_train(text):
 
 def ask_user_get_board_tiles(text):
     while True:
-        tile_locations = input(text).lower().split(' ')
-        if len(tile_locations) == 1 and is_str_back(tile_locations[0]):
+        answer = input(text)
+        if is_str_back(answer):
             return BACK
-        elif len(tile_locations) <= 0 or len(tile_locations) >= 4:
-            print(output.invalid_input())
+
+        tile_locations = answer.lower().split(' ')
+        if len(tile_locations) <= 0 or len(tile_locations) >= 4:
+            print(output.invalid_input('invalid number of trains specified, try again'))
         elif any(tile_locations.count(location) > 1 for location in tile_locations):
-            print(output.invalid_input("duplicate tile locations present, try again."))
+            print(output.invalid_input("duplicate tile locations present, try again"))
         elif any(location not in game_vars.tile_board.keys() for location in tile_locations):
-            print(output.invalid_input("invalid tile locations present, try again."))
+            print(output.invalid_input("invalid tile locations present, try again"))
         else:
             result = []
             for tile_location in tile_locations:
