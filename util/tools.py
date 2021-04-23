@@ -72,6 +72,8 @@ def ask_user_get_company_train(text):
         if is_str_exit(answer):
             print(output.exit_text(True))
             exit()
+        elif is_str_back(answer):
+            return BACK
         elif is_str_explain(answer):
             explain_action()
         elif is_str_company(answer, CBSC_ABV, CBSC_COLOUR_SRT, CBSC_COLOUR_LNG):
@@ -91,7 +93,9 @@ def ask_user_get_company_train(text):
 def ask_user_get_board_tiles(text):
     while True:
         tile_locations = input(text).lower().split(' ')
-        if len(tile_locations) <= 0 or len(tile_locations) >= 4:
+        if len(tile_locations) == 1 and is_str_back(tile_locations[0]):
+            return BACK
+        elif len(tile_locations) <= 0 or len(tile_locations) >= 4:
             print(output.invalid_input())
         elif any(tile_locations.count(location) > 1 for location in tile_locations):
             print(output.invalid_input("duplicate tile locations present, try again."))

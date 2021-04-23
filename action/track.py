@@ -11,16 +11,23 @@ from util.tools import *
 def place_tracks_action():
     print(output.place_tracks_action_text())
     game_vars.last_action = ACTION_PLACE_TRACKS
-    tracks_process()
+    get_company_train()
+
+
+def get_company_train():
+    track_placement_complete = False
+    while not track_placement_complete:
+        company_train = ask_user_get_company_train("Which railway company are you placing the trains for? ")
+        track_placement_complete = True if is_str_back(company_train) else tracks_process(company_train)
 
 
 # todo: debug: clean up text, wip
-def tracks_process():
-    company_train = ask_user_get_company_train("Which railway company are you placing the trains for? ")
-
-    track_placement_complete = False
-    while not track_placement_complete:
+def tracks_process(company_train):
+    while True:
         tiles = ask_user_get_board_tiles("Please enter the tile locations for the new train track: (in order) ")
+
+        if is_str_back(tiles):
+            return False
 
         # duplicate trains in the same location
         if any(company_train in tile.trains() for tile in tiles):
@@ -77,4 +84,4 @@ def tracks_process():
                 curr_hex_tile.add_train(company_train)
 
             # todo: completed comment required
-            track_placement_complete = True
+            return True
