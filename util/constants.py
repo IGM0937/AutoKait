@@ -17,6 +17,8 @@ BIDDING_SRT = 'bid'
 BIDDING_LNG = 'bidding'
 DIVIDEND_SRT = 'div'
 DIVIDEND_LNG = 'dividend'
+TRACKS_SRT = 'trk'
+TRACKS_LNG = 'tracks'
 
 # user inputs, companies
 CBSC_ABV = 'cbsc'
@@ -34,6 +36,14 @@ GSW_COLOUR_LNG = 'blue'
 MGW_ABV = 'mgw'
 MGW_COLOUR_SRT = 'r'
 MGW_COLOUR_LNG = 'red'
+
+# user inputs, special interest cubes
+SI_BLACK_SRT = 'b'
+SI_BLACK_LNG = 'black'
+SI_WHITE_SRT = 'w'
+SI_WHITE_LNG = 'white'
+SI_PINK_SRT = 'p'
+SI_PINK_LNG = 'pink'
 
 # actions tags
 ACTION_SPECIAL_INTEREST = 'action.special_interest'
@@ -64,9 +74,9 @@ TRAIN_GSW = 'train.great.southern.western.railway'
 TRAIN_MGW = 'train.midland.great.western.railway'
 
 # special interest cubes
-SI_BLACK = 'special.interest.cube.black'
-SI_WHITE = 'special.interest.cube.white'
-SI_PINK = 'special.interest.cube.pink'
+CUBE_SI_BLACK = 'cube.special.interest.black'
+CUBE_SI_WHITE = 'cube.special.interest.white'
+CUBE_SI_PINK = 'cube.special.interest.pink'
 
 # player data point tags
 PLAYER_CAIT = 'data.player.cait'

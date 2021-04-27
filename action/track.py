@@ -14,6 +14,13 @@ def place_tracks_action():
     choose_company_train()
 
 
+def place_tracks_others_action():
+    print(output.place_tracks_others_action_text())
+    game_vars.last_action = ACTION_PLACE_TRACKS
+    choose_company_train()
+
+
+# TODO: clean up output text
 def choose_company_train():
     track_placement_complete = False
     while not track_placement_complete:
@@ -21,7 +28,7 @@ def choose_company_train():
         track_placement_complete = True if is_str_back(company_train) else tracks_process(company_train)
 
 
-# todo: debug: clean up text, wip
+# TODO: clean up output text
 def tracks_process(company_train):
     while True:
         tiles = ask_user_get_board_tiles("Please enter the tile locations for the new train track: (in order) ")

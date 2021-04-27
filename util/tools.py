@@ -90,14 +90,37 @@ def ask_user_get_company_train(text):
             print(output.invalid_input())
 
 
-def ask_user_get_board_tiles(text):
+def ask_user_get_special_interest_cube(text):
+    while True:
+        answer = input(text)
+        if is_str_exit(answer):
+            print(output.exit_text(True))
+            exit()
+        elif is_str_back(answer):
+            return BACK
+        elif is_str_explain(answer):
+            explain_action()
+        elif is_str_special_interest(answer, SI_BLACK_SRT, SI_BLACK_LNG):
+            return CUBE_SI_WHITE
+        elif is_str_special_interest(answer, SI_WHITE_SRT, SI_WHITE_LNG):
+            return CUBE_SI_BLACK
+        elif is_str_special_interest(answer, SI_PINK_SRT, SI_PINK_LNG):
+            return CUBE_SI_PINK
+        else:
+            print(output.invalid_input())
+
+
+def ask_user_get_board_tiles(text, max_tiles=3):
     while True:
         answer = input(text)
         if is_str_back(answer):
             return BACK
+        elif is_str_exit(answer):
+            print(output.exit_text(True))
+            exit()
 
         tile_locations = answer.lower().split(' ')
-        if len(tile_locations) <= 0 or len(tile_locations) >= 4:
+        if len(tile_locations) == 0 or len(tile_locations) >= (max_tiles + 1):
             print(output.invalid_input('invalid number of trains specified, try again'))
         elif any(tile_locations.count(location) > 1 for location in tile_locations):
             print(output.invalid_input("duplicate tile locations present, try again"))
@@ -146,6 +169,10 @@ def is_str_exit(value):
 
 def is_str_company(value, abv, srt, lng):
     return is_str(value) and (value.lower() == abv or value.lower() == srt or value.lower() == lng)
+
+
+def is_str_special_interest(value, srt, lng):
+    return is_str(value) and (value.lower() == srt or value.lower() == lng)
 
 
 def is_str(value):

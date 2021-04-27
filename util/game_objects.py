@@ -27,9 +27,9 @@ POTENTIAL FUTURE VARIABLES:
         - Terrain
             - Type: Easy, Medium (Easy + Tracks), Hard (Difficult)
 """
-from util.constants import SI_BLACK
-from util.constants import SI_PINK
-from util.constants import SI_WHITE
+from util.constants import CUBE_SI_BLACK
+from util.constants import CUBE_SI_PINK
+from util.constants import CUBE_SI_WHITE
 
 
 class Player:
@@ -101,7 +101,7 @@ class Tile:
         return self.__name
 
     def set_special_interest(self, cube):
-        if cube is not SI_BLACK and cube is not SI_WHITE and cube is not SI_PINK:
+        if cube is not CUBE_SI_BLACK and cube is not CUBE_SI_WHITE and cube is not CUBE_SI_PINK:
             raise RuntimeError('Special interest cube specified is invalid')
             exit()
         if self.__name is None:

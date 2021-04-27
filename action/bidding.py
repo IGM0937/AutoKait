@@ -6,8 +6,6 @@ To be: Use data to decide to choose a bidding maximum, iteration and style.
 """
 
 import util.output_text as output
-from util.constants import *
-from util.game_objects import *
 from util.game_vars import *
 from util.tools import ask_user_cait_bid_prompt
 from util.tools import ask_user_number_prompt

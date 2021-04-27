@@ -14,7 +14,7 @@ def exit_text(forced, msg='Goodbye'):
 
 
 def cait_waiting_turn_text():
-    return "Type bid or dividend or press enter to take Cait's turn... "
+    return "Type bid, tracks or dividend or press enter to take Cait's turn... "
 
 
 def cait_turn_text():
@@ -53,6 +53,10 @@ def special_interest_action_be_performed_text():
 
 def place_tracks_action_text():
     return f"{cait_turn_text()} Place rail tracks\n"
+
+
+def place_tracks_others_action_text():
+    return "Placing rail tracks\n"
 
 
 def place_tracks_action_explain_text():
