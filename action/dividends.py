@@ -11,16 +11,6 @@ from util.tools import *
 
 
 def call_dividends_action():
-    """
-    TODO: add logic and game_vars that will be able to do the following automatically:
-
-    She will place a special interest cube instead, in the event where:
-        - There are no dividend cubes in the bag with the same colours owned by Cait's companies.
-        - She does not stand to gain any dividends.
-
-    TODO: If she is going to get any dividends, they too will be automatically calculated and added to her wallet.
-    """
-
     print(output.call_dividends_action_text())
     game_vars.last_action = ACTION_CALL_DIVIDENDS
     if ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text()):

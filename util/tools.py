@@ -101,9 +101,9 @@ def ask_user_get_special_interest_cube(text):
         elif is_str_explain(answer):
             explain_action()
         elif is_str_special_interest(answer, SI_BLACK_SRT, SI_BLACK_LNG):
-            return CUBE_SI_WHITE
-        elif is_str_special_interest(answer, SI_WHITE_SRT, SI_WHITE_LNG):
             return CUBE_SI_BLACK
+        elif is_str_special_interest(answer, SI_WHITE_SRT, SI_WHITE_LNG):
+            return CUBE_SI_WHITE
         elif is_str_special_interest(answer, SI_PINK_SRT, SI_PINK_LNG):
             return CUBE_SI_PINK
         else:

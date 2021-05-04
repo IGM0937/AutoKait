@@ -27,9 +27,11 @@ POTENTIAL FUTURE VARIABLES:
         - Terrain
             - Type: Easy, Medium (Easy + Tracks), Hard (Difficult)
 """
+import util.game_vars as game_vars
 from util.constants import CUBE_SI_BLACK
 from util.constants import CUBE_SI_PINK
 from util.constants import CUBE_SI_WHITE
+from util.constants import TILE_CITY
 
 
 class Player:
@@ -86,7 +88,6 @@ class Tile:
     def set_adjacent(self, *tiles):
         if self.__adjacent_set:
             raise RuntimeError('Adjacent tiles already set.')
-            exit()
         else:
             self.__adjacent = self.adjacent() + tiles
             self.__adjacent_set = True
@@ -103,28 +104,34 @@ class Tile:
     def set_special_interest(self, cube):
         if cube is not CUBE_SI_BLACK and cube is not CUBE_SI_WHITE and cube is not CUBE_SI_PINK:
             raise RuntimeError('Special interest cube specified is invalid')
-            exit()
         if self.__name is None:
             raise RuntimeError('Special interest cube cannot be set against an unnamed location.')
-            exit()
         if self.__special_interest is None:
             self.__special_interest = cube
-            if cube is constants.SI_BLACK:
-                tile_black_si_cubes.append(self.__location)
-            elif cube is constants.SI_WHITE:
-                tile_white_si_cubes.append(self.__location)
-            elif cube is constants.SI_PINK:
-                tile_pink_si_cubes.append(self.__location)
+            if cube is CUBE_SI_BLACK:
+                game_vars.tile_black_si_cubes.append(self.__location)
+            elif cube is CUBE_SI_WHITE:
+                game_vars.tile_white_si_cubes.append(self.__location)
+            elif cube is CUBE_SI_PINK:
+                game_vars.tile_pink_si_cubes.append(self.__location)
             else:
                 raise RuntimeError('Special interest cube cannot find appropriate list to reference.')
-                exit()
-            self.__tile_type = constants.TILE_CITY
+            self.__tile_type = TILE_CITY
         else:
             raise RuntimeError('Special interest cube already exists:',
                                self.__special_interest,
                                'at',
                                self.__special_interest)
-            exit()
 
-    def special_interest(self):
-        return self.__special_interest
+    def special_interest(self, translate=False):
+        if not translate:
+            return self.__special_interest
+        else:
+            if self.__special_interest is None:
+                return "None"
+            elif self.__special_interest is CUBE_SI_BLACK:
+                return "black"
+            elif self.__special_interest is CUBE_SI_WHITE:
+                return "white"
+            elif self.__special_interest is CUBE_SI_PINK:
+                return "pink"

@@ -4,7 +4,6 @@ import action.dividends as dividends
 import action.special_interest as special_interest
 import action.track as track
 import util.output_text as output
-import util.tools as tools
 from util.game_vars import *
 
 
@@ -45,7 +44,9 @@ def start_event_loop():
         elif req == DIVIDEND_SRT or req == DIVIDEND_LNG:
             dividends.dividends_process()
         elif req == TRACKS_SRT or req == TRACKS_LNG:
-            track.place_tracks_others_action()
+            track.place_tracks_action(False)
+        elif req == INTEREST_SRT or req == INTEREST_LNG:
+            special_interest.special_interest_action(False)
         elif req != BLANK:
             print(output.invalid_input())
         else:
@@ -59,11 +60,19 @@ def perform_setup():
     As is: Basic Cait player data and game information setup.
     To be: Setup player, data and game information to be used thought the application.
     """
+    print(output.welcome_text())
     setup_players()
     setup_board()
-    print(output.welcome_text())
+    setup_init_tracks()
+    setup_init_special_interest_cubes(True)
 
 
+# MAIN DEVELOPMENT to do list:
+# TODO: Calculate dividends (based on 3 randomly selected interest cubes).
+# TODO: Add counter checks for trains and interest cube.
+# TODO: Write simple README file, alter text to AutoKat.
+# TODO: Write doc.
+# TODO: Write unit testing.
 if __name__ == '__main__':
     perform_setup()
     start_event_loop()

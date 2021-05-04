@@ -19,6 +19,8 @@ DIVIDEND_SRT = 'div'
 DIVIDEND_LNG = 'dividend'
 TRACKS_SRT = 'trk'
 TRACKS_LNG = 'tracks'
+INTEREST_SRT = 'int'
+INTEREST_LNG = 'interest'
 
 # user inputs, companies
 CBSC_ABV = 'cbsc'

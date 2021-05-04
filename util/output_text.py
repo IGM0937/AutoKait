@@ -25,8 +25,8 @@ def invalid_input(text='Try again'):
     return f"Invalid input, {text}.\n"
 
 
-def special_interest_action_text():
-    return f"{cait_turn_text()} Place a special interest cube\n"
+def special_interest_action_text(is_cait_turn=True):
+    return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " a special interest cube\n"
 
 
 def special_interest_action_explain_text():
@@ -51,12 +51,8 @@ def special_interest_action_be_performed_text():
     return "Can Cait place any special interest cubes? Y/N "
 
 
-def place_tracks_action_text():
-    return f"{cait_turn_text()} Place rail tracks\n"
-
-
-def place_tracks_others_action_text():
-    return "Placing rail tracks\n"
+def place_tracks_action_text(is_cait_turn=True):
+    return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " rail tracks\n"
 
 
 def place_tracks_action_explain_text():

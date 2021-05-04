@@ -6,6 +6,7 @@ List of global game variables and their starting defaults, if relevant.
         - interest cube rating
         - player threat rating
 """
+import util.tools as tools
 from util.constants import *
 from util.game_objects import *
 
@@ -521,15 +522,45 @@ def setup_board():
         p2.location(): p2
     })
     # setup tile variables
+    global tile_named_locations
+    tile_named_locations = (b8, c12, d4, d9, f2, f11, h3, h7, h11, j12, k3, k12, l4, l8, l9, m9, n1, o4)
+
+
+def setup_init_tracks():
+    o4 = tile_board.get('o4')
     o4.add_train(TRAIN_CBSC)
     tile_company_start.update({RAILWAY_CBSC: o4})
+
+    l4 = tile_board.get('l4')
     l4.add_train(TRAIN_WLW)
     tile_company_start.update({RAILWAY_WLW: l4})
+
+    c12 = tile_board.get('c12')
     c12.add_train(TRAIN_BCD)
     tile_company_start.update({RAILWAY_BCD: c12})
+
+    h11 = tile_board.get('h11')
     h11.add_train(TRAIN_GSW)
     tile_company_start.update({RAILWAY_GSW: h11})
     h11.add_train(TRAIN_MGW)
     tile_company_start.update({RAILWAY_MGW: h11})
-    global tile_named_locations
-    tile_named_locations = (b8, c12, d4, d9, f2, f11, h3, h7, h11, j12, k3, k12, l4, l8, l9, m9, n1, o4)
+
+
+def setup_init_special_interest_cubes(debug=False):
+    question = "Which special interest cube is being placed in"
+    locations = ['c12', 'h11', 'h3', 'b8', 'l8', 'm9', 'l4', 'o4']
+    si_count = 0
+    si_cubes = [CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK,
+                CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK,
+                CUBE_SI_BLACK, CUBE_SI_WHITE]
+
+    for location in locations:
+        tile = tile_board.get(location)
+        if debug:
+            cube = si_cubes[si_count]
+            si_count = si_count + 1
+        else:
+            cube = tools.ask_user_get_special_interest_cube(f"{question} {tile.name()}? ")
+        tile.set_special_interest(cube)
+
+    print("Starting special interest cubes have been placed.\n")

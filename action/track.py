@@ -8,14 +8,8 @@ To be: Use data to decide which company to place tracks for an where.
 from util.tools import *
 
 
-def place_tracks_action():
-    print(output.place_tracks_action_text())
-    game_vars.last_action = ACTION_PLACE_TRACKS
-    choose_company_train()
-
-
-def place_tracks_others_action():
-    print(output.place_tracks_others_action_text())
+def place_tracks_action(is_cait_turn=True):
+    print(output.place_tracks_action_text(is_cait_turn))
     game_vars.last_action = ACTION_PLACE_TRACKS
     choose_company_train()
 
