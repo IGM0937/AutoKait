@@ -90,24 +90,40 @@ def ask_user_get_company_train(text):
             print(output.invalid_input())
 
 
-def ask_user_get_special_interest_cube(text):
+def ask_user_get_special_interest_cube(text, number_cubes=1):
     while True:
         answer = input(text)
-        if is_str_exit(answer):
-            print(output.exit_text(True))
-            exit()
+        if is_str_explain(answer):
+            explain_action()
         elif is_str_back(answer):
             return BACK
-        elif is_str_explain(answer):
-            explain_action()
-        elif is_str_special_interest(answer, SI_BLACK_SRT, SI_BLACK_LNG):
-            return CUBE_SI_BLACK
-        elif is_str_special_interest(answer, SI_WHITE_SRT, SI_WHITE_LNG):
-            return CUBE_SI_WHITE
-        elif is_str_special_interest(answer, SI_PINK_SRT, SI_PINK_LNG):
-            return CUBE_SI_PINK
-        else:
-            print(output.invalid_input())
+        elif is_str_exit(answer):
+            print(output.exit_text(True))
+            exit()
+
+        cubes = answer.lower().split(' ')
+        if len(cubes) is not number_cubes:
+            print(output.invalid_input('invalid number of cubes specified, try again'))
+            continue
+
+        result = []
+        valid_result = True
+        for cube in cubes:
+            if is_str_special_interest(cube, SI_BLACK_SRT, SI_BLACK_LNG):
+                result.append(CUBE_SI_BLACK)
+            elif is_str_special_interest(cube, SI_WHITE_SRT, SI_WHITE_LNG):
+                result.append(CUBE_SI_WHITE)
+            elif is_str_special_interest(cube, SI_PINK_SRT, SI_PINK_LNG):
+                result.append(CUBE_SI_PINK)
+            else:
+                print(output.invalid_input(f"'{str(cube)}' is an invalid special interest cube, try again"))
+                valid_result = False
+                break
+
+        if not valid_result:
+            continue
+
+        return result
 
 
 def ask_user_get_board_tiles(text, max_tiles=3):

@@ -50,7 +50,8 @@ def start_event_loop():
         elif req != BLANK:
             print(output.invalid_input())
         else:
-            make_decision()
+            # make_decision()
+            dividends.call_dividends_action()
 
 
 def perform_setup():
@@ -65,6 +66,7 @@ def perform_setup():
     setup_board()
     setup_init_tracks()
     setup_init_special_interest_cubes(True)
+    setup_debug_train_tracks()
 
 
 # MAIN DEVELOPMENT to do list:

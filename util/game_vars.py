@@ -15,9 +15,17 @@ data_point = {}
 tile_board = {}
 tile_company_start = {}
 tile_named_locations = None
+
+# unsure of the following lists are useful
+# but created and populated anyway
 tile_black_si_cubes = []
 tile_white_si_cubes = []
 tile_pink_si_cubes = []
+tile_trains_cbsc = []
+tile_trains_wlw = []
+tile_trains_bcd = []
+tile_trains_gsw = []
+tile_trains_mgw = []
 
 
 def setup_players():
@@ -564,3 +572,10 @@ def setup_init_special_interest_cubes(debug=False):
         tile.set_special_interest(cube)
 
     print("Starting special interest cubes have been placed.\n")
+
+
+def setup_debug_train_tracks():
+    location_list = ('h10', 'g9', 'h8', 'h7')
+    for location in location_list:
+        tile = tile_board.get(location)
+        tile.add_train(TRAIN_MGW)

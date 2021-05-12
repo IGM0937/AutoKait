@@ -32,6 +32,11 @@ from util.constants import CUBE_SI_BLACK
 from util.constants import CUBE_SI_PINK
 from util.constants import CUBE_SI_WHITE
 from util.constants import TILE_CITY
+from util.constants import TRAIN_BCD
+from util.constants import TRAIN_CBSC
+from util.constants import TRAIN_GSW
+from util.constants import TRAIN_MGW
+from util.constants import TRAIN_WLW
 
 
 class Player:
@@ -78,6 +83,18 @@ class Tile:
 
     def add_train(self, train):
         self.__trains.append(train)
+        if train is TRAIN_CBSC:
+            game_vars.tile_trains_cbsc.append(self)
+        elif train is TRAIN_WLW:
+            game_vars.tile_trains_wlw.append(self)
+        elif train is TRAIN_BCD:
+            game_vars.tile_trains_bcd.append(self)
+        elif train is TRAIN_GSW:
+            game_vars.tile_trains_gsw.append(self)
+        elif train is TRAIN_MGW:
+            game_vars.tile_trains_mgw.append(self)
+        else:
+            raise RuntimeError(f"Train '{train}' cannot find appropriate list to reference.")
 
     def location(self):
         return self.__location
@@ -109,11 +126,11 @@ class Tile:
         if self.__special_interest is None:
             self.__special_interest = cube
             if cube is CUBE_SI_BLACK:
-                game_vars.tile_black_si_cubes.append(self.__location)
+                game_vars.tile_black_si_cubes.append(self)
             elif cube is CUBE_SI_WHITE:
-                game_vars.tile_white_si_cubes.append(self.__location)
+                game_vars.tile_white_si_cubes.append(self)
             elif cube is CUBE_SI_PINK:
-                game_vars.tile_pink_si_cubes.append(self.__location)
+                game_vars.tile_pink_si_cubes.append(self)
             else:
                 raise RuntimeError('Special interest cube cannot find appropriate list to reference.')
             self.__tile_type = TILE_CITY
