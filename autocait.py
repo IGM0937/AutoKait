@@ -63,17 +63,19 @@ def perform_setup():
     """
     print(output.welcome_text())
     setup_players()
-    setup_board()
-    setup_init_tracks()
+    setup_tile_board()
+    # TODO: debug, change to false later.
+    setup_init_tracks(True)
     setup_init_special_interest_cubes(True)
-    setup_debug_train_tracks()
 
 
 # MAIN DEVELOPMENT to do list:
 # TODO: Calculate dividends (based on 3 randomly selected interest cubes).
 # TODO: Add counter checks for trains and interest cube.
-# TODO: Write simple README file, alter text to AutoKat.
-# TODO: Write doc.
+# TODO: Re-write explain text.
+# TODO: Write simple README file.
+# TODO: Alter game and code text to Kat and AutoKat.
+# TODO: Re-write and add more docs.
 # TODO: Write unit testing.
 if __name__ == '__main__':
     perform_setup()

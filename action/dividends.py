@@ -16,37 +16,49 @@ def call_dividends_action():
     dividends_process() if yes_answer else special_interest_action()
 
 
+# TODO: clean up output text
+# TODO: run more tests
 def dividends_process():
     si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", 3)
 
     if is_str_back(si_cubes):
         return
 
-    # remove duplicates using dictionary creation from keys, back into list again
-    si_cubes = list(dict.fromkeys(si_cubes))
-    print(str(si_cubes))
+    print("\nThe company dividends generated are: ")
+    cbsc_dividends = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
+    print(f"CBSC (yellow) received £{cbsc_dividends}")
+    wlw_dividends = calculate_company_dividends_by_train(TRAIN_WLW, si_cubes)
+    print(f"WLW (purple) received £{wlw_dividends}")
+    bcd_dividends = calculate_company_dividends_by_train(TRAIN_BCD, si_cubes)
+    print(f"BCD (orange) received £{bcd_dividends}")
+    gsw_dividends = calculate_company_dividends_by_train(TRAIN_GSW, si_cubes)
+    print(f"GSW (blue) received £{gsw_dividends}")
+    mgw_dividends = calculate_company_dividends_by_train(TRAIN_MGW, si_cubes)
+    print(f"MGW (red) received £{mgw_dividends}\n")
 
-    # todo: debug
-    cbsc_named_tiles = filter_tile_named_locations_by_train(TRAIN_CBSC)
-    wlw_named_tiles = filter_tile_named_locations_by_train(TRAIN_WLW)
-    bcd_named_tiles = filter_tile_named_locations_by_train(TRAIN_BCD)
-    gsw_named_tiles = filter_tile_named_locations_by_train(TRAIN_GSW)
-    mgw_named_tiles = filter_tile_named_locations_by_train(TRAIN_MGW)
-
-    print(str(mgw_named_tiles))
-
-    # dividend = ask_user_number_prompt(output.reward_dividends_text())
-    # if not is_str_back(dividend):
-    #     cait: Player = data_point[PLAYER_CAIT]
-    #     cait.deposit(dividend)
-    #     print(output.cait_wallet_update_text(dividend, cait.balance()))
-
-
-def filter_tile_named_locations_by_train(train):
-    return [tile for tile in game_vars.tile_named_locations if lambda_company_named_tiles(tile, train)]
+    dividend = ask_user_number_prompt(output.reward_dividends_text())
+    if not is_str_back(dividend):
+        cait = game_vars.data_point[PLAYER_CAIT]
+        cait.deposit(dividend)
+        print(output.cait_wallet_update_text(dividend, cait.balance()))
 
 
-def lambda_company_named_tiles(tile, train): return train in tile.trains()
+def calculate_company_dividends_by_train(train, si_cubes):
+    scoring_tiles = filter_scoring_named_locations_by_company_train(train, si_cubes)
+    has_town = any(tile.tile_type() is TILE_TOWN for tile in scoring_tiles)
+    paying_cities = [tile for tile in scoring_tiles if
+                     tile.tile_type() is TILE_CITY or tile.tile_type() is TILE_MCITY]
+
+    total_dividends = 0
+    if (has_town and len(paying_cities) > 0) or len(paying_cities) > 1:
+        for tile in scoring_tiles:
+            if tile.tile_type() is TILE_TOWN:
+                total_dividends += 2
+            elif tile.tile_type() is TILE_CITY or tile.tile_type() is TILE_MCITY:
+                total_dividends += 4
+    return total_dividends
 
 
-def lambda_si_tiles(tile, cubes): return tile.special_interest() is not None and tile.special_interest() in cubes
+def filter_scoring_named_locations_by_company_train(train, cubes):
+    return [tile for tile in game_vars.tile_named_locations if
+            (train in tile.trains()) and (tile.special_interest() is None or tile.special_interest() in cubes)]

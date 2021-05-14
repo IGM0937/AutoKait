@@ -14,7 +14,7 @@ def exit_text(forced, msg='Goodbye'):
 
 
 def cait_waiting_turn_text():
-    return "Type bid, tracks or dividend or press enter to take Cait's turn... "
+    return "Type an action or press enter to take Cait's turn... "
 
 
 def cait_turn_text():
