@@ -13,11 +13,11 @@ def roll_dice(dice_max):
 
 
 def pieces_available(piece, count=1):
-    if (game_vars.game_piece_counters[piece] - count) < 0:
-        return False
-    else:
-        game_vars.game_piece_counters[piece] -= count
-        return True
+    return True if (game_vars.game_piece_counters[piece] - count) < 0 else False
+
+
+def pieces_take(piece, count=1):
+    game_vars.game_piece_counters[piece] -= count
 
 
 def ask_user_yes_no_prompt(text):

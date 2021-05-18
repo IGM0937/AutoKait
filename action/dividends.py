@@ -17,24 +17,39 @@ def call_dividends_action():
 
 
 # TODO: clean up output text
-# TODO: run more tests
+# TODO: run more tests on pieces
 def dividends_process():
-    si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", 3)
+    selection_complete = False
+    while not selection_complete:
+        si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", 3)
 
-    if is_str_back(si_cubes):
-        return
+        if is_str_back(si_cubes):
+            return
 
-    print("\nThe company dividends generated are: ")
-    cbsc_dividends = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
-    print(f"CBSC (yellow) received £{cbsc_dividends}")
-    wlw_dividends = calculate_company_dividends_by_train(TRAIN_WLW, si_cubes)
-    print(f"WLW (purple) received £{wlw_dividends}")
-    bcd_dividends = calculate_company_dividends_by_train(TRAIN_BCD, si_cubes)
-    print(f"BCD (orange) received £{bcd_dividends}")
-    gsw_dividends = calculate_company_dividends_by_train(TRAIN_GSW, si_cubes)
-    print(f"GSW (blue) received £{gsw_dividends}")
-    mgw_dividends = calculate_company_dividends_by_train(TRAIN_MGW, si_cubes)
-    print(f"MGW (red) received £{mgw_dividends}\n")
+        # validate if pieces are available to be selected
+        for si_cube in si_cubes:
+            if not pieces_available(si_cube, si_cubes.count(si_cube)):
+                print(output.invalid_input(
+                    f"The {si_cubes.count(si_cube)} {si_cube.split('.')[-1]} cubes"
+                    f" are not available for selection, try again"))
+                continue
+
+        print("\nThe company dividends generated are: ")
+        cbsc_dividends = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
+        print(f"CBSC (yellow) received £{cbsc_dividends}")
+        wlw_dividends = calculate_company_dividends_by_train(TRAIN_WLW, si_cubes)
+        print(f"WLW (purple) received £{wlw_dividends}")
+        bcd_dividends = calculate_company_dividends_by_train(TRAIN_BCD, si_cubes)
+        print(f"BCD (orange) received £{bcd_dividends}")
+        gsw_dividends = calculate_company_dividends_by_train(TRAIN_GSW, si_cubes)
+        print(f"GSW (blue) received £{gsw_dividends}")
+        mgw_dividends = calculate_company_dividends_by_train(TRAIN_MGW, si_cubes)
+        print(f"MGW (red) received £{mgw_dividends}\n")
+
+        # reduce piece counters and complete
+        for si_cube in si_cubes:
+            pieces_take(si_cube)
+        selection_complete = True
 
     dividend = ask_user_number_prompt(output.reward_dividends_text())
     if not is_str_back(dividend):

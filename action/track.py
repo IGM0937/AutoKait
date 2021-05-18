@@ -23,6 +23,7 @@ def choose_company_train():
 
 
 # TODO: clean up output text
+# TODO: run more tests on pieces
 def tracks_process(company_train):
     while True:
         tiles = ask_user_get_board_tiles("Please enter the tile locations for the new train track: (in order) ")
@@ -32,12 +33,17 @@ def tracks_process(company_train):
 
         # duplicate trains in the same location
         if any(company_train in tile.trains() for tile in tiles):
-            print(output.invalid_input(f"one of the locations already contains required trains, try again"))
+            print(output.invalid_input("one of the locations already contains required trains, try again"))
             continue
 
         # invalidate placement for difficult location containing a train
         if any((tile.tile_type() == TILE_DIFF and len(tile.trains()) > 0) for tile in tiles):
             print(output.invalid_input("one of the locations is difficult terrain containing a train, try again"))
+            continue
+
+        # validate if trains are available for placement
+        if not pieces_available(company_train, len(tiles)):
+            print(output.invalid_input("there are not enough company trains to place on these tiles, try again"))
             continue
 
         # validate build costs
@@ -83,6 +89,7 @@ def tracks_process(company_train):
         else:
             for curr_hex_tile in curr_hex_tiles:
                 curr_hex_tile.add_train(company_train)
+            pieces_take(company_train, len(curr_hex_tiles))
 
             print("New train tracks have been added to the tiles.\n")
             return True
