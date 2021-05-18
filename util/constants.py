@@ -83,6 +83,16 @@ CUBE_SI_PINK = 'cube.special.interest.pink'
 # player data point tags
 PLAYER_CAIT = 'data.player.cait'
 
+# number of game pieces
+pieces_cubes_si_black = 10
+pieces_cubes_si_white = 10
+pieces_cubes_si_pink = 10
+pieces_trains_cbsc = 19
+pieces_trains_wlw = 19
+pieces_trains_bcd = 19
+pieces_trains_gsw = 19
+pieces_trains_mgw = 19
+
 # dice actions range
 DICE_RANGE_SPECIAL_INTEREST = range(1, 2)
 DICE_RANGE_PLACE_TRACKS = range(2, 5)

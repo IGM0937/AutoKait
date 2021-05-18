@@ -1,3 +1,5 @@
+import sys
+
 import action.auction as auction
 import action.bidding as bidding
 import action.dividends as dividends
@@ -54,7 +56,7 @@ def start_event_loop():
             dividends.call_dividends_action()
 
 
-def perform_setup():
+def perform_setup(in_dev_mode=False):
     """
     Performs introductions, player, data and game information setup.
 
@@ -64,13 +66,12 @@ def perform_setup():
     print(output.welcome_text())
     setup_players()
     setup_tile_board()
-    # TODO: debug, change to false later.
-    setup_init_tracks(True)
-    setup_init_special_interest_cubes(True)
+    setup_pieces()
+    setup_init_tracks(in_dev_mode)
+    setup_init_special_interest_cubes(in_dev_mode)
 
 
 # MAIN DEVELOPMENT to do list:
-# TODO: Calculate dividends (based on 3 randomly selected interest cubes).
 # TODO: Add counter checks for trains and interest cube.
 # TODO: Re-write explain text.
 # TODO: Write simple README file.
@@ -78,5 +79,5 @@ def perform_setup():
 # TODO: Re-write and add more docs.
 # TODO: Write unit testing.
 if __name__ == '__main__':
-    perform_setup()
+    perform_setup(True if '-d' in sys.argv or '--dev' in sys.argv else False)
     start_event_loop()

@@ -15,6 +15,7 @@ data_point = {}
 tile_board = {}
 tile_company_start = {}
 tile_named_locations = None
+game_piece_counters = {}
 
 # unsure of the following lists are useful
 # but created and populated anyway
@@ -534,7 +535,20 @@ def setup_tile_board():
     tile_named_locations = (b8, c12, d4, d9, f2, f11, h3, h7, h11, j12, k3, k12, l4, l8, l9, m9, n1, o4)
 
 
-def setup_init_tracks(debug=False):
+def setup_pieces():
+    game_piece_counters.update({
+        TRAIN_CBSC: game_vars.pieces_trains_cbsc,
+        TRAIN_WLW: game_vars.pieces_trains_wlw,
+        TRAIN_BCD: game_vars.pieces_trains_bcd,
+        TRAIN_GSW: game_vars.pieces_trains_gsw,
+        TRAIN_MGW: game_vars.pieces_trains_mgw,
+        CUBE_SI_BLACK: game_vars.pieces_cubes_si_black,
+        CUBE_SI_WHITE: game_vars.pieces_cubes_si_white,
+        CUBE_SI_PINK: game_vars.pieces_cubes_si_pink
+    })
+
+
+def setup_init_tracks(in_dev_mode=False):
     o4 = tile_board.get('o4')
     o4.add_train(TRAIN_CBSC)
     tile_company_start.update({RAILWAY_CBSC: o4})
@@ -553,16 +567,16 @@ def setup_init_tracks(debug=False):
     h11.add_train(TRAIN_MGW)
     tile_company_start.update({RAILWAY_MGW: h11})
 
-    if debug:
+    if in_dev_mode:
         mgw_location_list = ('h10', 'g9', 'h8', 'h7')
         for location in mgw_location_list:
             tile = tile_board.get(location)
             tile.add_train(TRAIN_MGW)
 
-    print(f"Starting company trains have been placed{str(' in DEBUG MODE' if debug else '')}.\n")
+    print(f"Starting company trains have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")
 
 
-def setup_init_special_interest_cubes(debug=False):
+def setup_init_special_interest_cubes(in_dev_mode=False):
     question = "Which special interest cube is being placed in"
     locations = ['c12', 'h11', 'h3', 'b8', 'l8', 'm9', 'l4', 'o4']
     si_count = 0
@@ -572,11 +586,11 @@ def setup_init_special_interest_cubes(debug=False):
 
     for location in locations:
         tile = tile_board.get(location)
-        if debug:
+        if in_dev_mode:
             cube = si_cubes[si_count]
             si_count = si_count + 1
         else:
             cube = tools.ask_user_get_special_interest_cube(f"{question} {tile.name()}? ")
         tile.set_special_interest(cube)
 
-    print(f"Starting special interest cubes have been placed{str(' in DEBUG MODE' if debug else '')}.\n")
+    print(f"Starting special interest cubes have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")
