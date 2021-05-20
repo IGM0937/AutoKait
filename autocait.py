@@ -52,8 +52,7 @@ def start_event_loop():
         elif req != BLANK:
             print(output.invalid_input())
         else:
-            # make_decision()
-            dividends.call_dividends_action()
+            make_decision()
 
 
 def perform_setup(in_dev_mode=False):
@@ -66,9 +65,7 @@ def perform_setup(in_dev_mode=False):
     print(output.welcome_text())
     setup_players()
     setup_tile_board()
-    setup_pieces()
-    setup_init_tracks(in_dev_mode)
-    setup_init_special_interest_cubes(in_dev_mode)
+    setup_init_game_pieces(in_dev_mode)
 
 
 # MAIN DEVELOPMENT to do list:

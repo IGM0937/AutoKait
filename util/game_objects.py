@@ -83,6 +83,7 @@ class Tile:
 
     def add_train(self, train):
         self.__trains.append(train)
+        game_vars.tools.pieces_take(train)
         if train is TRAIN_CBSC:
             game_vars.tile_trains_cbsc.append(self)
         elif train is TRAIN_WLW:
@@ -125,6 +126,7 @@ class Tile:
             raise RuntimeError('Special interest cube cannot be set against an unnamed location.')
         if self.__special_interest is None:
             self.__special_interest = cube
+            game_vars.tools.pieces_take(cube)
             if cube is CUBE_SI_BLACK:
                 game_vars.tile_black_si_cubes.append(self)
             elif cube is CUBE_SI_WHITE:
@@ -144,11 +146,4 @@ class Tile:
         if not translate:
             return self.__special_interest
         else:
-            if self.__special_interest is None:
-                return "None"
-            elif self.__special_interest is CUBE_SI_BLACK:
-                return "black"
-            elif self.__special_interest is CUBE_SI_WHITE:
-                return "white"
-            elif self.__special_interest is CUBE_SI_PINK:
-                return "pink"
+            return "None" if self.__special_interest is None else self.__special_interest.split('.')[-1]

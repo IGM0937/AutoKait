@@ -535,7 +535,8 @@ def setup_tile_board():
     tile_named_locations = (b8, c12, d4, d9, f2, f11, h3, h7, h11, j12, k3, k12, l4, l8, l9, m9, n1, o4)
 
 
-def setup_pieces():
+def setup_init_game_pieces(in_dev_mode=False):
+    # setup a list of game piece counters
     game_piece_counters.update({
         TRAIN_CBSC: game_vars.pieces_trains_cbsc,
         TRAIN_WLW: game_vars.pieces_trains_wlw,
@@ -547,8 +548,7 @@ def setup_pieces():
         CUBE_SI_PINK: game_vars.pieces_cubes_si_pink
     })
 
-
-def setup_init_tracks(in_dev_mode=False):
+    # place initial company train tracks
     o4 = tile_board.get('o4')
     o4.add_train(TRAIN_CBSC)
     tile_company_start.update({RAILWAY_CBSC: o4})
@@ -575,22 +575,19 @@ def setup_init_tracks(in_dev_mode=False):
 
     print(f"Starting company trains have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")
 
-
-def setup_init_special_interest_cubes(in_dev_mode=False):
-    question = "Which special interest cube is being placed in"
+    # place initial special interest cubes
+    si_question = "Which special interest cube is being placed in"
     locations = ['c12', 'h11', 'h3', 'b8', 'l8', 'm9', 'l4', 'o4']
+    si_cubes = [CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK]
     si_count = 0
-    si_cubes = [CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK,
-                CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK,
-                CUBE_SI_BLACK, CUBE_SI_WHITE]
 
     for location in locations:
-        tile = tile_board.get(location)
+        tile: Tile = tile_board.get(location)
         if in_dev_mode:
-            cube = si_cubes[si_count]
-            si_count = si_count + 1
+            cube = si_cubes[si_count % len(si_cubes)]
+            si_count += 1
         else:
-            cube = tools.ask_user_get_special_interest_cube(f"{question} {tile.name()}? ")
+            cube = tools.ask_user_get_special_interest_cube(f"{si_question} {tile.name()}? ")
         tile.set_special_interest(cube)
 
     print(f"Starting special interest cubes have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")

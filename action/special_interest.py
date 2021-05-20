@@ -53,6 +53,5 @@ def place_special_interest_cube(cube):
             continue
 
         tile.set_special_interest(cube)
-        pieces_take(cube)
         print(f"A {tile.special_interest(True)} special interest cube has been placed in {tile.name()}.\n")
         return True

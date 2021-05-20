@@ -89,7 +89,6 @@ def tracks_process(company_train):
         else:
             for curr_hex_tile in curr_hex_tiles:
                 curr_hex_tile.add_train(company_train)
-            pieces_take(company_train, len(curr_hex_tiles))
 
             print("New train tracks have been added to the tiles.\n")
             return True
