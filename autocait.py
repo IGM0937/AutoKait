@@ -34,7 +34,7 @@ def start_event_loop():
     As is: It is simply concerned for Cait's turn.
     To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
     """
-    while True:
+    while not tools.end_game_condition_met():
         req = input(output.cait_waiting_turn_text()).lower()
         if tools.is_str_exit(req):
             print(output.exit_text(False))
@@ -68,6 +68,11 @@ def perform_setup(in_dev_mode=False):
     setup_init_game_pieces(in_dev_mode)
 
 
+# TODO: Expand
+def perform_dismantle():
+    print("The game is over. Goodbye.")
+
+
 # MAIN DEVELOPMENT to do list:
 # TODO: Add counter checks for trains and interest cube.
 # TODO: Re-write explain text.
@@ -78,3 +83,4 @@ def perform_setup(in_dev_mode=False):
 if __name__ == '__main__':
     perform_setup(True if '-d' in sys.argv or '--dev' in sys.argv else False)
     start_event_loop()
+    perform_dismantle()

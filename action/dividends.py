@@ -17,22 +17,30 @@ def call_dividends_action():
 
 
 # TODO: clean up output text
-# TODO: run more tests on pieces
 def dividends_process():
+    si_cubes_available = game_vars.game_piece_counters[CUBE_SI_BLACK] + \
+                         game_vars.game_piece_counters[CUBE_SI_WHITE] + \
+                         game_vars.game_piece_counters[CUBE_SI_PINK]
+    si_cubes_select = 3 if si_cubes_available >= 3 else si_cubes_available
+
     selection_complete = False
     while not selection_complete:
-        si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", 3)
+        si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", si_cubes_select)
 
         if is_str_back(si_cubes):
             return
 
         # validate if pieces are available to be selected
+        valid_pieces_available = True
         for si_cube in si_cubes:
             if not pieces_available(si_cube, si_cubes.count(si_cube)):
                 print(output.invalid_input(
                     f"The {si_cubes.count(si_cube)} {si_cube.split('.')[-1]} cubes"
                     f" are not available for selection, try again"))
-                continue
+                valid_pieces_available = False
+                break
+        if not valid_pieces_available:
+            continue
 
         print("\nThe company dividends generated are: ")
         cbsc_dividends = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
