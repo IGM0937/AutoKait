@@ -1,3 +1,6 @@
+import util.constants as constants
+
+
 def welcome_text():
     res = "\n"
     res += "Welcome to AutoCait."
@@ -7,6 +10,25 @@ def welcome_text():
     res += "Please setup the game and proceed when completed..."
     res += "\n"
     return res
+
+
+def user_input_action_explain_text():
+    res = "\n"
+    res += "Type an action that is taking place outside of Cait's turn or simply press enter for Cait to take her turn."
+    res += "\n"
+    res += "You can type the following text for the following actions:"
+    res += f" - {constants.BIDDING_LNG} or {constants.BIDDING_SRT} : Start the bidding process"
+    res += f" - {constants.TRACKS_LNG} or {constants.TRACKS_SRT} : Place company trains onto the board"
+    res += f" - {constants.INTEREST_LNG} or {constants.TRACKS_SRT} : Place special interests onto the board"
+    res += f" - {constants.DIVIDEND_LNG} or {constants.DIVIDEND_SRT} : Call for company dividends"
+    res += "\n"
+    res += "If you would like to close the application, type 'exit'."
+    res += "\n"
+    return res
+
+
+def user_input_help_text():
+    return invalid_input("type 'help' for more information...")
 
 
 def exit_text(forced, msg="Goodbye"):
