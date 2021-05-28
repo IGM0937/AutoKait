@@ -165,44 +165,44 @@ def ask_user_get_board_tiles(text, max_tiles=3):
 
 def explain_action():
     action = game_vars.last_action
-    if action == ACTION_SPECIAL_INTEREST:
+    if action is ACTION_SPECIAL_INTEREST:
         print(output.special_interest_action_explain_text())
-    elif action == ACTION_PLACE_TRACKS:
+    elif action is ACTION_PLACE_TRACKS:
         print(output.place_tracks_action_explain_text())
-    elif action == ACTION_CALL_AUCTION:
+    elif action is ACTION_CALL_AUCTION:
         print(output.call_auction_action_explain_text())
-    elif action == ACTION_BIDDING:
+    elif action is ACTION_BIDDING:
         print(output.place_bid_action_explain_text())
-    elif action == ACTION_CALL_DIVIDENDS:
+    elif action is ACTION_CALL_DIVIDENDS:
         print(output.call_dividends_action_explain_text())
 
 
 def is_str_yes(value):
-    return is_str(value) and (value.lower() == YES_SRT or value.lower() == YES_LNG)
+    return is_str(value) and (value.lower() is YES_SRT or value.lower() is YES_LNG)
 
 
 def is_str_no(value):
-    return is_str(value) and (value.lower() == NO_SRT or value.lower() == NO_LNG)
+    return is_str(value) and (value.lower() is NO_SRT or value.lower() is NO_LNG)
 
 
 def is_str_explain(value):
-    return is_str(value) and value.lower() == EXPLAIN
+    return is_str(value) and value.lower() is EXPLAIN
 
 
 def is_str_back(value):
-    return is_str(value) and value.lower() == BACK
+    return is_str(value) and value.lower() is BACK
 
 
 def is_str_exit(value):
-    return is_str(value) and value.lower() == EXIT
+    return is_str(value) and value.lower() is EXIT
 
 
 def is_str_company(value, abv, srt, lng):
-    return is_str(value) and (value.lower() == abv or value.lower() == srt or value.lower() == lng)
+    return is_str(value) and (value.lower() is abv or value.lower() is srt or value.lower() is lng)
 
 
 def is_str_special_interest(value, srt, lng):
-    return is_str(value) and (value.lower() == srt or value.lower() == lng)
+    return is_str(value) and (value.lower() is srt or value.lower() is lng)
 
 
 def is_str(value):

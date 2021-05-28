@@ -41,15 +41,15 @@ def start_event_loop():
             exit()
         elif tools.is_str_explain(req):
             tools.explain_action()
-        elif req == BIDDING_SRT or req == BIDDING_LNG:
+        elif req is BIDDING_SRT or req is BIDDING_LNG:
             bidding.take_bidding_action(False)
-        elif req == DIVIDEND_SRT or req == DIVIDEND_LNG:
+        elif req is DIVIDEND_SRT or req is DIVIDEND_LNG:
             dividends.dividends_process()
-        elif req == TRACKS_SRT or req == TRACKS_LNG:
+        elif req is TRACKS_SRT or req is TRACKS_LNG:
             track.place_tracks_action(False)
-        elif req == INTEREST_SRT or req == INTEREST_LNG:
+        elif req is INTEREST_SRT or req is INTEREST_LNG:
             special_interest.special_interest_action(False)
-        elif req != BLANK:
+        elif req is not BLANK:
             print(output.invalid_input())
         else:
             make_decision()
@@ -68,16 +68,14 @@ def perform_setup(in_dev_mode=False):
     setup_init_game_pieces(in_dev_mode)
 
 
-# TODO: Expand
 def perform_dismantle():
-    print("The game is over. Goodbye.")
+    print(output.game_over_text())
 
 
 # MAIN DEVELOPMENT to do list:
-# TODO: Add counter checks for trains and interest cube.
 # TODO: Re-write explain text.
 # TODO: Write simple README file.
-# TODO: Alter game and code text to Kat and AutoKat.
+# TODO: Alter game and code text to Kait and AutoKait.
 # TODO: Re-write and add more docs.
 # TODO: Write unit testing.
 if __name__ == '__main__':

@@ -11,45 +11,39 @@ from util.tools import *
 def place_tracks_action(is_cait_turn=True):
     print(output.place_tracks_action_text(is_cait_turn))
     game_vars.last_action = ACTION_PLACE_TRACKS
-    choose_company_train()
 
-
-# TODO: clean up output text
-def choose_company_train():
     track_placement_complete = False
     while not track_placement_complete:
-        company_train = ask_user_get_company_train("Which railway company are you placing the trains for? ")
+        company_train = ask_user_get_company_train(output.place_tracks_company_trains_select_text())
         track_placement_complete = True if is_str_back(company_train) else tracks_process(company_train)
 
 
-# TODO: clean up output text
-# TODO: run more tests on pieces
 def tracks_process(company_train):
     while True:
-        tiles = ask_user_get_board_tiles("Please enter the tile locations for the new train track: (in order) ")
+        tiles = ask_user_get_board_tiles(output.place_tracks_tile_locations_select_text())
 
         if is_str_back(tiles):
             return False
 
         # duplicate trains in the same location
         if any(company_train in tile.trains() for tile in tiles):
-            print(output.invalid_input("one of the locations already contains required trains, try again"))
+            print(output.place_tracks_tile_location_train_already_present_text())
             continue
 
         # invalidate placement for difficult location containing a train
-        if any((tile.tile_type() == TILE_DIFF and len(tile.trains()) > 0) for tile in tiles):
-            print(output.invalid_input("one of the locations is difficult terrain containing a train, try again"))
+        if any((tile.tile_type() is TILE_DIFF and len(tile.trains()) > 0) for tile in tiles):
+            print(output.place_tracks_unable_difficult_terrain_tile_text())
             continue
 
         # validate if trains are available for placement
         if not pieces_available(company_train, len(tiles)):
-            print(output.invalid_input("there are not enough company trains to place on these tiles, try again"))
+            print(output.place_tracks_insufficient_trains_available_text())
             continue
 
         # validate build costs
         build_cost = 0
         for tile in tiles:
-            if tile.tile_type() == TILE_DIFF:
+            if tile.tile_type() is TILE_DIFF:
                 build_cost += 2
             else:
                 if len(tile.trains()) > 0:
@@ -58,7 +52,7 @@ def tracks_process(company_train):
                     build_cost += 1
 
         if build_cost > 3:
-            print(output.invalid_input(f"total build costs: {build_cost} exceeds the maximum cost of 3, try again"))
+            print(output.place_tracks_build_costs_exceeded_text())
             continue
 
         # validate placement based on adjacent placement of other trains
@@ -80,15 +74,16 @@ def tracks_process(company_train):
                         break
 
             if not adj_train_found:
-                print(output.invalid_input("tiles applied don't have adjacent trains required, try again"))
+                print(output.place_tracks_adjacent_trains_required_text())
                 invalid_placement = True
                 break
 
+        # conclude
         if invalid_placement:
             continue
         else:
             for curr_hex_tile in curr_hex_tiles:
                 curr_hex_tile.add_train(company_train)
 
-            print("New train tracks have been added to the tiles.\n")
+            print(output.place_tracks_new_trains_added_text())
             return True

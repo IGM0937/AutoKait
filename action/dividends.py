@@ -9,14 +9,17 @@ from action.special_interest import special_interest_action
 from util.tools import *
 
 
-def call_dividends_action():
-    print(output.call_dividends_action_text())
+def call_dividends_action(is_cait_turn=True):
+    print(output.call_dividends_action_text(is_cait_turn))
     game_vars.last_action = ACTION_CALL_DIVIDENDS
-    yes_answer = ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text())
-    dividends_process() if yes_answer else special_interest_action()
+
+    if is_cait_turn:
+        yes_answer = ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text())
+        dividends_process() if yes_answer else special_interest_action()
+    else:
+        dividends_process()
 
 
-# TODO: clean up output text
 def dividends_process():
     si_cubes_available = game_vars.game_piece_counters[CUBE_SI_BLACK] + \
                          game_vars.game_piece_counters[CUBE_SI_WHITE] + \
@@ -25,7 +28,8 @@ def dividends_process():
 
     selection_complete = False
     while not selection_complete:
-        si_cubes = ask_user_get_special_interest_cube("Which special interest cube are being placed? ", si_cubes_select)
+        si_cubes = ask_user_get_special_interest_cube(output.special_interest_cube_placement_text(plural=True),
+                                                      si_cubes_select)
 
         if is_str_back(si_cubes):
             return
@@ -33,26 +37,21 @@ def dividends_process():
         # validate if pieces are available to be selected
         valid_pieces_available = True
         for si_cube in si_cubes:
-            if not pieces_available(si_cube, si_cubes.count(si_cube)):
-                print(output.invalid_input(
-                    f"The {si_cubes.count(si_cube)} {si_cube.split('.')[-1]} cubes"
-                    f" are not available for selection, try again"))
+            si_cubes_count = si_cubes.count(si_cube)
+            if not pieces_available(si_cube, si_cubes_count):
+                print(output.special_interest_cubes_unavailable_text(si_cubes_count, si_cube))
                 valid_pieces_available = False
                 break
         if not valid_pieces_available:
             continue
 
-        print("\nThe company dividends generated are: ")
-        cbsc_dividends = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
-        print(f"CBSC (yellow) received £{cbsc_dividends}")
-        wlw_dividends = calculate_company_dividends_by_train(TRAIN_WLW, si_cubes)
-        print(f"WLW (purple) received £{wlw_dividends}")
-        bcd_dividends = calculate_company_dividends_by_train(TRAIN_BCD, si_cubes)
-        print(f"BCD (orange) received £{bcd_dividends}")
-        gsw_dividends = calculate_company_dividends_by_train(TRAIN_GSW, si_cubes)
-        print(f"GSW (blue) received £{gsw_dividends}")
-        mgw_dividends = calculate_company_dividends_by_train(TRAIN_MGW, si_cubes)
-        print(f"MGW (red) received £{mgw_dividends}\n")
+        cbsc_div = calculate_company_dividends_by_train(TRAIN_CBSC, si_cubes)
+        wlw_div = calculate_company_dividends_by_train(TRAIN_WLW, si_cubes)
+        bcd_div = calculate_company_dividends_by_train(TRAIN_BCD, si_cubes)
+        gsw_div = calculate_company_dividends_by_train(TRAIN_GSW, si_cubes)
+        mgw_div = calculate_company_dividends_by_train(TRAIN_MGW, si_cubes)
+
+        output.call_dividends_company_results_text(cbsc_div, wlw_div, bcd_div, gsw_div, mgw_div)
 
         # reduce piece counters and complete
         for si_cube in si_cubes:
