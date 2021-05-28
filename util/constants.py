@@ -10,17 +10,18 @@ NO_SRT = 'n'
 NO_LNG = 'no'
 EXIT = 'exit'
 BACK = 'back'
+HELP = 'help'
 EXPLAIN = 'explain'
 
 # user inputs, actions
 BIDDING_SRT = 'bid'
 BIDDING_LNG = 'bidding'
-DIVIDEND_SRT = 'div'
-DIVIDEND_LNG = 'dividend'
 TRACKS_SRT = 'trk'
 TRACKS_LNG = 'tracks'
 INTEREST_SRT = 'int'
 INTEREST_LNG = 'interest'
+DIVIDEND_SRT = 'div'
+DIVIDEND_LNG = 'dividend'
 
 # user inputs, companies
 CBSC_ABV = 'cbsc'
@@ -48,6 +49,7 @@ SI_PINK_SRT = 'p'
 SI_PINK_LNG = 'pink'
 
 # actions tags
+ACTION_USER_INPUT = 'action.user_input'
 ACTION_SPECIAL_INTEREST = 'action.special_interest'
 ACTION_PLACE_TRACKS = 'action.place_tracks'
 ACTION_CALL_AUCTION = 'action.call_auction'

@@ -35,11 +35,12 @@ def start_event_loop():
     To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
     """
     while not tools.end_game_condition_met():
+        game_vars.last_action = ACTION_USER_INPUT
         req = input(output.cait_waiting_turn_text()).lower()
         if tools.is_str_exit(req):
             print(output.exit_text(False))
             exit()
-        elif tools.is_str_explain(req):
+        elif tools.is_str_explain(req) or tools.is_str_help(req):
             tools.explain_action()
         elif req is BIDDING_SRT or req is BIDDING_LNG:
             bidding.take_bidding_action(False)
@@ -50,7 +51,7 @@ def start_event_loop():
         elif req is INTEREST_SRT or req is INTEREST_LNG:
             special_interest.special_interest_action(False)
         elif req is not BLANK:
-            print(output.invalid_input())
+            print(output.user_input_help_text())
         else:
             make_decision()
 
@@ -72,12 +73,6 @@ def perform_dismantle():
     print(output.game_over_text())
 
 
-# MAIN DEVELOPMENT to do list:
-# TODO: Re-write explain text.
-# TODO: Write simple README file.
-# TODO: Alter game and code text to Kait and AutoKait.
-# TODO: Re-write and add more docs.
-# TODO: Write unit testing.
 if __name__ == '__main__':
     perform_setup(True if '-d' in sys.argv or '--dev' in sys.argv else False)
     start_event_loop()

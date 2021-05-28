@@ -164,16 +164,17 @@ def ask_user_get_board_tiles(text, max_tiles=3):
 
 
 def explain_action():
-    action = game_vars.last_action
-    if action is ACTION_SPECIAL_INTEREST:
+    if game_vars.last_action is ACTION_USER_INPUT:
+        print(output.user_input_action_explain_text())
+    if game_vars.last_action is ACTION_SPECIAL_INTEREST:
         print(output.special_interest_action_explain_text())
-    elif action is ACTION_PLACE_TRACKS:
+    elif game_vars.last_action is ACTION_PLACE_TRACKS:
         print(output.place_tracks_action_explain_text())
-    elif action is ACTION_CALL_AUCTION:
+    elif game_vars.last_action is ACTION_CALL_AUCTION:
         print(output.call_auction_action_explain_text())
-    elif action is ACTION_BIDDING:
+    elif game_vars.last_action is ACTION_BIDDING:
         print(output.place_bid_action_explain_text())
-    elif action is ACTION_CALL_DIVIDENDS:
+    elif game_vars.last_action is ACTION_CALL_DIVIDENDS:
         print(output.call_dividends_action_explain_text())
 
 
@@ -187,6 +188,10 @@ def is_str_no(value):
 
 def is_str_explain(value):
     return is_str(value) and value.lower() is EXPLAIN
+
+
+def is_str_help(value):
+    return is_str(value) and value.lower() is HELP
 
 
 def is_str_back(value):
