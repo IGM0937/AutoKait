@@ -14,15 +14,11 @@ The project has since turned into a little side passion project to create board 
 > 
 > Please be kind. I'm happy to hear about any improvements.
 
-## Contributions
-
-TODO
-
 ## Usage
 
 Simply execute the application from `autocait.py` and follow the instructions to setup the state of the board.
 
-At any point, type **_explain_** to get more information.
+At any point, type **_help_** to get more information.
 
 ## Features
 
@@ -51,19 +47,16 @@ If you wish to contribute, please raise a pull request. Successful merge not gua
     * Where to put trains
     * Where to put special interest cubes
     * Which company share to bid for
-    * ... and so on
-    * ... _have Kait tell you what to do on the game board for her!_
+    * ... and so on. _Have Kait tell you what to do!_
   * Pathfinding for track and special interest cube placements
-  * `tkinter` UI elements, such as:
+  * tkinter UI elements, such as:
     * board state view
     * user input buttons
-  * Make Kait choose her next steps/actions
-    * Calculate Pros and Cons of each step
-    * Ranking algorithm to help choose 
+  * Calculate pros and cons for each action
 
 ## Release Notes
 
-The following list of major changes and can be found under designated git tags.
+The following list of major changes are stored and can be found under designated git tags.
 
 ### v0.3
 TODO
@@ -77,11 +70,10 @@ TODO
   * Designer: Amabel Holland
   * Artist: Ian O'Toole
   * Publisher: Capstore Games
-  * Official Game Website: [capstone-games.com](https://capstone-games.com/board-games/irish-gauge/)
+  * Official Website: [Capstone Games](https://capstone-games.com/board-games/irish-gauge/)
 #### Cait Automa
   * Designer: Chase Estep
-  * Release Forum Post: [boardgamegeek.com](https://boardgamegeek.com/thread/2321313/cait-irish-gauge-automa-solo-or-2p-games)
-  * Download Page: [boardgamegeek.com](https://boardgamegeek.com/filepage/192125/cait-automa)
+  * Release Forum Post: [BoardGameGeek](https://boardgamegeek.com/thread/2321313/cait-irish-gauge-automa-solo-or-2p-games)
+  * Download Page: [BoardGameGeek](https://boardgamegeek.com/filepage/192125/cait-automa)
 #### AutoKait
-  * Developer: Igor Goran Mačukat
-  * GitHub Profile: [github.com/IGM0937](https://github.com/IGM0937)
+  * Developer: Igor Mačukat
