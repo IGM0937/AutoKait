@@ -5,7 +5,7 @@
 The automa Kait (**K**ait the **A**utomated **I**rish **T**ransport, a.k.a. AutoKait) is an automated A.I. player
 designed to be used for the board game, Irish Gauge.
 
-The original concept and design was based on an existing Irish Gauge automa called CAIT (Chase's Automa for Irish
+The original concept and design is based on an existing Irish Gauge automa called CAIT (Chase's Automa for Irish
 Transit). Whilst Kait closely follows the principles or dice rolls to determine Kait's next move, the future versions of
 AutoKait will hopefully expand to be more deterministic in how it chooses their next action.
 
@@ -20,13 +20,23 @@ artificial intelligence in general.
 
 ## Usage
 
-Simply execute the application from `autokait.py` and follow the instructions to setup the state of the board.
+All major releases are tagged and merged to the `master` branch.
 
-At any point, type **_help_** to get more information.
+All development work is on the `dev` branch, until it is tagged and merged to master for release.
 
-## Features
+Simply execute the application from `autocait.py` module.
 
-TODO
+At any point, type **_explain_** to get more information.
+
+## Overall Features
+
+As of version v0.3:
+
+- Automated Game A.I. as a stand in for nth player in Irish Gauge.
+- Decide on next action, when it is Kait's turn. 
+- Participate in auctions, with the ability to back out of bids.
+- Activate dividend action out of turn for purposes of receiving dividends.
+- Keep track of Kait's money during bidding and dividend actions.
 
 ## Contributions
 
@@ -51,10 +61,9 @@ The following list contains desired changes to be implemented, preferably in ord
 
 ### Low level, next/immediate changes
 
-* Complete README.md file
-* Alter game and code text to Kait and AutoKait
 * Re-write and add more method documentations
 * Write unit tests
+* Manual testing of v0.4-beta in game
 
 ### High level, future aspirational changes
 
@@ -73,19 +82,51 @@ The following list contains desired changes to be implemented, preferably in ord
 
 ## Release Notes
 
-The following list of major changes are stored and can be found under designated git tags.
+The following list of major changes can be found under designated git tags.
+
+### v0.4 provisional
+
+- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
+- Introduction of a game board, game pieces and placement checks
+- Major Quality of Life improvements
 
 ### v0.3
 
-TODO
+- Added wallet to keep track of money
+- Improved blind bidding logic
+  - Now incremental, with potential to back out of bidding
+  - Added ability for Cait to pay for winning bids
+- Improved dividend functionality
+  - Added ability to Cait to receive dividends into wallet 
+- Expanded quality of life improvements
+  - Improvements to console text
+- Organisation
+  - Logical changes to output text and file
+  - Added TODOs for next version
+- Clean up of code and refactors
 
 ### v0.2
 
-TODO
+- Added basic comments and documentation
+- Added blind bidding
+- Added basic quality of life improvements 
+- Added project specific files
+- Expanded on the project with boilerplate code
+  - Added constants module
+  - Added global variables module
+  - Externalising console outputs to a separate module
+  - Externalising commonly used functions to a separate module
+- Organisation
+  - Addition of packages: `action` and `util`
+  - Splitting up of different actions into separate modules
+- Clean up of code and refactors
 
 ### v0.1
 
-TODO
+- MVP application.
+- Single Python module.
+- Raw implementation of the original CAIT.
+- Main decision-making function, using random number generator as a 6 sided dice.
 
 ## Credits
 
