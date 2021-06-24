@@ -18,13 +18,13 @@ def make_decision():
     """
     result = tools.roll_dice(6)
     if result in DICE_RANGE_SPECIAL_INTEREST:
-        special_interest.special_interest_action()
+        special_interest.special_interest_action(True)
     elif result in DICE_RANGE_PLACE_TRACKS:
-        track.place_tracks_action()
+        track.place_tracks_action(True)
     elif result in DICE_RANGE_CALL_AUCTION:
         auction.call_auction_action()
     elif result in DICE_RANGE_CALL_DIVIDENDS:
-        dividends.call_dividends_action()
+        dividends.call_dividends_action(True)
 
 
 def start_event_loop():
@@ -54,7 +54,7 @@ def start_event_loop():
             print(output.user_input_help_text())
         else:
             # make_decision()
-            dividends.dividends_process()
+            track.place_tracks_action(True)
 
 
 def perform_setup(in_dev_mode=False):

@@ -1,4 +1,4 @@
-from random import randint
+import random
 
 import util.game_vars as game_vars
 import util.output_text as output
@@ -8,8 +8,8 @@ from util.constants import *
 def roll_dice(dice_max):
     count, lst = 20, []
     for i in range(count):
-        lst.append(randint(1, dice_max))
-    return lst[randint(0, count - 1)]
+        lst.append(random.randint(1, dice_max))
+    return random.choice(lst)
 
 
 def pieces_available(piece, count=1):
@@ -21,7 +21,7 @@ def pieces_take(piece, count=1):
 
 
 def end_game_condition_met():
-    return 0 >= (game_vars.game_piece_counters[CUBE_SI_BLACK] +
+    return 0 == (game_vars.game_piece_counters[CUBE_SI_BLACK] +
                  game_vars.game_piece_counters[CUBE_SI_WHITE] +
                  game_vars.game_piece_counters[CUBE_SI_PINK])
 

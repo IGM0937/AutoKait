@@ -25,4 +25,4 @@ def call_auction_action():
     elif yes_answer:
         take_bidding_action(True)
     else:
-        call_dividends_action()
+        call_dividends_action(True)
