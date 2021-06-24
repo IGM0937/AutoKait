@@ -9,18 +9,18 @@ from action.special_interest import special_interest_action
 from util.tools import *
 
 
-def call_dividends_action(is_cait_turn=True):
-    print(output.call_dividends_action_text(is_cait_turn))
+def call_dividends_action(is_kait_turn=True):
+    print(output.call_dividends_action_text(is_kait_turn))
     game_vars.last_action = ACTION_CALL_DIVIDENDS
 
-    if is_cait_turn:
+    if is_kait_turn:
         yes_answer = ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text())
         if is_str_back(yes_answer):
             return
         elif yes_answer:
             dividends_process()
         else:
-            special_interest_action(is_cait_turn)
+            special_interest_action(is_kait_turn)
     else:
         dividends_process()
 
@@ -60,9 +60,9 @@ def dividends_process():
 
         dividend = ask_user_number_prompt(output.reward_dividends_text())
         if not is_str_back(dividend):
-            cait = game_vars.data_point[PLAYER_CAIT]
-            cait.deposit(dividend)
-            print(output.cait_wallet_update_text(dividend, cait.balance()))
+            kait = game_vars.data_point[PLAYER_KAIT]
+            kait.deposit(dividend)
+            print(output.kait_wallet_update_text(dividend, kait.balance()))
 
             # reduce piece counters and complete
             for si_cube in si_cubes:

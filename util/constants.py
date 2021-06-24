@@ -82,7 +82,7 @@ CUBE_SI_WHITE = 'cube.special.interest.white'
 CUBE_SI_PINK = 'cube.special.interest.pink'
 
 # player data point tags
-PLAYER_CAIT = 'data.player.cait'
+PLAYER_KAIT = 'data.player.kait'
 
 # number of game pieces
 pieces_cubes_si_black = 10

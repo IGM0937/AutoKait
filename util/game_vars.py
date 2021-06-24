@@ -30,7 +30,7 @@ tile_trains_mgw = []
 
 
 def setup_players():
-    data_point[PLAYER_CAIT] = Player("Cait")
+    data_point[PLAYER_KAIT] = Player("Kait")
 
 
 def setup_tile_board():

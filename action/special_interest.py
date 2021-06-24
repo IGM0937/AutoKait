@@ -9,18 +9,18 @@ import action.track as track
 from util.tools import *
 
 
-def special_interest_action(is_cait_turn=True):
-    print(output.special_interest_action_text(is_cait_turn))
+def special_interest_action(is_kait_turn=True):
+    print(output.special_interest_action_text(is_kait_turn))
     game_vars.last_action = ACTION_SPECIAL_INTEREST
 
-    if is_cait_turn:
+    if is_kait_turn:
         yes_answer = ask_user_yes_no_prompt(output.special_interest_action_be_performed_text())
         if is_str_back(yes_answer):
             return
         elif yes_answer:
             choose_special_interest_cube()
         else:
-            track.place_tracks_action(is_cait_turn)
+            track.place_tracks_action(is_kait_turn)
     else:
         choose_special_interest_cube()
 

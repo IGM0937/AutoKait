@@ -29,14 +29,14 @@ def make_decision():
 
 def start_event_loop():
     """
-    The main event loop after every turn of Cait or other players.
+    The main event loop after every turn of Kait or other players.
 
-    As is: It is simply concerned for Cait's turn.
-    To be: Keep track of all player turns, taking in data every turn to use when it's Cait's turn.
+    As is: It is simply concerned for Kait's turn.
+    To be: Keep track of all player turns, taking in data every turn to use when it's Kait's turn.
     """
     while not tools.end_game_condition_met():
         game_vars.last_action = ACTION_USER_INPUT
-        req = input(output.cait_waiting_turn_text()).lower()
+        req = input(output.kait_waiting_turn_text()).lower()
         if tools.is_str_exit(req):
             print(output.exit_text(False))
             exit()
@@ -61,7 +61,7 @@ def perform_setup(in_dev_mode=False):
     """
     Performs introductions, player, data and game information setup.
 
-    As is: Basic Cait player data and game information setup.
+    As is: Basic Kait player data and game information setup.
     To be: Setup player, data and game information to be used thought the application.
     """
     print(output.welcome_text())

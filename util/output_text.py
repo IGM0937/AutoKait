@@ -3,7 +3,7 @@ import util.constants as constants
 
 def welcome_text():
     res = "\n"
-    res += "Welcome to AutoCait."
+    res += "Welcome to AutoKait."
     res += "\n"
     res += "Let's play Irish Gauge!"
     res += "\n"
@@ -14,7 +14,7 @@ def welcome_text():
 
 def user_input_action_help_text():
     res = "\n"
-    res += "Type an action that is taking place outside of Cait's turn or simply press enter for Cait to take her turn."
+    res += "Type an action that is taking place outside of Kait's turn or simply press enter for Kait to take her turn."
     res += "\n\n"
     res += "You can type the following text for the following actions:"
     res += "\n"
@@ -39,36 +39,36 @@ def exit_text(forced, msg="Goodbye"):
     return f"Forced exit... {msg}" if forced else msg
 
 
-def cait_waiting_turn_text():
-    return "Type an action or press enter to take Cait's turn... "
+def kait_waiting_turn_text():
+    return "Type an action or press enter to take Kait's turn... "
 
 
-def cait_turn_text():
-    return "Cait would like to..."
+def kait_turn_text():
+    return "Kait would like to..."
 
 
 def invalid_input(text="Try again"):
     return f"Invalid input, {text}.\n"
 
 
-def special_interest_action_text(is_cait_turn=True):
-    return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " a special interest cube\n"
+def special_interest_action_text(is_kait_turn=True):
+    return (f"{kait_turn_text()} place" if is_kait_turn else "Placing") + " a special interest cube\n"
 
 
 def special_interest_action_help_text():
     res = "\n"
-    res += "Place a special interest cube for the company Cait has the most share value, prioritising companies " \
+    res += "Place a special interest cube for the company Kait has the most share value, prioritising companies " \
            "she owns first."
     res += "\n"
-    res += "In case of a tie, place for the company Cait owns that has the most trains on the map."
+    res += "In case of a tie, place for the company Kait owns that has the most trains on the map."
     res += "\n"
     res += "Choose a colour that isn't present on that trainline yet. If there are multiple colours, choose at random."
     res += "\n\n"
     res += "When deciding on which city to place the cube, select from the following list:"
     res += "\n"
-    res += " - Towns occupied by 2+ of Cait's trains"
+    res += " - Towns occupied by 2+ of Kait's trains"
     res += "\n"
-    res += " - Towns occupied by 1 of Cait's trains"
+    res += " - Towns occupied by 1 of Kait's trains"
     res += "\n"
     res += " - Towns occupied by 2 different player's trains"
     res += "\n\n"
@@ -82,7 +82,7 @@ def special_interest_action_help_text():
 
 
 def special_interest_action_be_performed_text():
-    return "Can Cait place any special interest cubes? Y/N "
+    return "Can Kait place any special interest cubes? Y/N "
 
 
 def special_interest_cube_placement_text(plural=False):
@@ -111,13 +111,13 @@ def special_interest_cube_successful_placement_text(tile):
     return f"A {tile.special_interest(True)} special interest cube has been placed in {tile.name()}.\n"
 
 
-def place_tracks_action_text(is_cait_turn=True):
-    return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " rail tracks\n"
+def place_tracks_action_text(is_kait_turn=True):
+    return (f"{kait_turn_text()} place" if is_kait_turn else "Placing") + " rail tracks\n"
 
 
 def place_tracks_action_help_text():
     res = "\n"
-    res += "Place trains for the company that Cait owns, but has the least trains on the map."
+    res += "Place trains for the company that Kait owns, but has the least trains on the map."
     res += "\n"
     res += "If tied, place for the company with the biggest combined share value."
     res += "\n\n"
@@ -168,7 +168,7 @@ def place_tracks_new_trains_added_text():
 
 
 def call_auction_action_text():
-    return f"{cait_turn_text()} Call an auction action\n"
+    return f"{kait_turn_text()} Call an auction action\n"
 
 
 def call_auction_action_help_text():
@@ -177,13 +177,13 @@ def call_auction_action_help_text():
     res += "\n"
     res += "If tied, pick the share with the lowest face value."
     res += "\n\n"
-    res += "If Cait does not have enough money for that share, she performs Call for Dividends instead."
+    res += "If Kait does not have enough money for that share, she performs Call for Dividends instead."
     res += "\n"
-    res += "If Cait is in the bidding war, she will determine the maximum bid based on:"
+    res += "If Kait is in the bidding war, she will determine the maximum bid based on:"
     res += "\n"
-    res += "    (minimum company share + d10 dice roll) capped at Cait's overall money available"
+    res += "    (minimum company share + d10 dice roll) capped at Kait's overall money available"
     res += "\n\n"
-    res += "Cait will raise the bid at random by from £1 to £3 at a time."
+    res += "Kait will raise the bid at random by from £1 to £3 at a time."
     res += "\n"
     res += "She will pass if she is unable to raise the bid or is unable to got bid past the funds of her maximum bid " \
            "for the share."
@@ -194,11 +194,11 @@ def call_auction_action_help_text():
 
 
 def call_auction_action_be_performed_text():
-    return "Can Cait auction the specific share? Y/N "
+    return "Can Kait auction the specific share? Y/N "
 
 
 def place_bid_action_text():
-    return "Cait is participating in bids\n"
+    return "Kait is participating in bids\n"
 
 
 def place_bid_action_help_text():
@@ -218,31 +218,31 @@ def ask_current_bid_price():
     return "Please input the current bid price £ "
 
 
-def cait_bid_bidding_text(bid):
-    return f"Cait is bidding £{bid}\n"
+def kait_bid_bidding_text(bid):
+    return f"Kait is bidding £{bid}\n"
 
 
-def cait_bid_winning_question_text():
-    return "Did Cait win the share or is there a new bid? Y/£ "
+def kait_bid_winning_question_text():
+    return "Did Kait win the share or is there a new bid? Y/£ "
 
 
-def cait_bid_won_text(bid, new_total):
-    return f"Cait has won the bid at £{bid}, she now has £{new_total} left.\n"
+def kait_bid_won_text(bid, new_total):
+    return f"Kait has won the bid at £{bid}, she now has £{new_total} left.\n"
 
 
-def cait_bid_passing_text():
-    return "Cait is passing\n"
+def kait_bid_passing_text():
+    return "Kait is passing\n"
 
 
-def call_dividends_action_text(is_cait_turn=True):
-    return f"{(cait_turn_text() + ' ') if is_cait_turn else ''}Call for dividends\n"
+def call_dividends_action_text(is_kait_turn=True):
+    return f"{(kait_turn_text() + ' ') if is_kait_turn else ''}Call for dividends\n"
 
 
 def call_dividends_action_help_text():
     res = "\n"
-    res += "If it is Cait's turn, in the event where..."
+    res += "If it is Kait's turn, in the event where..."
     res += "\n"
-    res += " - There are no dividend cubes in the bag with the same colours owned by Cait's companies."
+    res += " - There are no dividend cubes in the bag with the same colours owned by Kait's companies."
     res += "\n"
     res += " - OR she does not stand to gain any dividends."
     res += "\n"
@@ -256,7 +256,7 @@ def call_dividends_action_help_text():
 
 
 def call_dividends_action_be_performed_text():
-    return "Do the dividend cubes exist in the bag or does Cait stand to gain money? Y/N "
+    return "Do the dividend cubes exist in the bag or does Kait stand to gain money? Y/N "
 
 
 def call_dividends_company_results_text(cbsc, wlw, bcd, gsw, mgw):
@@ -272,11 +272,11 @@ def call_dividends_company_results_text(cbsc, wlw, bcd, gsw, mgw):
 
 
 def reward_dividends_text():
-    return "How much dividends has Cait won? £ "
+    return "How much dividends has Kait won? £ "
 
 
-def cait_wallet_update_text(dividend, new_total):
-    return f"Cait has won £{dividend} in dividends, she now has £{new_total}.\n"
+def kait_wallet_update_text(dividend, new_total):
+    return f"Kait has won £{dividend} in dividends, she now has £{new_total}.\n"
 
 
 def company_selection_help_text():

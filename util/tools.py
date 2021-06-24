@@ -62,7 +62,7 @@ def ask_user_number_prompt(text):
             print(output.invalid_input())
 
 
-def ask_user_cait_bid_prompt(text):
+def ask_user_kait_bid_prompt(text):
     while True:
         answer = input(text)
         if is_str_exit(answer):
