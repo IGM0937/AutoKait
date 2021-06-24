@@ -19,7 +19,10 @@ def call_auction_action():
     print(output.call_auction_action_text())
     game_vars.last_action = ACTION_CALL_AUCTION
 
-    if ask_user_yes_no_prompt(output.call_auction_action_be_performed_text()):
+    yes_answer = ask_user_yes_no_prompt(output.call_auction_action_be_performed_text())
+    if is_str_back(yes_answer):
+        return
+    elif yes_answer:
         take_bidding_action(True)
     else:
         call_dividends_action()

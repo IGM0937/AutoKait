@@ -15,7 +15,12 @@ def call_dividends_action(is_cait_turn=True):
 
     if is_cait_turn:
         yes_answer = ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text())
-        dividends_process() if yes_answer else special_interest_action()
+        if is_str_back(yes_answer):
+            return
+        elif yes_answer:
+            dividends_process()
+        else:
+            special_interest_action(is_cait_turn)
     else:
         dividends_process()
 
@@ -53,16 +58,16 @@ def dividends_process():
 
         output.call_dividends_company_results_text(cbsc_div, wlw_div, bcd_div, gsw_div, mgw_div)
 
-        # reduce piece counters and complete
-        for si_cube in si_cubes:
-            pieces_take(si_cube)
-        selection_complete = True
+        dividend = ask_user_number_prompt(output.reward_dividends_text())
+        if not is_str_back(dividend):
+            cait = game_vars.data_point[PLAYER_CAIT]
+            cait.deposit(dividend)
+            print(output.cait_wallet_update_text(dividend, cait.balance()))
 
-    dividend = ask_user_number_prompt(output.reward_dividends_text())
-    if not is_str_back(dividend):
-        cait = game_vars.data_point[PLAYER_CAIT]
-        cait.deposit(dividend)
-        print(output.cait_wallet_update_text(dividend, cait.balance()))
+            # reduce piece counters and complete
+            for si_cube in si_cubes:
+                pieces_take(si_cube)
+            selection_complete = True
 
 
 def calculate_company_dividends_by_train(train, si_cubes):

@@ -40,20 +40,21 @@ def start_event_loop():
         if tools.is_str_exit(req):
             print(output.exit_text(False))
             exit()
-        elif tools.is_str_explain(req) or tools.is_str_help(req):
-            tools.explain_action()
-        elif req is BIDDING_SRT or req is BIDDING_LNG:
+        elif tools.is_str_help(req):
+            tools.help_action()
+        elif req == BIDDING_SRT or req == BIDDING_LNG:
             bidding.take_bidding_action(False)
-        elif req is DIVIDEND_SRT or req is DIVIDEND_LNG:
-            dividends.dividends_process()
-        elif req is TRACKS_SRT or req is TRACKS_LNG:
+        elif req == DIVIDEND_SRT or req == DIVIDEND_LNG:
+            dividends.call_dividends_action(False)
+        elif req == TRACKS_SRT or req == TRACKS_LNG:
             track.place_tracks_action(False)
-        elif req is INTEREST_SRT or req is INTEREST_LNG:
+        elif req == INTEREST_SRT or req == INTEREST_LNG:
             special_interest.special_interest_action(False)
-        elif req is not BLANK:
+        elif req != BLANK:
             print(output.user_input_help_text())
         else:
-            make_decision()
+            # make_decision()
+            dividends.dividends_process()
 
 
 def perform_setup(in_dev_mode=False):

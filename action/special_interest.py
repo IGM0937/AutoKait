@@ -15,7 +15,12 @@ def special_interest_action(is_cait_turn=True):
 
     if is_cait_turn:
         yes_answer = ask_user_yes_no_prompt(output.special_interest_action_be_performed_text())
-        choose_special_interest_cube() if yes_answer else track.place_tracks_action()
+        if is_str_back(yes_answer):
+            return
+        elif yes_answer:
+            choose_special_interest_cube()
+        else:
+            track.place_tracks_action(is_cait_turn)
     else:
         choose_special_interest_cube()
 

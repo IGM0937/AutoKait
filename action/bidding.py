@@ -15,7 +15,7 @@ from util.tools import is_str_yes
 from util.tools import roll_dice
 
 
-def take_bidding_action(is_cait_first_bid):
+def take_bidding_action(is_cait_first_bid=False):
     print(output.place_bid_action_text())
     game_vars.last_action = ACTION_BIDDING
     share_min = ask_user_number_prompt(output.ask_company_minimum_share_price())

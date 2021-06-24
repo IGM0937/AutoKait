@@ -12,16 +12,20 @@ def welcome_text():
     return res
 
 
-def user_input_action_explain_text():
+def user_input_action_help_text():
     res = "\n"
     res += "Type an action that is taking place outside of Cait's turn or simply press enter for Cait to take her turn."
-    res += "\n"
+    res += "\n\n"
     res += "You can type the following text for the following actions:"
-    res += f" - {constants.BIDDING_LNG} or {constants.BIDDING_SRT} : Start the bidding process"
-    res += f" - {constants.TRACKS_LNG} or {constants.TRACKS_SRT} : Place company trains onto the board"
-    res += f" - {constants.INTEREST_LNG} or {constants.TRACKS_SRT} : Place special interests onto the board"
-    res += f" - {constants.DIVIDEND_LNG} or {constants.DIVIDEND_SRT} : Call for company dividends"
     res += "\n"
+    res += f" - {constants.BIDDING_LNG} or {constants.BIDDING_SRT} : Start the bidding process"
+    res += "\n"
+    res += f" - {constants.TRACKS_LNG} or {constants.TRACKS_SRT} : Place company trains onto the board"
+    res += "\n"
+    res += f" - {constants.INTEREST_LNG} or {constants.INTEREST_SRT} : Place special interests onto the board"
+    res += "\n"
+    res += f" - {constants.DIVIDEND_LNG} or {constants.DIVIDEND_SRT} : Call for company dividends"
+    res += "\n\n"
     res += "If you would like to close the application, type 'exit'."
     res += "\n"
     return res
@@ -51,20 +55,28 @@ def special_interest_action_text(is_cait_turn=True):
     return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " a special interest cube\n"
 
 
-def special_interest_action_explain_text():
+def special_interest_action_help_text():
     res = "\n"
     res += "Place a special interest cube for the company Cait has the most share value, prioritising companies " \
-           "her owns first. In case of a tie, place for the company Cait owns that has the most trains on the map."
-    res += "\n\n"
+           "she owns first."
+    res += "\n"
+    res += "In case of a tie, place for the company Cait owns that has the most trains on the map."
+    res += "\n"
     res += "Choose a colour that isn't present on that trainline yet. If there are multiple colours, choose at random."
     res += "\n\n"
     res += "When deciding on which city to place the cube, select from the following list:"
     res += "\n"
-    res += "    - Towns occupied by 2+ of Cait's trains"
+    res += " - Towns occupied by 2+ of Cait's trains"
     res += "\n"
-    res += "    - Towns occupied by 1 of Cait's trains"
+    res += " - Towns occupied by 1 of Cait's trains"
     res += "\n"
-    res += "    - Towns occupied by 2 different player's trains"
+    res += " - Towns occupied by 2 different player's trains"
+    res += "\n\n"
+    res += special_interest_cube_selection_help_text()
+    res += "\n\n"
+    res += tile_locations_help_text()
+    res += "\n\n"
+    res += back_and_exit_help_text()
     res += "\n"
     return res
 
@@ -74,7 +86,8 @@ def special_interest_action_be_performed_text():
 
 
 def special_interest_cube_placement_text(plural=False):
-    return f"Which special interest cube {'are' if plural else 'is'} being placed? "
+    return f"Which special interest cube {'are' if plural else 'is'} being placed?" \
+           f" {'(space separated)' if plural else ''} "
 
 
 def special_interest_cubes_unavailable_text(count, si_cube):
@@ -102,15 +115,23 @@ def place_tracks_action_text(is_cait_turn=True):
     return (f"{cait_turn_text()} place" if is_cait_turn else "Placing") + " rail tracks\n"
 
 
-def place_tracks_action_explain_text():
+def place_tracks_action_help_text():
     res = "\n"
-    res += "Place trains for the company that Cait owns, but has the least trains on the map. " \
-           "If tied, place for the company with the biggest combined share value."
+    res += "Place trains for the company that Cait owns, but has the least trains on the map."
+    res += "\n"
+    res += "If tied, place for the company with the biggest combined share value."
     res += "\n\n"
     res += "Build towards the closest Town or City."
-    res += "\n\n"
-    res += "If tied, follow the rule: City (with special interest not present on track) -> City -> Town"
     res += "\n"
+    res += "If tied, follow the rule: City (with special interest not present on track) -> City -> Town"
+    res += "\n\n"
+    res += company_selection_help_text
+    res += "\n\n"
+    res += tile_locations_help_text()
+    res += "\n\n"
+    res += back_and_exit_help_text()
+    res += "\n"
+
     return res
 
 
@@ -119,7 +140,7 @@ def place_tracks_company_trains_select_text():
 
 
 def place_tracks_tile_locations_select_text():
-    return "Please enter the tile locations for the new train track: (in order) "
+    return "Please enter the tile locations for the new train track: (in order, space separated) "
 
 
 def place_tracks_tile_location_train_already_present_text():
@@ -150,19 +171,24 @@ def call_auction_action_text():
     return f"{cait_turn_text()} Call an auction action\n"
 
 
-def call_auction_action_explain_text():
+def call_auction_action_help_text():
     res = "\n"
-    res += "Perform an auction on a share for a company that currently has the most connections to Towns or Cities. " \
-           "If tied, pick the share with the lowest face value."
+    res += "Perform an auction on a share for a company that currently has the most connections to Towns or Cities."
+    res += "\n"
+    res += "If tied, pick the share with the lowest face value."
     res += "\n\n"
     res += "If Cait does not have enough money for that share, she performs Call for Dividends instead."
-    res += "\n\n"
+    res += "\n"
     res += "If Cait is in the bidding war, she will determine the maximum bid based on:"
-    res += "\n\n"
+    res += "\n"
     res += "    (minimum company share + d10 dice roll) capped at Cait's overall money available"
     res += "\n\n"
-    res += "Cait will raise the bid at random by from £1 to £3 at a time. She will pass if she is unable to raise " \
-           "the bid or is unable to got bid past the funds of her maximum bid for the share."
+    res += "Cait will raise the bid at random by from £1 to £3 at a time."
+    res += "\n"
+    res += "She will pass if she is unable to raise the bid or is unable to got bid past the funds of her maximum bid " \
+           "for the share."
+    res += "\n\n"
+    res += back_and_exit_help_text()
     res += "\n"
     return res
 
@@ -175,8 +201,13 @@ def place_bid_action_text():
     return "Cait is participating in bids\n"
 
 
-def place_bid_action_explain_text():
-    return "\nParticipate in bidding by following the instructions. Type 'back' to back out of bidding.\n"
+def place_bid_action_help_text():
+    res = "\n"
+    res += "Participate in bidding by following the instructions."
+    res += "\n\n"
+    res += "Type 'back' to back out of bidding. If you would like to close the application, type 'exit'."
+    res += "\n"
+    return res
 
 
 def ask_company_minimum_share_price():
@@ -207,9 +238,21 @@ def call_dividends_action_text(is_cait_turn=True):
     return f"{(cait_turn_text() + ' ') if is_cait_turn else ''}Call for dividends\n"
 
 
-def call_dividends_action_explain_text():
-    return "\nIn the event where there are no dividend cubes in the bag with the same colours owned by Cait's " \
-           "companies or she does not stand to gain any dividends, she will place a special interest cube instead.\n"
+def call_dividends_action_help_text():
+    res = "\n"
+    res += "If it is Cait's turn, in the event where..."
+    res += "\n"
+    res += " - There are no dividend cubes in the bag with the same colours owned by Cait's companies."
+    res += "\n"
+    res += " - OR she does not stand to gain any dividends."
+    res += "\n"
+    res += "... she will place a special interest cube instead. Otherwise proceed with dividends action."
+    res += "\n\n"
+    res += special_interest_cube_selection_help_text()
+    res += "\n\n"
+    res += back_and_exit_help_text()
+    res += "\n"
+    return res
 
 
 def call_dividends_action_be_performed_text():
@@ -234,6 +277,45 @@ def reward_dividends_text():
 
 def cait_wallet_update_text(dividend, new_total):
     return f"Cait has won £{dividend} in dividends, she now has £{new_total}.\n"
+
+
+def company_selection_help_text():
+    res = "If you are being asked for which company you are placing trains for, you can type the following:"
+    res += "\n"
+    res += f" - {constants.CBSC_ABV} or {constants.CBSC_COLOUR_SRT} or {constants.CBSC_COLOUR_LNG}" \
+           f" : Cork, Bandon & South Coast Railway"
+    res += "\n"
+    res += f" - {constants.WLW_ABV} or {constants.WLW_COLOUR_SRT} or {constants.WLW_COLOUR_LNG}" \
+           f" : Waterford, Limerick & Western Railway"
+    res += "\n"
+    res += f" - {constants.BCD_ABV} or {constants.BCD_COLOUR_SRT} or {constants.BCD_COLOUR_LNG}" \
+           f" : Belfast & Country Down Railway"
+    res += "\n"
+    res += f" - {constants.GSW_ABV} or {constants.GSW_COLOUR_SRT} or {constants.GSW_COLOUR_LNG}" \
+           f" : Great Southern & Western Railway"
+    res += "\n"
+    res += f" - {constants.MGW_ABV} or {constants.MGW_COLOUR_SRT} or {constants.MGW_COLOUR_LNG}" \
+           f" : Midland Great Western Railway"
+    return res
+
+
+def special_interest_cube_selection_help_text():
+    res = "If you are being asked about which interest cubes are being placed, you can type the following:"
+    res += "\n"
+    res += f" - {constants.SI_BLACK_SRT} or {constants.SI_BLACK_LNG} : Black Special Interest Cube"
+    res += "\n"
+    res += f" - {constants.SI_WHITE_SRT} or {constants.SI_WHITE_LNG} : White Special Interest"
+    res += "\n"
+    res += f" - {constants.SI_PINK_SRT} or {constants.SI_PINK_LNG} : Pink Special Interest"
+    return res
+
+
+def tile_locations_help_text():
+    return "If you are being asked about tile locations, use the map cheat sheet provided to enter location labels."
+
+
+def back_and_exit_help_text():
+    return "If you would like to back out, type 'back' and to close the application, type 'exit'."
 
 
 def game_over_text():

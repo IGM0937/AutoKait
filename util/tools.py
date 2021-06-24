@@ -33,11 +33,13 @@ def ask_user_yes_no_prompt(text):
             return True
         elif is_str_no(answer):
             return False
+        elif is_str_back(answer):
+            return BACK
         elif is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif is_str_explain(answer):
-            explain_action()
+        elif is_str_help(answer):
+            help_action()
         else:
             print(output.invalid_input())
 
@@ -48,8 +50,8 @@ def ask_user_number_prompt(text):
         if is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif is_str_explain(answer):
-            explain_action()
+        elif is_str_help(answer):
+            help_action()
         elif is_str_back(answer):
             return BACK
         else:
@@ -66,8 +68,8 @@ def ask_user_cait_bid_prompt(text):
         if is_str_exit(answer):
             print(output.exit_text(True))
             exit()
-        elif is_str_explain(answer):
-            explain_action()
+        elif is_str_help(answer):
+            help_action()
         elif is_str_yes(answer):
             return YES_SRT
         elif is_str_back(answer):
@@ -88,8 +90,8 @@ def ask_user_get_company_train(text):
             exit()
         elif is_str_back(answer):
             return BACK
-        elif is_str_explain(answer):
-            explain_action()
+        elif is_str_help(answer):
+            help_action()
         elif is_str_company(answer, CBSC_ABV, CBSC_COLOUR_SRT, CBSC_COLOUR_LNG):
             return TRAIN_CBSC
         elif is_str_company(answer, WLW_ABV, WLW_COLOUR_SRT, WLW_COLOUR_LNG):
@@ -107,8 +109,9 @@ def ask_user_get_company_train(text):
 def ask_user_get_special_interest_cube(text, number_cubes=1):
     while True:
         answer = input(text)
-        if is_str_explain(answer):
-            explain_action()
+        if is_str_help(answer):
+            help_action()
+            continue
         elif is_str_back(answer):
             return BACK
         elif is_str_exit(answer):
@@ -163,51 +166,47 @@ def ask_user_get_board_tiles(text, max_tiles=3):
             return result
 
 
-def explain_action():
+def help_action():
     if game_vars.last_action is ACTION_USER_INPUT:
-        print(output.user_input_action_explain_text())
+        print(output.user_input_action_help_text())
     if game_vars.last_action is ACTION_SPECIAL_INTEREST:
-        print(output.special_interest_action_explain_text())
+        print(output.special_interest_action_help_text())
     elif game_vars.last_action is ACTION_PLACE_TRACKS:
-        print(output.place_tracks_action_explain_text())
+        print(output.place_tracks_action_help_text())
     elif game_vars.last_action is ACTION_CALL_AUCTION:
-        print(output.call_auction_action_explain_text())
+        print(output.call_auction_action_help_text())
     elif game_vars.last_action is ACTION_BIDDING:
-        print(output.place_bid_action_explain_text())
+        print(output.place_bid_action_help_text())
     elif game_vars.last_action is ACTION_CALL_DIVIDENDS:
-        print(output.call_dividends_action_explain_text())
+        print(output.call_dividends_action_help_text())
 
 
 def is_str_yes(value):
-    return is_str(value) and (value.lower() is YES_SRT or value.lower() is YES_LNG)
+    return is_str(value) and (value.lower() == YES_SRT or value.lower() == YES_LNG)
 
 
 def is_str_no(value):
-    return is_str(value) and (value.lower() is NO_SRT or value.lower() is NO_LNG)
-
-
-def is_str_explain(value):
-    return is_str(value) and value.lower() is EXPLAIN
+    return is_str(value) and (value.lower() == NO_SRT or value.lower() == NO_LNG)
 
 
 def is_str_help(value):
-    return is_str(value) and value.lower() is HELP
+    return is_str(value) and value.lower() == HELP
 
 
 def is_str_back(value):
-    return is_str(value) and value.lower() is BACK
+    return is_str(value) and value.lower() == BACK
 
 
 def is_str_exit(value):
-    return is_str(value) and value.lower() is EXIT
+    return is_str(value) and value.lower() == EXIT
 
 
 def is_str_company(value, abv, srt, lng):
-    return is_str(value) and (value.lower() is abv or value.lower() is srt or value.lower() is lng)
+    return is_str(value) and (value.lower() == abv or value.lower() == srt or value.lower() == lng)
 
 
 def is_str_special_interest(value, srt, lng):
-    return is_str(value) and (value.lower() is srt or value.lower() is lng)
+    return is_str(value) and (value.lower() == srt or value.lower() == lng)
 
 
 def is_str(value):

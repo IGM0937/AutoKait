@@ -11,7 +11,6 @@ NO_LNG = 'no'
 EXIT = 'exit'
 BACK = 'back'
 HELP = 'help'
-EXPLAIN = 'explain'
 
 # user inputs, actions
 BIDDING_SRT = 'bid'
