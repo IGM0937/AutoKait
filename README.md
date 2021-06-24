@@ -33,7 +33,7 @@ At any point, type **_explain_** to get more information.
 As of version v0.3:
 
 - Automated Game A.I. as a stand in for nth player in Irish Gauge.
-- Decide on next action, when it is Kait's turn. 
+- Decide on next action, when it is Kait's turn.
 - Participate in auctions, with the ability to back out of bids.
 - Activate dividend action out of turn for purposes of receiving dividends.
 - Keep track of Kait's money during bidding and dividend actions.
@@ -94,31 +94,31 @@ The following list of major changes can be found under designated git tags.
 
 - Added wallet to keep track of money
 - Improved blind bidding logic
-  - Now incremental, with potential to back out of bidding
-  - Added ability for Cait to pay for winning bids
+    - Now incremental, with potential to back out of bidding
+    - Added ability for Cait to pay for winning bids
 - Improved dividend functionality
-  - Added ability to Cait to receive dividends into wallet 
+    - Added ability to Cait to receive dividends into wallet
 - Expanded quality of life improvements
-  - Improvements to console text
+    - Improvements to console text
 - Organisation
-  - Logical changes to output text and file
-  - Added TODOs for next version
+    - Logical changes to output text and file
+    - Added TODOs for next version
 - Clean up of code and refactors
 
 ### v0.2
 
 - Added basic comments and documentation
 - Added blind bidding
-- Added basic quality of life improvements 
+- Added basic quality of life improvements
 - Added project specific files
 - Expanded on the project with boilerplate code
-  - Added constants module
-  - Added global variables module
-  - Externalising console outputs to a separate module
-  - Externalising commonly used functions to a separate module
+    - Added constants module
+    - Added global variables module
+    - Externalising console outputs to a separate module
+    - Externalising commonly used functions to a separate module
 - Organisation
-  - Addition of packages: `action` and `util`
-  - Splitting up of different actions into separate modules
+    - Addition of packages: `action` and `util`
+    - Splitting up of different actions into separate modules
 - Clean up of code and refactors
 
 ### v0.1
@@ -145,4 +145,18 @@ The following list of major changes can be found under designated git tags.
 
 #### AutoKait
 
-* Main Developer: Igor Mačukat
+* Main Developer: Igor Goran Mačukat
+
+## Licence
+
+Copyright (C) 2021
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not,
+see <https://www.gnu.org/licenses/>.
