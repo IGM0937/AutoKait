@@ -61,6 +61,13 @@ The following list contains desired changes to be implemented, preferably in ord
 
 ### Low level, next/immediate changes
 
+* Create a CODE_OF_CONDUCT.md
+* Move sections away from README.md
+  * Create a CONTRIBUTING.md
+  * Create releases from tags in GitHub
+  * Create Issues
+  * Create WISHLIST.md file for general things
+    * Move the rest to GitHub
 * Re-write and add more method documentations
 * Write unit tests
 * Manual testing of v0.4-beta in game
