@@ -48,11 +48,10 @@ The following list contains desired changes to be implemented, preferably in ord
 
 ### Low level, next/immediate changes
 
-* Create a CODE_OF_CONDUCT.md
 * Move sections away from README.md
-  * Create a CONTRIBUTING.md
-  * Create releases from tags in GitHub
   * Create Issues
+  * Create CHANGELOG.md file for releases
+    * Create releases from tags in GitHub
   * Create WISHLIST.md file for general things
     * Move the rest to GitHub
 * Re-write and add more method documentations
