@@ -40,20 +40,7 @@ As of version v0.3:
 
 ## Contributions
 
-Projects contributions of any kind a welcome and any sizable contributions to the project will be credited.
-
-- If you have any suggestions, raise an issue.
-- If you have any code changes, raise a pull request for any changes.
-    - To which branch you to merge to is up to you.
-
-All contributions have are a few stipulations:
-
-1. Not all suggestions or code changes are guaranteed to be accepted into the project.
-2. Not all suggestions or code changes are guaranteed to be accepted in the state they have been submitted.
-
-Hopefully discussions can be had over the contributions in order to avoid any confusion or misunderstandings.
-
-As always, thank you in advance for taking the time to look at the project in depth.
+Please see `CONTRIBUTING.md` in the root of the project for more details.
 
 ## Developer Wishlist
 
