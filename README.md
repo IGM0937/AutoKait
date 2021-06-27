@@ -141,6 +141,10 @@ The following list of major changes can be found under designated git tags.
 
 * Main Developer: Igor Goran Mačukat
 
+## Code of Conduct
+
+Please see `CODE_OF_CONDUCT.md` in the root of the project for more details.
+
 ## Licence
 
 Copyright (C) 2021
