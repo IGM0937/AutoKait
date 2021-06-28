@@ -1,6 +1,6 @@
 # Contributions
 
-Project contributions of any kind a welcome.
+Please do contribute! Project contributions of any kind a welcome.
 
 Any sizable contributions to the project will be credited.
 
@@ -11,8 +11,8 @@ Any sizable contributions to the project will be credited.
 > Please be kind. I'm happy to hear about any improvements.
 
 If you have:
-- Any suggestions, please create a discussion.
-- Any code changes, raise a pull request for any changes.
+- Any suggestions, please create an issue or discussion.
+- Any code changes, please raise a pull request.
     - To which branch you choose to merge into is up to you.
 
 All contributions have are a few stipulations:

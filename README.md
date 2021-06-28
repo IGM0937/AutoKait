@@ -18,29 +18,54 @@ artificial intelligence in general.
 >
 > Please be kind. I'm happy to hear about any improvements.
 
-## Usage
+## Features
 
-All major releases are tagged and merged to the `master` branch.
+As of version 0.3:
 
-All development work is on the `dev` branch, until it is tagged and merged to master for release.
-
-Simply execute the application from `autocait.py` module.
-
-At any point, type **_explain_** to get more information.
-
-## Overall Features
-
-As of version v0.3:
-
-- Automated Game A.I. as a stand in for nth player in Irish Gauge.
+- Automated Game A.I. as a stand in for n-th player in Irish Gauge.
 - Decide on next action, when it is Kait's turn.
-- Participate in auctions, with the ability to back out of bids.
+- Participate in auctions, even out of turn, with the ability to back out of bids.
 - Activate dividend action out of turn for purposes of receiving dividends.
 - Keep track of Kait's money during bidding and dividend actions.
 
-## Contributions
+## Usage
 
-Please see `CONTRIBUTING.md` in the root of the project for more details.
+All major releases are tagged and merged to the `main` branch. They could also be found under 'Releases' within GitHub.
+
+To run AutoKate, simply execute the module containing the main function using Python 3:
+
+```
+$ python3 autokait.py
+```
+
+At any point, type `help` to get more information.
+
+### Development
+
+All development work is on the `dev` branch, until it is tagged and merged to main for release.
+
+To run AutoKate in dev mode, allowing for a consistent game setup for development purposes, add the dev flag
+or the short form `-d`: 
+
+```
+$ python3 autokait.py --dev
+```
+
+Please see `setup_init_game_pieces` function in `util.game_vars.py` module for more information.
+
+## Important files
+
+### ... for Contributions
+
+Please see `CONTRIBUTING.md` for more information.
+
+### ... for Changelog
+
+Please see `CHANGELOG.md` for more information on notable changes.
+
+### ... for Code of Conduct
+
+Please see `CODE_OF_CONDUCT.md` for detailed guidelines.
 
 ## Developer Wishlist
 
@@ -50,8 +75,6 @@ The following list contains desired changes to be implemented, preferably in ord
 
 * Move sections away from README.md
   * Create Issues
-  * Create CHANGELOG.md file for releases
-    * Create releases from tags in GitHub
   * Create WISHLIST.md file for general things
     * Move the rest to GitHub
 * Re-write and add more method documentations
@@ -73,53 +96,19 @@ The following list contains desired changes to be implemented, preferably in ord
     * user input buttons
 * Calculate pros and cons for each action
 
-## Release Notes
+## Licence
 
-The following list of major changes can be found under designated git tags.
+Copyright (C) 2021
 
-### v0.4 provisional
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version.
 
-- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
-- Introduction of a game board, game pieces and placement checks
-- Major Quality of Life improvements
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-### v0.3
-
-- Added wallet to keep track of money
-- Improved blind bidding logic
-    - Now incremental, with potential to back out of bidding
-    - Added ability for Cait to pay for winning bids
-- Improved dividend functionality
-    - Added ability to Cait to receive dividends into wallet
-- Expanded quality of life improvements
-    - Improvements to console text
-- Organisation
-    - Logical changes to output text and file
-    - Added TODOs for next version
-- Clean up of code and refactors
-
-### v0.2
-
-- Added basic comments and documentation
-- Added blind bidding
-- Added basic quality of life improvements
-- Added project specific files
-- Expanded on the project with boilerplate code
-    - Added constants module
-    - Added global variables module
-    - Externalising console outputs to a separate module
-    - Externalising commonly used functions to a separate module
-- Organisation
-    - Addition of packages: `action` and `util`
-    - Splitting up of different actions into separate modules
-- Clean up of code and refactors
-
-### v0.1
-
-- MVP application.
-- Single Python module.
-- Raw implementation of the original CAIT.
-- Main decision-making function, using random number generator as a 6 sided dice.
+You should have received a copy of the GNU General Public License along with this program (See `README.md` in the root
+director of the project). If not, see <https://www.gnu.org/licenses/>.
 
 ## Credits
 
@@ -139,21 +128,3 @@ The following list of major changes can be found under designated git tags.
 #### AutoKait
 
 * Main Developer: Igor Goran Mačukat
-
-## Code of Conduct
-
-Please see `CODE_OF_CONDUCT.md` in the root of the project for more details.
-
-## Licence
-
-Copyright (C) 2021
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. If not,
-see <https://www.gnu.org/licenses/>.
