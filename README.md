@@ -67,48 +67,9 @@ Please see `CHANGELOG.md` for more information on notable changes.
 
 Please see `CODE_OF_CONDUCT.md` for detailed guidelines.
 
-## Developer Wishlist
+### ... for Developer Wishlist
 
-The following list contains desired changes to be implemented, preferably in order.
-
-### Low level, next/immediate changes
-
-* Move sections away from README.md
-  * Create Issues
-  * Create WISHLIST.md file for general things
-    * Move the rest to GitHub
-* Re-write and add more method documentations
-* Write unit tests
-* Manual testing of v0.4-beta in game
-
-### High level, future aspirational changes
-
-* Introduce player tracking of money and company shares
-    * Automate dividend calculations per share
-* Remove user inputs for anything related to Kait
-    * Where to put trains
-    * Where to put special interest cubes
-    * Which company share to bid for
-    * ... and so on. _Have Kait tell you what to do!_
-* Pathfinding for track and special interest cube placements
-* tkinter UI elements, such as:
-    * board state view
-    * user input buttons
-* Calculate pros and cons for each action
-
-## Licence
-
-Copyright (C) 2021
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program (See `README.md` in the root
-director of the project). If not, see <https://www.gnu.org/licenses/>.
+Alongside issues and discussions that exist within GitHub, `WISHLIST.md` also exists to keep a general list of desired changes.
 
 ## Credits
 
@@ -128,3 +89,18 @@ director of the project). If not, see <https://www.gnu.org/licenses/>.
 #### AutoKait
 
 * Main Developer: Igor Goran Mačukat
+
+## Licence
+
+Copyright (C) 2021
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+See `LICENSE` in the root directory of the project.

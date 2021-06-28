@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Introduction of a game board, game pieces and placement checks
 - Major Quality of Life improvements
+- Developer mode to allow for consistent AutoKait setup for development purposes.
 
 ### Changed
 
