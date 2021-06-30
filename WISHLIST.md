@@ -5,9 +5,7 @@ The following list contains desired changes to be implemented, preferably in ord
 ## Low level, next/immediate changes
 
 * Move sections away from `README.md`
-  * Create `WISHLIST.md` file for general things
-    * Move the rest to GitHub via Issues
-* Re-write and/or add more documentation
+* Write some issues based on `WISHLIST.md` on GitHub
 * Write unit tests
 * Manual testing of v0.4-beta in game
 

@@ -35,8 +35,13 @@ from util.tools import roll_dice
 
 
 def take_bidding_action(is_kait_first_bid=False):
+    """
+    Preamble to the bidding action and process.
+    A question will be asked to state the minimum price for the share being auctioned.
+    See bidding_process function.
+    """
     print(output.place_bid_action_text())
-    game_vars.last_action = ACTION_BIDDING
+    game_vars.current_action = ACTION_BIDDING
     share_min = ask_user_number_prompt(output.ask_company_minimum_share_price())
     if is_str_back(share_min):
         print(output.kait_bid_passing_text())
@@ -45,17 +50,36 @@ def take_bidding_action(is_kait_first_bid=False):
 
 
 def get_bidding_max(share_min):
+    """
+    Calculates the maximum cost Kait will be willing to bid.
+    The calculation is made based on the minimum share price of the auction + 1d10 dice roll.
+    """
     money_max = data_point[PLAYER_KAIT].balance()
     bid_max = share_min + roll_dice(10)
     return bid_max if bid_max <= money_max else money_max
 
 
 def calculate_new_bid(current_bid, max_bid):
+    """
+    Calculates Kait's next bid increment.
+    The calculation is made by taking the current bid and randomly choosing an increment from a constant.
+    If the next increment is equal to the current bid or exceeds Kait's maximum bid, it returns 0, meaning she passes.
+    """
     new_bid = current_bid + BID_STEPS[roll_dice(len(BID_STEPS)) - 1]
     return 0 if (new_bid == current_bid or new_bid > max_bid) else new_bid
 
 
 def bidding_process(min_price, is_kait_first_bid):
+    """
+    Performs the bidding action, either taken as part of Kait's 'Call an Auction' action
+    or as an out of turn action of another player.
+
+    When it is Kait's turn, it will be asked what is the current bid that Kait has to either beat or skip.
+
+    If Kait skips, the bidding process has ended, and Kait will wait for her next turn.
+    If Kait beats the current bid, it will ask for the current bid for Kait to either beat or skip.
+    If Kait is the last player standing, Kait will win the share and have the bid cost deducted from her wallet.
+    """
     valid_input = start_bidding = True
     max_bid = get_bidding_max(min_price)
 

@@ -15,6 +15,10 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Gen
 
 You should have received a copy of the GNU General Public License along with this program. If not,
 see <https://www.gnu.org/licenses/>.
+
+----
+
+Module used to contain all output text to console.
 """
 
 import util.constants as constants
@@ -29,6 +33,26 @@ def welcome_text():
     res += "Please setup the game and proceed when completed..."
     res += "\n"
     return res
+
+
+def setup_starting_trains_placed(in_dev_mode=False):
+    return f"Starting company trains have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n"
+
+
+def setup_si_question_prefix():
+    return "Which special interest cube is being placed in"
+
+
+def setup_si_back_function_none_text():
+    return "back function does not work here. Either 'exit' or continue."
+
+
+def setup_si_completed_text(in_dev_mode=False):
+    return f"Starting special interest cubes have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n"
+
+
+def perform_initial_auctions_text():
+    return "Perform initial auctions, if not done so.\n"
 
 
 def user_input_action_help_text():
@@ -130,6 +154,14 @@ def special_interest_cube_successful_placement_text(tile):
     return f"A {tile.special_interest(True)} special interest cube has been placed in {tile.name()}.\n"
 
 
+def special_interest_cube_invalid_number_text():
+    return invalid_input('invalid number of cubes specified, try again')
+
+
+def special_interest_cube_invalid_cube_selection_text(cube_text):
+    return invalid_input(f"'{str(cube_text)}' is an invalid special interest cube, try again")
+
+
 def place_tracks_action_text(is_kait_turn=True):
     return (f"{kait_turn_text()} place" if is_kait_turn else "Placing") + " rail tracks\n"
 
@@ -184,6 +216,18 @@ def place_tracks_adjacent_trains_required_text():
 
 def place_tracks_new_trains_added_text():
     return "New train tracks have been added to the tiles.\n"
+
+
+def place_tracks_invalid_number_text():
+    return invalid_input('invalid number of trains specified, try again')
+
+
+def place_tracks_duplicate_tiles_present_text():
+    return invalid_input("duplicate tile locations present, try again")
+
+
+def place_tracks_invalid_tile_locations_text():
+    return invalid_input("invalid tile locations present, try again")
 
 
 def call_auction_action_text():

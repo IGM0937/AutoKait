@@ -59,6 +59,11 @@ from util.constants import TRAIN_WLW
 
 
 class Player:
+    """
+    Players representation.
+    Currently only used for Kait to track her Wallet funds.
+    """
+
     def __init__(self, name):
         self.__name = name
         self.__money = 20
@@ -77,6 +82,19 @@ class Player:
 
 
 class Tile:
+    """
+    Tile representation of a digital in memory game board.
+    See setup_tile_board() function in util.game_vars.py module
+
+    Location = Location of the tile on board. Eg. a4, g5, k9
+    Tile Type = Type to calculate terrain difficulty. See tile terrain difficulties in util.constants.py module.
+    Adjacent = A list of adjacent tiles. Maximum of 6.
+    Adjacent Set = Boolean value as a gate keeper from changing game board layout. Set to True post setup.
+    Trains = A list of trains on the tile. Placement verified in track_process() function in action.track.py module.
+    Name = Name of town, city or major city. None if a simple terrain tile.
+    Special Interest = Special interest cube on tile. See special interest cubes in util.constants.py module.
+    """
+
     __location = None
     __tile_type = None
     __adjacent = None

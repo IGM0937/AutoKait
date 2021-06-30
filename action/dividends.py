@@ -29,8 +29,14 @@ from util.tools import *
 
 
 def call_dividends_action(is_kait_turn=True):
+    """
+    Preamble to the "Call Dividends" action and process.
+    A question will be asked to state if Kait stands to gain any dividends before proceeding.
+    If not, trigger the "Special Interest cube" action instead, otherwise proceed.
+    See dividends_process function.
+    """
     print(output.call_dividends_action_text(is_kait_turn))
-    game_vars.last_action = ACTION_CALL_DIVIDENDS
+    game_vars.current_action = ACTION_CALL_DIVIDENDS
 
     if is_kait_turn:
         yes_answer = ask_user_yes_no_prompt(output.call_dividends_action_be_performed_text())
@@ -45,6 +51,14 @@ def call_dividends_action(is_kait_turn=True):
 
 
 def dividends_process():
+    """
+    Performs the "Call Dividends" action.
+
+    The user will be prompted to draw a maximum of up to 3 cubes and input the colours drawn.
+    The process will then calculate the dividends received by each company and output it to the console.
+    The user will then be asked to input how much Kait has collected in order for her wallet to be updated.
+    Once complete, cubes drawn for the calculations are taken out of the game.
+    """
     si_cubes_available = game_vars.game_piece_counters[CUBE_SI_BLACK] + \
                          game_vars.game_piece_counters[CUBE_SI_WHITE] + \
                          game_vars.game_piece_counters[CUBE_SI_PINK]

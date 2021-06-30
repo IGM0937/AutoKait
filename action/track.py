@@ -28,8 +28,13 @@ from util.tools import *
 
 
 def place_tracks_action(is_kait_turn=True):
+    """
+    The preamble to the "Place tracks" action.
+    A question will be asked about the chosen company to lay track for.
+    See tracks_process function.
+    """
     print(output.place_tracks_action_text(is_kait_turn))
-    game_vars.last_action = ACTION_PLACE_TRACKS
+    game_vars.current_action = ACTION_PLACE_TRACKS
 
     track_placement_complete = False
     while not track_placement_complete:
@@ -38,6 +43,17 @@ def place_tracks_action(is_kait_turn=True):
 
 
 def tracks_process(company_train):
+    """
+    Performs the "Place tracks" action.
+
+    The process will ask, with information from the preamble, where the tacks are going to be placed on the board.
+    Once the answers have been inputted, the function will perform a variety of validations to insure that the input
+    specified by the user is valid. This validation is based on the rules of the game, found in the user manual.
+    See inline comments in function for the list of validations.
+
+    Once complete, the game board is updated, ready for the next turn.
+    """
+
     while True:
         tiles = ask_user_get_board_tiles(output.place_tracks_tile_locations_select_text())
 
@@ -71,7 +87,7 @@ def tracks_process(company_train):
                     build_cost += 1
 
         if build_cost > 3:
-            print(output.place_tracks_build_costs_exceeded_text())
+            print(output.place_tracks_build_costs_exceeded_text(build_cost))
             continue
 
         # validate placement based on adjacent placement of other trains

@@ -20,9 +20,9 @@ artificial intelligence in general.
 
 ## Features
 
-As of version 0.3:
+As of the latest release, v0.4:
 
-- Automated Game A.I. as a stand in for n-th player in Irish Gauge.
+- Automated Game A.I. as a stand in for nth player in Irish Gauge.
 - Decide on next action, when it is Kait's turn.
 - Participate in auctions, even out of turn, with the ability to back out of bids.
 - Activate dividend action out of turn for purposes of receiving dividends.

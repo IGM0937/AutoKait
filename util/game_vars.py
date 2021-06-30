@@ -26,10 +26,11 @@ List of global game variables and their starting defaults, if relevant.
         - player threat rating
 """
 import util.tools as tools
+import util.output_text as output
 from util.constants import *
 from util.game_objects import *
 
-last_action = None
+current_action = None
 data_point = {}
 tile_board = {}
 tile_company_start = {}
@@ -49,10 +50,18 @@ tile_trains_mgw = []
 
 
 def setup_players():
+    """
+    Sets up the players and saves them into the data point dictionary.
+    """
     data_point[PLAYER_KAIT] = Player("Kait")
 
 
 def setup_tile_board():
+    """
+    Creates the in-memory virtual game board.
+    Each of the tiles with locations, types, name and adjacent tiles
+    """
+
     # a-row
     a5 = Tile('a5', TILE_EASY)
     a6 = Tile('a6', TILE_DIFF)
@@ -555,6 +564,15 @@ def setup_tile_board():
 
 
 def setup_init_game_pieces(in_dev_mode=False):
+    """
+    Sets up the initial counts of the representative board game pieces.
+    It also places the initial train locations of each company.
+    See map_cheat_sheet for more details.
+
+    In developer mode, additional train pieces added to the board
+    and the initial special interest cube places are prepopulated.
+    """
+
     # setup a list of game piece counters
     game_piece_counters.update({
         TRAIN_CBSC: game_vars.pieces_trains_cbsc,
@@ -587,26 +605,33 @@ def setup_init_game_pieces(in_dev_mode=False):
     tile_company_start.update({RAILWAY_MGW: h11})
 
     if in_dev_mode:
+        # additional train placements for development purposes
         mgw_location_list = ('h10', 'g9', 'h8', 'h7')
         for location in mgw_location_list:
             tile = tile_board.get(location)
             tile.add_train(TRAIN_MGW)
 
-    print(f"Starting company trains have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")
+    print(output.setup_starting_trains_placed(in_dev_mode))
 
     # place initial special interest cubes
-    si_question = "Which special interest cube is being placed in"
     locations = ['c12', 'h11', 'h3', 'b8', 'l8', 'm9', 'l4', 'o4']
-    si_cubes = [CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK]
-    si_count = 0
+    dev_si_cubes = [CUBE_SI_BLACK, CUBE_SI_WHITE, CUBE_SI_PINK]
+    dev_si_count = 0
 
     for location in locations:
         tile: Tile = tile_board.get(location)
         if in_dev_mode:
-            cube = si_cubes[si_count % len(si_cubes)]
-            si_count += 1
+            cube = dev_si_cubes[dev_si_count % len(dev_si_cubes)]
+            dev_si_count += 1
         else:
-            cube = tools.ask_user_get_special_interest_cube(f"{si_question} {tile.name()}? ")
+            while True:
+                cube = tools.ask_user_get_special_interest_cube(f"{output.setup_si_question_prefix()} {tile.name()}? ")
+                if cube == BACK:
+                    output.invalid_input(output.setup_si_back_function_none_text())
+                else:
+                    cube = cube[0]
+                    break
+
         tile.set_special_interest(cube)
 
-    print(f"Starting special interest cubes have been placed{str(' in DEV MODE' if in_dev_mode else '')}.\n")
+    print(output.setup_si_completed_text())

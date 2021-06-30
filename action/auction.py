@@ -31,12 +31,16 @@ from util.tools import *
 
 
 def call_auction_action():
+    """
+    Performs the "Call an Auction" action by first checking if Kait has enough money to participate in bidding.
+    If so, Kait starts the bidding process, otherwise it will call for dividends.
+    """
     if data_point[PLAYER_KAIT].balance() <= 0:
         call_dividends_action()
         return
 
     print(output.call_auction_action_text())
-    game_vars.last_action = ACTION_CALL_AUCTION
+    game_vars.current_action = ACTION_CALL_AUCTION
 
     yes_answer = ask_user_yes_no_prompt(output.call_auction_action_be_performed_text())
     if is_str_back(yes_answer):
