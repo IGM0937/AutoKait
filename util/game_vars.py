@@ -627,7 +627,7 @@ def setup_init_game_pieces(in_dev_mode=False):
             while True:
                 cube = tools.ask_user_get_special_interest_cube(f"{output.setup_si_question_prefix()} {tile.name()}? ")
                 if cube == BACK:
-                    output.invalid_input(output.setup_si_back_function_none_text())
+                    print(output.setup_si_back_function_none_text())
                 else:
                     cube = cube[0]
                     break

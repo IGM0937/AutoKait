@@ -44,7 +44,7 @@ def setup_si_question_prefix():
 
 
 def setup_si_back_function_none_text():
-    return "back function does not work here. Either 'exit' or continue."
+    return invalid_input("back function does not work here. Either 'exit' or continue.")
 
 
 def setup_si_completed_text(in_dev_mode=False):
@@ -176,13 +176,12 @@ def place_tracks_action_help_text():
     res += "\n"
     res += "If tied, follow the rule: City (with special interest not present on track) -> City -> Town"
     res += "\n\n"
-    res += company_selection_help_text
+    res += company_selection_help_text()
     res += "\n\n"
     res += tile_locations_help_text()
     res += "\n\n"
     res += back_and_exit_help_text()
     res += "\n"
-
     return res
 
 
@@ -207,7 +206,7 @@ def place_tracks_insufficient_trains_available_text():
 
 
 def place_tracks_build_costs_exceeded_text(build_cost):
-    return invalid_input(f"total build costs: {build_cost} exceeds the maximum cost of 3, try again")
+    return invalid_input(f"total build costs: {str(build_cost)} exceeds the maximum cost of 3, try again")
 
 
 def place_tracks_adjacent_trains_required_text():
@@ -248,8 +247,8 @@ def call_auction_action_help_text():
     res += "\n\n"
     res += "Kait will raise the bid at random by from £1 to £3 at a time."
     res += "\n"
-    res += "She will pass if she is unable to raise the bid or is unable to got bid past the funds of her maximum bid " \
-           "for the share."
+    res += "She will pass if she is unable to raise the bid or is unable to got bid past the funds of her maximum " \
+           "bid for the share."
     res += "\n\n"
     res += back_and_exit_help_text()
     res += "\n"
@@ -282,7 +281,7 @@ def ask_current_bid_price():
 
 
 def kait_bid_bidding_text(bid):
-    return f"Kait is bidding £{bid}\n"
+    return f"Kait is bidding £{str(bid)}\n"
 
 
 def kait_bid_winning_question_text():
@@ -290,7 +289,7 @@ def kait_bid_winning_question_text():
 
 
 def kait_bid_won_text(bid, new_total):
-    return f"Kait has won the bid at £{bid}, she now has £{new_total} left.\n"
+    return f"Kait has won the bid at £{str(bid)}, she now has £{str(new_total)} left.\n"
 
 
 def kait_bid_passing_text():
@@ -339,7 +338,7 @@ def reward_dividends_text():
 
 
 def kait_wallet_update_text(dividend, new_total):
-    return f"Kait has won £{dividend} in dividends, she now has £{new_total}.\n"
+    return f"Kait has won £{str(dividend)} in dividends, she now has £{str(new_total)}.\n"
 
 
 def company_selection_help_text():
