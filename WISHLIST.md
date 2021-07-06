@@ -9,14 +9,17 @@ The following list contains desired changes to be implemented, preferably in ord
 * Write unit tests.
   
 ### v0.4-beta Feedback:
+* Game setup - Special interest cube setup:
+  * Ability to back/revert to a previous selection.
+  * Choose to either randomise the starting SI cubes or input starting cubes manually.
+  * Ability to check if the game pieces are correctly placed on the board.
+* Game setup - Initial bidding process:
+  * A questionnaire type process, automated.
+  * Seen a situation when Kait did not know she was the starting bid and bid too high. 
+  * Could be an issue because she is not aware of others financial standings?
 * Ability to have 2 or more AI players.
-* Choose to either randomise the starting SI cubes or input starting cubes manually.
-* Ability to back/revert during SI cube starting phase.
-* Initial bids need to be their own step and probably automated.
-  * Seen a situation when Kait did not know she was the starting bid and bid too high...
-  * ... could be an issue because she is not aware of others financial standings?
-* Add a 'stats' option to show things like Kait's wallet.
-* Add a question/option to do something other than place track if Kait does not own any company shares.
+* Add a `stats` option to show things like Kait's wallet.
+* Add a `viewboard` option to show what pieces are on the board.
 
 ## High level, future aspirational changes
 

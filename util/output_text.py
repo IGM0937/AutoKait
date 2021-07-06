@@ -166,6 +166,10 @@ def place_tracks_action_text(is_kait_turn=True):
     return (f"{kait_turn_text()} place" if is_kait_turn else "Placing") + " rail tracks\n"
 
 
+def place_tracks_action_can_place_text():
+    return "Can Kait place tracks for any company? Y/N "
+
+
 def place_tracks_action_help_text():
     res = "\n"
     res += "Place trains for the company that Kait owns, but has the least trains on the map."

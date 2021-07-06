@@ -25,17 +25,35 @@ To be: Use data to decide which company to place tracks for an where.
 """
 
 from util.tools import *
+import action.auction as auction
 
 
 def place_tracks_action(is_kait_turn=True):
     """
     The preamble to the "Place tracks" action.
-    A question will be asked about the chosen company to lay track for.
-    See tracks_process function.
+    The question will be asked if Kait is able to place tracks
     """
     print(output.place_tracks_action_text(is_kait_turn))
     game_vars.current_action = ACTION_PLACE_TRACKS
 
+    if is_kait_turn:
+        yes_answer = ask_user_yes_no_prompt(output.place_tracks_action_can_place_text())
+        if is_str_back(yes_answer):
+            return
+        elif yes_answer:
+            choose_company_track()
+        else:
+            auction.call_auction_action()
+    else:
+        choose_company_track()
+
+
+def choose_company_track():
+    """
+    The preamble to the "Place tracks" action.
+    A question will be asked about the chosen company to lay track for.
+    See tracks_process function.
+    """
     track_placement_complete = False
     while not track_placement_complete:
         company_train = ask_user_get_company_train(output.place_tracks_company_trains_select_text())

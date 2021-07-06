@@ -497,6 +497,7 @@ def setup_tile_board():
         j9.location(): j9,
         j10.location(): j10,
         j11.location(): j11,
+        j12.location(): j12
     })
     # k-row dictionary
     tile_board.update({
