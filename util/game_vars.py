@@ -271,7 +271,7 @@ def setup_tile_board():
     f2.set_adjacent(e2, e3, f3, g2, f1, e1)
     f3.set_adjacent(e3, f4, g4, g3, g2, f2)
     f4.set_adjacent(e4, e5, f5, g4, f3, e3)
-    f5.set_adjacent(d5, e6, f6, f5, f4, e4)
+    f5.set_adjacent(e5, f6, g6, g5, g4, f4)
     f6.set_adjacent(e6, e7, f7, g6, f5, e5)
     f7.set_adjacent(e7, f8, g8, g7, g6, f6)
     f8.set_adjacent(e8, e9, f9, g8, f7, e7)
@@ -290,7 +290,7 @@ def setup_tile_board():
     g9.set_adjacent(f9, g10, h10, h9, h8, g8)
     g10.set_adjacent(f10, f11, g11, h10, g9, f9)
     g11.set_adjacent(f11, h11, h10, g10)
-    # h-row adjacent
+    # TODO: recheck from here h-row adjacent
     h1.set_adjacent(g1, h2, i2)
     h2.set_adjacent(g2, g3, h3, i2, h1, g1)
     h3.set_adjacent(g3, h4, i4, i2, h2)

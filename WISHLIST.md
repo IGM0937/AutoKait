@@ -4,7 +4,7 @@ The following list contains desired changes to be implemented, preferably in ord
 
 ## Low level, next/immediate changes
 
-* Expand `README.md` usage section or create a separate file.
+* Expand `README.md` usage section or create a separate tutorial file.
 * Write some issues based on `WISHLIST.md` on GitHub.
 * Write unit tests.
   
