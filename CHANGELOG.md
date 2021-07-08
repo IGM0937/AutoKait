@@ -32,6 +32,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changed the Game A.I. name to Kait to avoid confusion with original CAIT
 
+## [v0.4] - 2021-03-20
+
+### Added
+
+- `CHANGELOG.md` file, a log of changes between current and future releases.
+- `CODE_OF_CONDUCT.md` file, containing GitHub's community conduct rules. 
+- `CONTRIBUTING.md` file, list or rules and notes on contributing to the project.
+- `WISHLIST.md` file, containing a small to do list of next desired changes. 
+
+### Changed
+
+- Improved auctions action.
+- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
+- `README.md` file, separating out sections into individual files.
+
 ## [v0.3] - 2021-03-20
 
 ### Added
@@ -82,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Raw implementation of the original CAIT.
 - Main decision-making function, using random number generator as a 6 sided dice.
 
-[unreleased]: https://github.com/IGM0937/AutoKait/compare/v0.3...dev
+[unreleased]: https://github.com/IGM0937/AutoKait/compare/v0.4...dev
+[v0.4]: https://github.com/IGM0937/AutoKait/compare/v0.3...v0.4
 [v0.3]: https://github.com/IGM0937/AutoKait/compare/v0.2...v0.3
 [v0.2]: https://github.com/IGM0937/AutoKait/compare/v0.1...v0.2
 [v0.1]: https://github.com/IGM0937/AutoKait/releases/tag/v0.1
