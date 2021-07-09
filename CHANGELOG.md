@@ -20,31 +20,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [version number]: Link
 -->
 
-## [Unreleased]
-
-### Added
-
-- Introduction of a game board, game pieces and placement checks
-- Major Quality of Life improvements
-- Developer mode to allow for consistent AutoKait setup for development purposes.
-
-### Changed
-
-- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
+[comment]: <> (## [Unreleased])
 
 ## [v0.4] - 2021-03-20
 
 ### Added
 
+- Added developer mode, `--dev` and `-d` flags on start up.
+- Game setup for players (Kait only), game board and pieces.
+- Game teardown, exit text only.
+- In memory game board.
+  - New reference map.
+  - Ability to reference tile locations, train pieces and special interest cubes.
+- Player class for containing player information.
+- Tile class for the creation of in memory board game definition.
 - `CHANGELOG.md` file, a log of changes between current and future releases.
 - `CODE_OF_CONDUCT.md` file, containing GitHub's community conduct rules. 
 - `CONTRIBUTING.md` file, list or rules and notes on contributing to the project.
-- `WISHLIST.md` file, containing a small to do list of next desired changes. 
+- `WISHLIST.md` file, containing a small to do list of next desired changes.
+- `LICENSE` file, containing GNU v3 licence text and updates to all files with license references.
+  - This includes the reference map.
 
 ### Changed
 
+- Improved console output text.
+- Improved help actions text.
+- Improved general action.
+  - Ability to back or exit out of questions and inputs.
+  - Changes to the term 'last action' to the more appropriate 'current action'.
+  - Call every action out of turn for 'human' players.
 - Improved auctions action.
-- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
+  - Added checks for ability to perform auctions based on current wallet balance.
+- Improved bidding action.
+  - Bidding logic and refactoring of code to improve readability.
+- Improved special interest action.
+  - Ability to select a special interest cube and for placement.
+- Improved dividends action.
+  - Ability to select drawn special interest cubes.
+  - Auto-calculation of dividends per company.
+- Improved tracks action.
+  - Ability to add tracks to the board based on company selection.
+  - Automatically validate track placement, including locations and building costs.
+- Improved common tools for game piece control and calculations.
+- Changed the Game A.I. name to Kait to avoid confusion with original CAIT.
+- Improved documentation on modules and functions.
 - `README.md` file, separating out sections into individual files.
 
 ## [v0.3] - 2021-03-20
