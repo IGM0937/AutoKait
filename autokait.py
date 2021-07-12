@@ -107,7 +107,7 @@ def perform_dismantle():
     As is: Simply outputs end of game text.
     To be: Output detailed results showing winner, stats and so on.
     """
-    print(output.game_over_text())
+    print(output.game_over_text(data_point[PLAYER_KAIT].balance()))
 
 
 if __name__ == '__main__':
