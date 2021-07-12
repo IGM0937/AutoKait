@@ -1,8 +1,7 @@
-"""
 Program Name:   AutoKait
 Description:    The automa A.I. player designed to be used for the board game, Irish Gauge.
 Author:         Igor Goran Mačukat
-Filename:       global_vars.py
+Filename:       map_cheat_sheet.png
 
 Copyright (C) 2021
 
@@ -15,14 +14,3 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Gen
 
 You should have received a copy of the GNU General Public License along with this program. If not,
 see <https://www.gnu.org/licenses/>.
-
-----
-
-List of global variables and their starting defaults.
-"""
-
-last_action = None
-data_points = {}
-
-# data point tags
-CAIT_WALLET = 'data.cait.wallet'

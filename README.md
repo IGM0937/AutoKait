@@ -18,115 +18,65 @@ artificial intelligence in general.
 >
 > Please be kind. I'm happy to hear about any improvements.
 
-## Usage
+## Features
 
-All major releases are tagged and merged to the `master` branch.
+As of the latest release, v0.4:
 
-All development work is on the `dev` branch, until it is tagged and merged to master for release.
-
-Simply execute the application from `autocait.py` module.
-
-At any point, type **_explain_** to get more information.
-
-## Overall Features
-
-As of version v0.3:
-
-- Automated Game A.I. as a stand in for nth player in Irish Gauge.
-- Decide on next action, when it is Kait's turn.
-- Participate in auctions, with the ability to back out of bids.
-- Activate dividend action out of turn for purposes of receiving dividends.
+- Automated Game A.I. as a stand-in for nth player in Irish Gauge.
+- Kait can choose her next action when it's her turn.
+  - Call for **auctions**.
+  - Place company **train tracks**.
+  - Place **special interests**.
+  - Call for company **dividends**.
+- Participate in the above actions out of turn, with the ability to back out of bids.
+- Keep track (pun intended) of changes in board game pieces.
+  - Placement of all company train tracks.
+  - Placement of all special interests.
+- Auto-calculate dividends per company.
 - Keep track of Kait's money during bidding and dividend actions.
 
-## Contributions
+## Usage
 
-Projects contributions of any kind a welcome and any sizable contributions to the project will be credited.
+All major releases are tagged and merged to the `main` branch. They could also be found under 'Releases' within GitHub.
 
-- If you have any suggestions, raise an issue.
-- If you have any code changes, raise a pull request for any changes.
-    - To which branch you to merge to is up to you.
+To run AutoKate, simply execute the module containing the main function using Python 3:
 
-All contributions have are a few stipulations:
+```
+$ python3 autokait.py
+```
 
-1. Not all suggestions or code changes are guaranteed to be accepted into the project.
-2. Not all suggestions or code changes are guaranteed to be accepted in the state they have been submitted.
+At any point, type `help` to get more information.
 
-Hopefully discussions can be had over the contributions in order to avoid any confusion or misunderstandings.
+### Development
 
-As always, thank you in advance for taking the time to look at the project in depth.
+All development work is on the `dev` branch, until it is tagged and merged to main for release.
 
-## Developer Wishlist
+To run AutoKate in dev mode, allowing for a consistent game setup for development purposes, add the dev flag
+or the short form `-d`: 
 
-The following list contains desired changes to be implemented, preferably in order.
+```
+$ python3 autokait.py --dev
+```
 
-### Low level, next/immediate changes
+Please see `setup_init_game_pieces` function in `util.game_vars.py` module for more information.
 
-* Re-write and add more method documentations
-* Write unit tests
-* Manual testing of v0.4-beta in game
+## Important files
 
-### High level, future aspirational changes
+### ... for Contributions
 
-* Introduce player tracking of money and company shares
-    * Automate dividend calculations per share
-* Remove user inputs for anything related to Kait
-    * Where to put trains
-    * Where to put special interest cubes
-    * Which company share to bid for
-    * ... and so on. _Have Kait tell you what to do!_
-* Pathfinding for track and special interest cube placements
-* tkinter UI elements, such as:
-    * board state view
-    * user input buttons
-* Calculate pros and cons for each action
+Please see `CONTRIBUTING.md` for more information.
 
-## Release Notes
+### ... for Changelog
 
-The following list of major changes can be found under designated git tags.
+Please see `CHANGELOG.md` for more information on notable changes.
 
-### v0.4 provisional
+### ... for Code of Conduct
 
-- Changed the Game A.I. name to Kait to avoid confusion with original CAIT
-- Introduction of a game board, game pieces and placement checks
-- Major Quality of Life improvements
+Please see `CODE_OF_CONDUCT.md` for detailed guidelines.
 
-### v0.3
+### ... for Developer Wishlist
 
-- Added wallet to keep track of money
-- Improved blind bidding logic
-    - Now incremental, with potential to back out of bidding
-    - Added ability for Cait to pay for winning bids
-- Improved dividend functionality
-    - Added ability to Cait to receive dividends into wallet
-- Expanded quality of life improvements
-    - Improvements to console text
-- Organisation
-    - Logical changes to output text and file
-    - Added TODOs for next version
-- Clean up of code and refactors
-
-### v0.2
-
-- Added basic comments and documentation
-- Added blind bidding
-- Added basic quality of life improvements
-- Added project specific files
-- Expanded on the project with boilerplate code
-    - Added constants module
-    - Added global variables module
-    - Externalising console outputs to a separate module
-    - Externalising commonly used functions to a separate module
-- Organisation
-    - Addition of packages: `action` and `util`
-    - Splitting up of different actions into separate modules
-- Clean up of code and refactors
-
-### v0.1
-
-- MVP application.
-- Single Python module.
-- Raw implementation of the original CAIT.
-- Main decision-making function, using random number generator as a 6 sided dice.
+Alongside issues and discussions that exist within GitHub, `WISHLIST.md` also exists to keep a general list of desired changes.
 
 ## Credits
 
@@ -158,5 +108,6 @@ version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with this program. If not,
-see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+See `LICENSE` in the root directory of the project.

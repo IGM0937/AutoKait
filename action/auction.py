@@ -26,16 +26,26 @@ To be: Use data to decide which company to auction for.
 
 from action.bidding import take_bidding_action
 from action.dividends import call_dividends_action
+from util.game_vars import *
 from util.tools import *
 
 
 def call_auction_action():
+    """
+    Performs the "Call an Auction" action by first checking if Kait has enough money to participate in bidding.
+    If so, Kait starts the bidding process, otherwise it will call for dividends.
+    """
+    if data_point[PLAYER_KAIT].balance() <= 0:
+        call_dividends_action()
+        return
+
     print(output.call_auction_action_text())
-    global_vars.last_action = ACTION_CALL_AUCTION
-    # TODO: Is there a way to determine if an action can be performed without asking the question?
-    # TODO: using the wallet to determine auctions
-    if ask_user_yes_no_prompt(output.call_auction_action_be_performed_text()):
+    game_vars.current_action = ACTION_CALL_AUCTION
+
+    yes_answer = ask_user_yes_no_prompt(output.call_auction_action_be_performed_text())
+    if is_str_back(yes_answer):
+        return
+    elif yes_answer:
         take_bidding_action(True)
     else:
-        print(output.cait_turn_text(), end='')
-        call_dividends_action()
+        call_dividends_action(True)
