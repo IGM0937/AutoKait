@@ -39,7 +39,7 @@ As of the latest release, v0.4:
 
 All major releases are tagged and merged to the `main` branch. They could also be found under 'Releases' within GitHub.
 
-To run AutoKate, simply execute the module containing the main function using Python 3:
+To run AutoKait, simply execute the module containing the main function using Python 3:
 
 ```
 $ python3 autokait.py
@@ -51,7 +51,7 @@ At any point, type `help` to get more information.
 
 All development work is on the `dev` branch, until it is tagged and merged to main for release.
 
-To run AutoKate in dev mode, allowing for a consistent game setup for development purposes, add the dev flag
+To run AutoKait in dev mode, allowing for a consistent game setup for development purposes, add the dev flag
 or the short form `-d`: 
 
 ```
