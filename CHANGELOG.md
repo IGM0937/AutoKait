@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 'Deprecated' for soon-to-be removed features.
 'Removed' for now removed features.
 'Fixed' for any bug fixes.
-'Security in case of vulnerabilities.
+'Security' in case of vulnerabilities.
 
 [version number]: Link
 -->
@@ -29,9 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added developer mode, `--dev` and `-d` flags on start up.
 - Game setup for players (Kait only), game board and pieces.
 - Game teardown, exit text only.
-- In memory game board.
-  - New reference map.
-  - Ability to reference tile locations, train pieces and special interest cubes.
+- New reference game board/map.
+- Ability to reference tile locations, train pieces and special interest cubes.
 - Player class for containing player information.
 - Tile class for the creation of in memory board game definition.
 - `CHANGELOG.md` file, a log of changes between current and future releases.
@@ -39,7 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CONTRIBUTING.md` file, list or rules and notes on contributing to the project.
 - `WISHLIST.md` file, containing a small to do list of next desired changes.
 - `LICENSE` file, containing GNU v3 licence text and updates to all files with license references.
-  - This includes the reference map.
 
 ### Changed
 

@@ -384,5 +384,14 @@ def back_and_exit_help_text():
     return "If you would like to back out, type 'back' and to close the application, type 'exit'."
 
 
-def game_over_text():
-    return "All of the special interest cubes have been used. The game is over. Goodbye."
+def game_over_text(kait_balance=0):
+    res = "All of the special interest cubes have been used up."
+    res += "\n\n"
+    res += f"Kait's end game money in her wallet is £{kait_balance}"
+    res += "\n\n"
+    res += "The game is over."
+    res += "\n\n"
+    res += "Thank you for playing with Kait."
+    res += "\n"
+    res += "Goodbye."
+    return res

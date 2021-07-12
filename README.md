@@ -22,10 +22,17 @@ artificial intelligence in general.
 
 As of the latest release, v0.4:
 
-- Automated Game A.I. as a stand in for nth player in Irish Gauge.
-- Decide on next action, when it is Kait's turn.
-- Participate in auctions, even out of turn, with the ability to back out of bids.
-- Activate dividend action out of turn for purposes of receiving dividends.
+- Automated Game A.I. as a stand-in for nth player in Irish Gauge.
+- Kait can choose her next action when it's her turn.
+  - Call for **auctions**.
+  - Place company **train tracks**.
+  - Place **special interests**.
+  - Call for company **dividends**.
+- Participate in the above actions out of turn, with the ability to back out of bids.
+- Keep track (pun intended) of changes in board game pieces.
+  - Placement of all company train tracks.
+  - Placement of all special interests.
+- Auto-calculate dividends per company.
 - Keep track of Kait's money during bidding and dividend actions.
 
 ## Usage
