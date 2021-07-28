@@ -2,42 +2,37 @@ import tkinter as tk
 import math
 
 
+CANVAS_WIDTH = 90
+CANVAS_HEIGHT = 80
 TILE_EASY = "tile.easy"
 TILE_DIFF = "tile.diff"
 TILE_TOWN = "tile.town"
 TILE_CITY = "tile.city"
 TILE_MCITY = "tile.city.major"
-
-TILE_IMAGES = {
-    TILE_EASY: "easy.png",
-    TILE_DIFF: "diff.png",
-    TILE_TOWN: "town.png",
-    TILE_CITY: "city.png",
-    TILE_MCITY: "mcity.png",
-}
+TILE_IMAGES = {}
 
 mouse_x = None
 mouse_y = None
 
 
 def mouse_update(event):
-    global mouse_x
-    global mouse_y
-
+    global mouse_x, mouse_y
     mouse_x = event.x
     mouse_y = event.y
 
 
 class App:
-    __root = None
-    __canvas = None
-
     def __init__(self, width, height):
         self.__root = tk.Tk()
         self.__canvas = tk.Canvas(self.__root, width=width * 3, height=height * 3)
         self.__canvas.bind('<Enter>', mouse_update)
         self.__canvas.bind('<Motion>', mouse_update)
         self.__canvas.pack()
+        TILE_IMAGES.update({TILE_EASY: tk.PhotoImage(file="../img/easy.png")})
+        TILE_IMAGES.update({TILE_DIFF: tk.PhotoImage(file="../img/diff.png")})
+        TILE_IMAGES.update({TILE_TOWN: tk.PhotoImage(file="../img/town.png")})
+        TILE_IMAGES.update({TILE_CITY: tk.PhotoImage(file="../img/city.png")})
+        TILE_IMAGES.update({TILE_MCITY: tk.PhotoImage(file="../img/mcity.png")})
 
     def get_canvas(self):
         return self.__canvas
@@ -47,28 +42,23 @@ class App:
 
 
 class Tile:
-
-    def __init__(self, canvas, pos_x, pos_y, image_filepath):
+    def __init__(self, canvas, pos_x, pos_y):
         self.__canvas = canvas
-        photo_image = tk.PhotoImage(file=image_filepath)
+        photo_image = TILE_IMAGES.get(TILE_EASY)
         self.__image_id = self.__canvas.create_image(pos_x, pos_y, image=photo_image)
         self.__canvas.tag_bind(self.__image_id, '<Button-1>', lambda e: self.on_click())
-
         self.__image_width = photo_image.width()
         self.__image_height = photo_image.height()
         self.__radius_bound = self.__image_height / 2
         self.__is_selected = False
 
     def inbound(self):
-        global mouse_x
-        global mouse_y
+        global mouse_x, mouse_y
         pos = self.__canvas.coords(self.__image_id)
-        centre_x = pos[0]
-        centre_y = pos[1]
-
-        x = centre_x - mouse_x
-        y = centre_y - mouse_y
-        dis = math.sqrt((x ** 2) + (y ** 2))
+        centre_x, centre_y = pos[0], pos[1]
+        res_x = centre_x - mouse_x
+        res_y = centre_y - mouse_y
+        dis = math.sqrt((res_x ** 2) + (res_y ** 2))
 
         return dis <= self.__radius_bound
 
@@ -79,17 +69,17 @@ class Tile:
         if value is None:
             value = self.__is_selected
 
-        # self.__canvas.itemconfig(self.image_id, image=(easy_tile if value else diff_tile))
+        easy = TILE_IMAGES.get(TILE_EASY)
+        diff = TILE_IMAGES.get(TILE_DIFF)
+
+        self.__canvas.itemconfig(self.__image_id, image=(easy if value else diff))
         self.__is_selected = not value
 
         print(self.__image_id, "at", self.__canvas.coords(self.__image_id), "is selected:", self.__is_selected)
 
 
 if __name__ == '__main__':
-    canvas_width = 90
-    canvas_height = 80
-
-    app = App(canvas_width, canvas_height)
-    tile = Tile(app.get_canvas(), canvas_width/2, canvas_height/2, TILE_IMAGES[TILE_EASY])
+    app = App(CANVAS_WIDTH, CANVAS_HEIGHT)
+    tile = Tile(app.get_canvas(), CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)
 
     app.run_mainloop()

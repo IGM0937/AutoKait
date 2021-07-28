@@ -49,8 +49,8 @@ if __name__ == '__main__':
     root = tk.Tk()
 
     # create images
-    unselected_img = tk.PhotoImage(file="ball1.gif")
-    selected_img = tk.PhotoImage(file="ball2.gif")
+    unselected_img = tk.PhotoImage(file="../img/ball1.gif")
+    selected_img = tk.PhotoImage(file="../img/ball2.gif")
 
     # canvas for image
     canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
