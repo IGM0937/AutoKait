@@ -1,5 +1,9 @@
 CANVAS_WIDTH = 400
-CANVAS_HEIGHT = 400
+CANVAS_HEIGHT = 500
+CANVAS_X_START = 0
+CANVAS_Y_START = 10
+CANVAS_X_STEP = 66
+CANVAS_Y_STEP = 41
 TILE_NONE = "tile.none"
 TILE_EASY = "tile.easy"
 TILE_DIFF = "tile.diff"
@@ -11,6 +15,25 @@ TILE_UNSELECT = "tile.unselected"
 
 TILE_IMAGES = {}
 MOUSE_X, MOUSE_Y = None, None
+
+ROW_INDEX = {
+    'a': 1,
+    'b': 3,
+    'c': 5,
+    'd': 7,
+    'e': 9,
+    'f': 11,
+    'g': 13,
+    'h': 15,
+    'i': 17,
+    'j': 19,
+    'k': 21,
+    'l': 23,
+    'm': 25,
+    'n': 27,
+    'o': 29,
+    'p': 31
+}
 
 
 def mouse_update(event):
