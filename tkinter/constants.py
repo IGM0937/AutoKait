@@ -1,4 +1,4 @@
-CANVAS_WIDTH = 400
+CANVAS_WIDTH = 720
 CANVAS_HEIGHT = 500
 CANVAS_X_START = 0
 CANVAS_Y_START = 10
@@ -36,6 +36,9 @@ ROW_INDEX = {
 }
 
 
-def mouse_update(event):
+def on_mouse_update(event):
+    # https://stackoverflow.com/questions/11305962/python-tkinter-how-to-get-coordinates-on-scrollable-canvas
     global MOUSE_X, MOUSE_Y
-    MOUSE_X, MOUSE_Y = event.x, event.y
+    MOUSE_X = event.widget.canvasx(event.x)
+    MOUSE_Y = event.widget.canvasy(event.y)
+    # event.widget.find_closest(MOUSE_X, MOUSE_Y)
