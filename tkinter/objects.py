@@ -13,23 +13,52 @@ class Tile:
         * Base image layer
     """
     def __init__(self, canvas, location, tile_type):
-        column = int(location[1:])
-        row = ROW_INDEX.get(location[0]) + (column % 2)
-
-        pos_x = CANVAS_X_START + (CANVAS_X_STEP * column)
-        pos_y = CANVAS_Y_START + (CANVAS_Y_STEP * row)
-
+        image_base = TILE_IMAGES.get(tile_type)
+        row, column = convert_location(location)
+        pos_x, pos_y = calculate_xy_location([row, column])
         self.__canvas = canvas
-        self.__image_base = TILE_IMAGES.get(tile_type)
-        self.__image_width = self.__image_base.width()
-        self.__image_height = self.__image_base.height()
-        self.__radius_bound = self.__image_height / 2
-        self.__image_select = TILE_IMAGES.get(TILE_SELECT)
-        self.__image_unselect = TILE_IMAGES.get(TILE_UNSELECT)
-        self.__layer_base_id = self.__canvas.create_image(pos_x, pos_y, image=self.__image_base)
-        self.__layer_selection_id = self.__canvas.create_image(pos_x, pos_y, image=self.__image_unselect)
-        self.__canvas.tag_bind(self.__layer_selection_id, '<Button-1>', lambda e: self.on_click())
+        self.__image_width = image_base.width()
+        self.__image_height = image_base.height()
+        self.__layer_base_id = self.__canvas.create_image(pos_x, pos_y, image=image_base)
+
+        if tile_type is TILE_NONE:
+            return
+
+        LOCATION_MAP.update({location: self})
         self.__is_selected = False
+        self.__radius_bound = self.__image_height / 2
+        self.__layer_selection_id = self.__canvas.create_image(pos_x, pos_y, image=TILE_IMAGES.get(TILE_UNSELECT))
+        self.__canvas.tag_bind(self.__layer_selection_id, '<Button-1>', lambda e: self.on_click())
+
+        if column == 1:
+            return
+
+        overlap_column = column - 1
+        upper_row = row if (overlap_column % 2) == 0 else row - 2
+        lower_row = row + 2 if (overlap_column % 2) == 0 else row
+
+        upper_row_tile = LOCATION_MAP.get(convert_location([upper_row, overlap_column]))
+        lower_row_tile = LOCATION_MAP.get(convert_location([lower_row, overlap_column]))
+
+        if upper_row_tile is not None:
+            self.__canvas.tag_bind(self.__layer_selection_id, '<Button-1>',
+                                   lambda e: self.on_click(overlap=upper_row_tile), add=True)
+
+        if lower_row_tile is not None:
+            self.__canvas.tag_bind(self.__layer_selection_id, '<Button-1>',
+                                   lambda e: self.on_click(overlap=lower_row_tile), add=True)
+
+    def get_canvas(self):
+        return self.__canvas
+
+    def get_layer_selection_id(self):
+        return self.__layer_selection_id
+
+    def is_selected(self, value=None):
+        if value is None:
+            return self.__is_selected
+        else:
+            self.__is_selected = value
 
     def inbound(self):
         pos = self.__canvas.coords(self.__layer_base_id)
@@ -39,10 +68,11 @@ class Tile:
         centre_dist = math.sqrt((res_x ** 2) + (res_y ** 2))
         return centre_dist <= self.__radius_bound
 
-    def on_click(self, forced_state=None):
-        if not self.inbound():
+    def on_click(self, forced_state=None, overlap=None):
+        tile = self if overlap is None else overlap
+        if not tile.inbound():
             return
 
-        self.__is_selected = (not self.__is_selected) if forced_state is None else forced_state
-        image = self.__image_select if self.__is_selected else self.__image_unselect
-        self.__canvas.itemconfig(self.__layer_selection_id, image=image)
+        tile.is_selected((not tile.is_selected()) if forced_state is None else forced_state)
+        image = TILE_IMAGES.get(TILE_SELECT) if tile.is_selected() else TILE_IMAGES.get(TILE_UNSELECT)
+        tile.get_canvas().itemconfig(tile.get_layer_selection_id(), image=image)
