@@ -15,8 +15,15 @@ TILE_CITY = "tile.city"
 TILE_MCITY = "tile.city.major"
 TILE_SELECT = "tile.selected"
 TILE_UNSELECT = "tile.unselected"
-
 TILE_IMAGES = {}
+
+TRAIN_BLUE = "train.blue"
+TRAIN_ORANGE = "train.orange"
+TRAIN_PURPLE = "train.purple"
+TRAIN_RED = "train.red"
+TRAIN_YELLOW = "train.yellow"
+TRAIN_IMAGES = {}
+
 LOCATION_MAP = {}
 MOUSE_X, MOUSE_Y = None, None
 DRAG_ACTIVE = False

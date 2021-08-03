@@ -60,6 +60,8 @@ class Tile:
         else:
             self.__is_selected = value
 
+    train_count = 0
+
     def inbound(self):
         pos = self.__canvas.coords(self.__layer_base_id)
         centre_x, centre_y = pos[0], pos[1]
@@ -76,3 +78,24 @@ class Tile:
         tile.is_selected((not tile.is_selected()) if forced_state is None else forced_state)
         image = TILE_IMAGES.get(TILE_SELECT) if tile.is_selected() else TILE_IMAGES.get(TILE_UNSELECT)
         tile.get_canvas().itemconfig(tile.get_layer_selection_id(), image=image)
+
+        if self.train_count == 0:
+            add_train(tile, TRAIN_BLUE)
+        elif self.train_count == 1:
+            add_train(tile, TRAIN_ORANGE)
+        elif self.train_count == 2:
+            add_train(tile, TRAIN_PURPLE)
+        elif self.train_count == 3:
+            add_train(tile, TRAIN_RED)
+        elif self.train_count == 4:
+            add_train(tile, TRAIN_YELLOW)
+
+        self.train_count += 1
+        print("CLICKED!")
+
+
+def add_train(tile, train_type):
+    pos = tile.get_canvas().coords(tile.get_layer_selection_id())
+    centre_x, centre_y = pos[0], pos[1]
+    train_id = tile.get_canvas().create_image(centre_x, centre_y, image=TRAIN_IMAGES.get(train_type))
+    tile.get_canvas().tag_lower(train_id, tile.get_layer_selection_id())
