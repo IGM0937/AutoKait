@@ -23,6 +23,19 @@ TRAIN_PURPLE = "train.purple"
 TRAIN_RED = "train.red"
 TRAIN_YELLOW = "train.yellow"
 TRAIN_IMAGES = {}
+TRAIN_RELATIVE_POSITIONS = {
+    1: [[0, 10]],
+    2: [[-13, 0], [12, 10]],
+    3: [[-12, 0], [-13, 0], [23, 10]],
+    4: [[0, 0], [0, 0], [0, 0], [0, 24]],
+    5: [[0, 0], [0, 0], [0, 0], [-13, 0], [11, 24]]
+}
+
+SI_BLACK = "special.interest.black"
+SI_WHITE = "special.interest.white"
+SI_PINK = "special.interest.pink"
+SI_IMAGES = {}
+SI_RELATIVE_POSITION = [0, -14]
 
 LOCATION_MAP = {}
 MOUSE_X, MOUSE_Y = None, None
@@ -35,14 +48,6 @@ ROW_ALPHA_INDEX = {
 ROW_NUMBER_INDEX = {
     1: 'a', 3: 'b', 5: 'c', 7: 'd', 9: 'e', 11: 'f', 13: 'g', 15: 'h',
     17: 'i', 19: 'j', 21: 'k', 23: 'l', 25: 'm', 27: 'n', 29: 'o', 31: 'p'
-}
-
-TRAIN_RELATIVE_POSITIONS = {
-    1: [[0, 10]],
-    2: [[-12, 0], [12, 10]],
-    3: [[-12, 0], [-12, 0], [24, 10]],
-    4: [[0, 0], [0, 0], [0, 0], [0, 24]],
-    5: [[0, 0], [0, 0], [0, 0], [-12, 0], [12, 24]]
 }
 
 
@@ -73,8 +78,8 @@ def on_mouse_update(event):
     global MOUSE_X, MOUSE_Y, DRAG_ACTIVE
 
     if DRAG_ACTIVE:
+        # TODO: update mouse movement to move the canvas on right click drag
         pass
-
     MOUSE_X = event.widget.canvasx(event.x)
     MOUSE_Y = event.widget.canvasy(event.y)
 

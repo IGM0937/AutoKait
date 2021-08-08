@@ -1,6 +1,36 @@
+import random
 import tkinter as tk
 from constants import *
 from objects import Tile
+
+
+def add_train():
+    """
+    Added for testing purposes
+    """
+    train_type = random.choice([TRAIN_BLUE, TRAIN_YELLOW, TRAIN_PURPLE, TRAIN_ORANGE, TRAIN_RED])
+    for tile_location, tile in LOCATION_MAP.items():
+        if tile.is_selected() is True:
+            tile.add_train(train_type)
+            tile.is_selected(False)
+
+
+def add_special_interest():
+    """
+    Added for testing purposes
+    """
+    for tile_location, tile in LOCATION_MAP.items():
+        if tile.is_selected() is True:
+            tile.add_special_interest(SI_BLACK)
+            tile.is_selected(False)
+
+
+def toggle_location_names():
+    """
+    Added for testing purposes
+    """
+    for tile_location, tile in LOCATION_MAP.items():
+        tile.show_location_name(not tile.show_location_name())
 
 
 class App:
@@ -26,49 +56,28 @@ class App:
         self.__root.grid_columnconfigure(0, weight=1)
         self.__root.grid_rowconfigure(0, weight=1)
 
-        TILE_IMAGES.update({TILE_NONE: tk.PhotoImage(file="img/none.png")})
-        TILE_IMAGES.update({TILE_EASY: tk.PhotoImage(file="img/easy.png")})
-        TILE_IMAGES.update({TILE_DIFF: tk.PhotoImage(file="img/diff.png")})
-        TILE_IMAGES.update({TILE_TOWN: tk.PhotoImage(file="img/town.png")})
-        TILE_IMAGES.update({TILE_CITY: tk.PhotoImage(file="img/city.png")})
-        TILE_IMAGES.update({TILE_MCITY: tk.PhotoImage(file="img/mcity.png")})
-        TILE_IMAGES.update({TILE_SELECT: tk.PhotoImage(file="img/select.png")})
-        TILE_IMAGES.update({TILE_UNSELECT: tk.PhotoImage(file="img/unselect.png")})
+        TILE_IMAGES.update({TILE_NONE: tk.PhotoImage(file="img/tile_none.png")})
+        TILE_IMAGES.update({TILE_EASY: tk.PhotoImage(file="img/tile_easy.png")})
+        TILE_IMAGES.update({TILE_DIFF: tk.PhotoImage(file="img/tile_diff.png")})
+        TILE_IMAGES.update({TILE_TOWN: tk.PhotoImage(file="img/tile_town.png")})
+        TILE_IMAGES.update({TILE_CITY: tk.PhotoImage(file="img/tile_city.png")})
+        TILE_IMAGES.update({TILE_MCITY: tk.PhotoImage(file="img/tile_mcity.png")})
+        TILE_IMAGES.update({TILE_SELECT: tk.PhotoImage(file="img/tile_select.png")})
+        TILE_IMAGES.update({TILE_UNSELECT: tk.PhotoImage(file="img/tile_unselect.png")})
         TRAIN_IMAGES.update({TRAIN_BLUE: tk.PhotoImage(file="img/train_blue.png")})
         TRAIN_IMAGES.update({TRAIN_ORANGE: tk.PhotoImage(file="img/train_orange.png")})
         TRAIN_IMAGES.update({TRAIN_PURPLE: tk.PhotoImage(file="img/train_purple.png")})
         TRAIN_IMAGES.update({TRAIN_RED: tk.PhotoImage(file="img/train_red.png")})
         TRAIN_IMAGES.update({TRAIN_YELLOW: tk.PhotoImage(file="img/train_yellow.png")})
-
-    def define_button_press(self, binding, tile):
-        """
-        Added button binding method for testing purposes
-        """
-        self.__root.bind(binding, lambda e: self.add_train(tile))
-
-    train_count = 0  # added counter for testing purposes
-
-    def add_train(self, tile):
-        """
-        Added train method for testing purposes
-        """
-        self.train_count += 1
-        if self.train_count == 1:
-            tile.add_train(TRAIN_BLUE)
-        elif self.train_count == 2:
-            tile.add_train(TRAIN_ORANGE)
-        elif self.train_count == 3:
-            tile.add_train(TRAIN_PURPLE)
-        elif self.train_count == 4:
-            tile.add_train(TRAIN_RED)
-        elif self.train_count == 5:
-            tile.add_train(TRAIN_YELLOW)
+        SI_IMAGES.update({SI_BLACK: tk.PhotoImage(file="img/si_black.png")})
+        SI_IMAGES.update({SI_WHITE: tk.PhotoImage(file="img/si_white.png")})
+        SI_IMAGES.update({SI_PINK: tk.PhotoImage(file="img/si_pink.png")})
 
     def get_canvas(self):
         return self.__canvas
 
-    def run_mainloop(self):
-        self.__root.mainloop()
+    def get_root(self):
+        return self.__root
 
 
 if __name__ == '__main__':
@@ -141,5 +150,8 @@ if __name__ == '__main__':
     for location, tile_type in locations.items():
         Tile(app.get_canvas(), location, tile_type)
 
-    app.define_button_press("<space>", LOCATION_MAP.get('b8'))
-    app.run_mainloop()
+    app.get_root().bind("<space>", lambda e: add_train())
+    app.get_root().bind("<b>", lambda e: add_special_interest())
+    app.get_root().bind("<l>", lambda e: toggle_location_names())
+
+    app.get_root().mainloop()
