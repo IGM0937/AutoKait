@@ -141,5 +141,5 @@ if __name__ == '__main__':
     for location, tile_type in locations.items():
         Tile(app.get_canvas(), location, tile_type)
 
-    app.define_button_press("<space>", LOCATION_MAP.get('b10'))
+    app.define_button_press("<space>", LOCATION_MAP.get('b8'))
     app.run_mainloop()

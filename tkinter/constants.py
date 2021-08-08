@@ -37,6 +37,14 @@ ROW_NUMBER_INDEX = {
     17: 'i', 19: 'j', 21: 'k', 23: 'l', 25: 'm', 27: 'n', 29: 'o', 31: 'p'
 }
 
+TRAIN_RELATIVE_POSITIONS = {
+    1: [[0, 10]],
+    2: [[-12, 0], [12, 10]],
+    3: [[-12, 0], [-12, 0], [24, 10]],
+    4: [[0, 0], [0, 0], [0, 0], [0, 24]],
+    5: [[0, 0], [0, 0], [0, 0], [-12, 0], [12, 24]]
+}
+
 
 def convert_row(value):
     return ROW_NUMBER_INDEX.get(value) if type(value) is int else ROW_ALPHA_INDEX.get(value)
