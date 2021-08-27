@@ -34,28 +34,45 @@ def toggle_location_names():
 
 
 class App:
-    def __init__(self, app_width, app_height):
+    def __init__(self):
         self.__root = tk.Tk()
-        self.__hbar = tk.Scrollbar(self.__root, orient=tk.HORIZONTAL)
-        self.__vbar = tk.Scrollbar(self.__root, orient=tk.VERTICAL)
-        self.__canvas = tk.Canvas(self.__root, width=app_width, height=app_height,
-                                  yscrollcommand=self.__vbar.set, xscrollcommand=self.__hbar.set,
-                                  scrollregion=(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT))
-        self.__hbar['command'] = self.__canvas.xview
-        self.__vbar['command'] = self.__canvas.yview
-
-        self.__canvas.bind('<Enter>', on_mouse_update)
-        self.__canvas.bind('<Motion>', on_mouse_update)
-        self.__canvas.bind('<Button-3>', on_mouse_drag_press)
-        self.__canvas.bind('<ButtonRelease-3>', on_mouse_drag_release)
-        self.__canvas.bind('<MouseWheel>', on_mouse_vertical_update)
-        self.__canvas.bind('<Shift-MouseWheel>', on_mouse_horizontal_update)
-        self.__canvas.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
-        self.__hbar.grid(column=0, row=1, sticky=(tk.W, tk.E))
-        self.__vbar.grid(column=1, row=0, sticky=(tk.N, tk.S))
+        self.__root.geometry(f"{str(APP_WIDTH)}x{str(APP_HEIGHT)}")
+        self.__root.minsize(APP_MIN_WIDTH, APP_MIN_HEIGHT)
         self.__root.grid_columnconfigure(0, weight=1)
         self.__root.grid_rowconfigure(0, weight=1)
 
+        self.__setup_map_canvas_with_scroll()
+        self.__setup_control_canvas()
+        self.__setup_images()
+
+    def __setup_map_canvas_with_scroll(self):
+        self.__hbar = tk.Scrollbar(self.__root, orient=tk.HORIZONTAL)
+        self.__vbar = tk.Scrollbar(self.__root, orient=tk.VERTICAL)
+        canvas_render_width = (CANVAS_WIDTH + CONTROL_WIDTH + (CONTROL_PADDING * 3))
+        self.__map_canvas = tk.Canvas(self.__root, width=canvas_render_width, height=CANVAS_HEIGHT,
+                                      yscrollincrement='1', xscrollincrement='1',
+                                      yscrollcommand=self.__vbar.set, xscrollcommand=self.__hbar.set,
+                                      scrollregion=(0, 0, canvas_render_width, CANVAS_HEIGHT))
+        self.__hbar['command'] = self.__map_canvas.xview
+        self.__vbar['command'] = self.__map_canvas.yview
+        self.__map_canvas.grid(column=0, row=0)
+        self.__hbar.grid(column=0, row=1, sticky=(tk.W, tk.E))
+        self.__vbar.grid(column=1, row=0, sticky=(tk.N, tk.S))
+        self.__map_canvas.bind('<Enter>', on_mouse_update)
+        self.__map_canvas.bind('<Motion>', on_mouse_update)
+        self.__map_canvas.bind('<Button-3>', on_mouse_drag_press)
+        self.__map_canvas.bind('<ButtonRelease-3>', on_mouse_drag_release)
+        self.__map_canvas.bind('<MouseWheel>', on_mouse_vertical_update)
+        self.__map_canvas.bind('<Shift-MouseWheel>', on_mouse_horizontal_update)
+
+    def __setup_control_canvas(self):
+        self.__control_canvas = tk.Canvas(self.__root, borderwidth=CONTROL_PADDING, width=CONTROL_WIDTH,
+                                          height=CONTROL_HEIGHT, bg='#FFFFFF')
+        self.__control_canvas.grid(column=0, row=0,
+                                   padx=CONTROL_PADDING, pady=CONTROL_PADDING, sticky=(tk.N, tk.E))
+
+    @staticmethod
+    def __setup_images():
         TILE_IMAGES.update({TILE_NONE: tk.PhotoImage(file="img/tile_none.png")})
         TILE_IMAGES.update({TILE_EASY: tk.PhotoImage(file="img/tile_easy.png")})
         TILE_IMAGES.update({TILE_DIFF: tk.PhotoImage(file="img/tile_diff.png")})
@@ -73,15 +90,18 @@ class App:
         SI_IMAGES.update({SI_WHITE: tk.PhotoImage(file="img/si_white.png")})
         SI_IMAGES.update({SI_PINK: tk.PhotoImage(file="img/si_pink.png")})
 
-    def get_canvas(self):
-        return self.__canvas
-
     def get_root(self):
         return self.__root
 
+    def get_map_canvas(self):
+        return self.__map_canvas
+
+    def get_control_canvas(self):
+        return self.__control_canvas
+
 
 if __name__ == '__main__':
-    app = App(APP_WIDTH, APP_HEIGHT)
+    app = App()
 
     # Tile(app.get_canvas(), 'a1', TILE_EASY)
     # Tile(app.get_canvas(), 'a2', TILE_DIFF)
@@ -148,7 +168,7 @@ if __name__ == '__main__':
                       'p12': TILE_NONE})
 
     for location, tile_type in locations.items():
-        Tile(app.get_canvas(), location, tile_type)
+        Tile(app.get_map_canvas(), location, tile_type)
 
     app.get_root().bind("<space>", lambda e: add_train())
     app.get_root().bind("<b>", lambda e: add_special_interest())

@@ -1,7 +1,12 @@
 APP_WIDTH = 850
 APP_HEIGHT = 500
+APP_MIN_WIDTH = 700
+APP_MIN_HEIGHT = 410
 CANVAS_WIDTH = 850
 CANVAS_HEIGHT = 1380
+CONTROL_WIDTH = 200
+CONTROL_HEIGHT = 300
+CONTROL_PADDING = 20
 CANVAS_X_START = 0
 CANVAS_Y_START = 10
 CANVAS_X_STEP = 66
@@ -39,7 +44,7 @@ SI_RELATIVE_POSITION = [0, -14]
 
 LOCATION_MAP = {}
 MOUSE_X, MOUSE_Y = None, None
-DRAG_ACTIVE = False
+DRAG_MOUSE_X, DRAG_MOUSE_Y = None, None
 
 ROW_ALPHA_INDEX = {
     'a': 1, 'b': 3, 'c': 5, 'd': 7, 'e': 9, 'f': 11, 'g': 13, 'h': 15,
@@ -75,28 +80,35 @@ def calculate_xy_location(numeric_location):
 
 def on_mouse_update(event):
     # https://stackoverflow.com/questions/11305962/python-tkinter-how-to-get-coordinates-on-scrollable-canvas
-    global MOUSE_X, MOUSE_Y, DRAG_ACTIVE
+    global MOUSE_X, MOUSE_Y, DRAG_MOUSE_X, DRAG_MOUSE_Y
 
-    if DRAG_ACTIVE:
-        # TODO: update mouse movement to move the canvas on right click drag
-        pass
     MOUSE_X = event.widget.canvasx(event.x)
     MOUSE_Y = event.widget.canvasy(event.y)
 
+    if DRAG_MOUSE_X is not None:
+        scroll_x = MOUSE_X - DRAG_MOUSE_X
+        scroll_y = MOUSE_Y - DRAG_MOUSE_Y
+        event.widget.xview_scroll(-1 * int(scroll_x), 'units')
+        event.widget.yview_scroll(-1 * int(scroll_y), 'units')
+        DRAG_MOUSE_X = event.widget.canvasx(event.x)
+        DRAG_MOUSE_Y = event.widget.canvasy(event.y)
+
 
 def on_mouse_drag_press(event):
-    global DRAG_ACTIVE
-    DRAG_ACTIVE = True
+    global DRAG_MOUSE_X, DRAG_MOUSE_Y
+    DRAG_MOUSE_X = event.widget.canvasx(event.x)
+    DRAG_MOUSE_Y = event.widget.canvasy(event.y)
 
 
 def on_mouse_drag_release(event):
-    global DRAG_ACTIVE
-    DRAG_ACTIVE = False
+    global DRAG_MOUSE_X, DRAG_MOUSE_Y
+    DRAG_MOUSE_X = None
+    DRAG_MOUSE_Y = None
 
 
 def on_mouse_vertical_update(event):
-    event.widget.yview_scroll(-1 * int(event.delta/50), 'units')
+    event.widget.yview_scroll(-1 * int(event.delta), 'units')
 
 
 def on_mouse_horizontal_update(event):
-    event.widget.xview_scroll(-1 * int(event.delta/50), 'units')
+    event.widget.xview_scroll(-1 * int(event.delta), 'units')
