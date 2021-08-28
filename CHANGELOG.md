@@ -7,6 +7,8 @@ The following list of major changes can also be found under designated git tags.
 >The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 <!--
+## [Unreleased]
+
 ## [version number] - YEAR-MONTH-DAY
 
 ### Sections
@@ -21,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -->
 
 [comment]: <> (## [Unreleased])
+
+## [Unreleased]
+
+### Added
+
+- Prototype GUI built in tkinter
 
 ## [v0.4] - 2021-07-12
 
@@ -114,7 +122,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Raw implementation of the original CAIT.
 - Main decision-making function, using random number generator as a 6 sided dice.
 
-[unreleased]: https://github.com/IGM0937/AutoKait/compare/v0.4...dev
+[unreleased]: https://github.com/IGM0937/AutoKait/compare/v0.4...poc/gui
 [v0.4]: https://github.com/IGM0937/AutoKait/compare/v0.3...v0.4
 [v0.3]: https://github.com/IGM0937/AutoKait/compare/v0.2...v0.3
 [v0.2]: https://github.com/IGM0937/AutoKait/compare/v0.1...v0.2

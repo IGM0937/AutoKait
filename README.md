@@ -64,19 +64,19 @@ Please see `setup_init_game_pieces` function in `util.game_vars.py` module for m
 
 ### ... for Contributions
 
-Please see `CONTRIBUTING.md` for more information.
+Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md) for more information.
 
 ### ... for Changelog
 
-Please see `CHANGELOG.md` for more information on notable changes.
+Please see [`CHANGELOG.md`](./CHANGELOG.md) for more information on notable changes.
 
 ### ... for Code of Conduct
 
-Please see `CODE_OF_CONDUCT.md` for detailed guidelines.
+Please see [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md) for detailed guidelines.
 
 ### ... for Developer Wishlist
 
-Alongside issues and discussions that exist within GitHub, `WISHLIST.md` also exists to keep a general list of desired changes.
+Alongside issues and discussions that exist within GitHub, [`WISHLIST.md`](./WISHLIST.md) also exists to keep a general list of desired changes.
 
 ## Credits
 
@@ -110,4 +110,4 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Gen
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-See `LICENSE` in the root directory of the project.
+See [`LICENSE`](./LICENSE) in the root directory of the project.
