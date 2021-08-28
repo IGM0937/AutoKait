@@ -1,7 +1,7 @@
 import random
 import tkinter as tk
 from constants import *
-from objects import Tile
+from objects import Tile, FirstPanel, SecondPanel
 
 
 def add_train():
@@ -42,7 +42,7 @@ class App:
         self.__root.grid_rowconfigure(0, weight=1)
 
         self.__setup_map_canvas_with_scroll()
-        self.__setup_control_canvas()
+        self.__setup_control_panels()
         self.__setup_images()
 
     def __setup_map_canvas_with_scroll(self):
@@ -65,11 +65,10 @@ class App:
         self.__map_canvas.bind('<MouseWheel>', on_mouse_vertical_update)
         self.__map_canvas.bind('<Shift-MouseWheel>', on_mouse_horizontal_update)
 
-    def __setup_control_canvas(self):
-        self.__control_canvas = tk.Canvas(self.__root, borderwidth=CONTROL_PADDING, width=CONTROL_WIDTH,
-                                          height=CONTROL_HEIGHT, bg='#FFFFFF')
-        self.__control_canvas.grid(column=0, row=0,
-                                   padx=CONTROL_PADDING, pady=CONTROL_PADDING, sticky=(tk.N, tk.E))
+    def __setup_control_panels(self):
+        FirstPanel(CP_FIRST, self.__root)
+        SecondPanel(CP_SECOND, self.__root)
+        go_to_control_panel(CP_FIRST)
 
     @staticmethod
     def __setup_images():
@@ -95,9 +94,6 @@ class App:
 
     def get_map_canvas(self):
         return self.__map_canvas
-
-    def get_control_canvas(self):
-        return self.__control_canvas
 
 
 if __name__ == '__main__':
@@ -170,8 +166,8 @@ if __name__ == '__main__':
     for location, tile_type in locations.items():
         Tile(app.get_map_canvas(), location, tile_type)
 
-    app.get_root().bind("<space>", lambda e: add_train())
-    app.get_root().bind("<b>", lambda e: add_special_interest())
-    app.get_root().bind("<l>", lambda e: toggle_location_names())
+    app.get_root().bind("<space>", lambda: add_train())
+    app.get_root().bind("<b>", lambda: add_special_interest())
+    app.get_root().bind("<l>", lambda: toggle_location_names())
 
     app.get_root().mainloop()

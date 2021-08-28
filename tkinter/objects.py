@@ -1,6 +1,7 @@
 import math
 import constants as con
 from constants import *
+import tkinter as tk
 
 
 class Tile:
@@ -121,3 +122,54 @@ class Tile:
         tile = self if overlap is None else overlap
         if tile.click_inbound_check():
             tile.is_selected(not tile.is_selected())
+
+
+class AbstractControlPanel:
+    """
+    Base class definition of the creation of the controls for interactive with the application
+    """
+    def __init__(self, control_panel_key, root_widget):
+        self.__is_panel_hidden = False
+        self.__base_canvas = tk.Canvas(root_widget, bg='#FFFFFF',
+                                       borderwidth=CONTROL_PADDING, width=CONTROL_WIDTH, height=CONTROL_HEIGHT)
+        CONTROL_PANELS.update({control_panel_key: self})
+
+    def show_panel(self):
+        self.__base_canvas.grid(column=0, row=0, padx=CONTROL_PADDING, pady=CONTROL_PADDING, sticky=(tk.N, tk.E))
+        self.__is_panel_hidden = False
+
+    def hide_panel(self):
+        self.__base_canvas.grid_forget()
+        self.__is_panel_hidden = True
+
+    def is_panel_hidden(self):
+        return self.__is_panel_hidden
+
+    def get_base_canvas(self):
+        return self.__base_canvas
+
+
+class FirstPanel(AbstractControlPanel):
+    def __init__(self, control_panel_key, root_widget):
+        super().__init__(control_panel_key, root_widget)
+
+        button = tk.Button(super().get_base_canvas(), text='Go to second panel...',
+                           command=lambda: go_to_control_panel(CP_SECOND))
+        button.pack()
+        button.place(x=20, y=20)
+        label = tk.Label(super().get_base_canvas(), text="This is the first panel!", bg='#FFFFFF')
+        label.pack()
+        label.place(x=20, y=55)
+
+
+class SecondPanel(AbstractControlPanel):
+    def __init__(self, control_panel_key, root_widget):
+        super().__init__(control_panel_key, root_widget)
+
+        button = tk.Button(super().get_base_canvas(), text='Go to first panel...',
+                           command=lambda: go_to_control_panel(CP_FIRST))
+        button.pack()
+        button.place(x=20, y=20)
+        label = tk.Label(super().get_base_canvas(), text="This is the second panel!", bg='#FFFFFF')
+        label.pack()
+        label.place(x=20, y=55)

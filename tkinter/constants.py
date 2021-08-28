@@ -55,6 +55,10 @@ ROW_NUMBER_INDEX = {
     17: 'i', 19: 'j', 21: 'k', 23: 'l', 25: 'm', 27: 'n', 29: 'o', 31: 'p'
 }
 
+CP_FIRST = "control.panel.first"
+CP_SECOND = "control.panel.second"
+CONTROL_PANELS = {}
+
 
 def convert_row(value):
     return ROW_NUMBER_INDEX.get(value) if type(value) is int else ROW_ALPHA_INDEX.get(value)
@@ -102,8 +106,7 @@ def on_mouse_drag_press(event):
 
 def on_mouse_drag_release(event):
     global DRAG_MOUSE_X, DRAG_MOUSE_Y
-    DRAG_MOUSE_X = None
-    DRAG_MOUSE_Y = None
+    DRAG_MOUSE_X, DRAG_MOUSE_Y = None, None
 
 
 def on_mouse_vertical_update(event):
@@ -112,3 +115,8 @@ def on_mouse_vertical_update(event):
 
 def on_mouse_horizontal_update(event):
     event.widget.xview_scroll(-1 * int(event.delta), 'units')
+
+
+def go_to_control_panel(panel_key):
+    for key, panel in CONTROL_PANELS.items():
+        panel.show_panel() if key == panel_key else panel.hide_panel()
