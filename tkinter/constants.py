@@ -1,12 +1,14 @@
 APP_WIDTH = 850
 APP_HEIGHT = 500
 APP_MIN_WIDTH = 700
-APP_MIN_HEIGHT = 410
+APP_MIN_HEIGHT = 450
 CANVAS_WIDTH = 850
 CANVAS_HEIGHT = 1380
 CONTROL_WIDTH = 200
 CONTROL_HEIGHT = 300
-CONTROL_PADDING = 20
+SETTING_WIDTH = 200
+SETTING_HEIGHT = 0
+PANEL_PADDING = 20
 CANVAS_X_START = 0
 CANVAS_Y_START = 10
 CANVAS_X_STEP = 66
@@ -64,19 +66,19 @@ def convert_row(value):
     return ROW_NUMBER_INDEX.get(value) if type(value) is int else ROW_ALPHA_INDEX.get(value)
 
 
-def convert_location(location):
-    if type(location) is str:
-        row = convert_row(location[0])
-        column = int(location[1:])
+def convert_position(position):
+    if type(position) is str:
+        row = convert_row(position[0])
+        column = int(position[1:])
         return None if row is None else (row, column)
     else:
-        row = convert_row(location[0])
-        column = str(location[1])
+        row = convert_row(position[0])
+        column = str(position[1])
         return None if row is None else row + column
 
 
-def calculate_xy_location(numeric_location):
-    row, column = numeric_location
+def calculate_xy_position(numeric_position):
+    row, column = numeric_position
     pos_x = CANVAS_X_START + (CANVAS_X_STEP * column)
     pos_y = CANVAS_Y_START + (CANVAS_Y_STEP * (row + (column % 2)))
     return pos_x, pos_y

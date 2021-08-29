@@ -1,7 +1,7 @@
 import random
 import tkinter as tk
 from constants import *
-from objects import Tile, FirstPanel, SecondPanel
+from objects import Tile, FirstPanel, SecondPanel, SettingsPanel
 
 
 def add_train():
@@ -25,14 +25,6 @@ def add_special_interest():
             tile.is_selected(False)
 
 
-def toggle_location_names():
-    """
-    Added for testing purposes
-    """
-    for tile_location, tile in LOCATION_MAP.items():
-        tile.show_location_name(not tile.show_location_name())
-
-
 class App:
     def __init__(self):
         self.__root = tk.Tk()
@@ -43,12 +35,13 @@ class App:
 
         self.__setup_map_canvas_with_scroll()
         self.__setup_control_panels()
+        self.__setup_settings_panel()
         self.__setup_images()
 
     def __setup_map_canvas_with_scroll(self):
         self.__hbar = tk.Scrollbar(self.__root, orient=tk.HORIZONTAL)
         self.__vbar = tk.Scrollbar(self.__root, orient=tk.VERTICAL)
-        canvas_render_width = (CANVAS_WIDTH + CONTROL_WIDTH + (CONTROL_PADDING * 3))
+        canvas_render_width = (CANVAS_WIDTH + CONTROL_WIDTH + (PANEL_PADDING * 3))
         self.__map_canvas = tk.Canvas(self.__root, width=canvas_render_width, height=CANVAS_HEIGHT,
                                       yscrollincrement='1', xscrollincrement='1',
                                       yscrollcommand=self.__vbar.set, xscrollcommand=self.__hbar.set,
@@ -69,6 +62,9 @@ class App:
         FirstPanel(CP_FIRST, self.__root)
         SecondPanel(CP_SECOND, self.__root)
         go_to_control_panel(CP_FIRST)
+
+    def __setup_settings_panel(self):
+        SettingsPanel(self.__root)
 
     @staticmethod
     def __setup_images():
@@ -163,11 +159,18 @@ if __name__ == '__main__':
                       'k12': TILE_TOWN, 'l12': TILE_NONE, 'm12': TILE_NONE, 'n12': TILE_NONE, 'o12': TILE_NONE,
                       'p12': TILE_NONE})
 
-    for location, tile_type in locations.items():
-        Tile(app.get_map_canvas(), location, tile_type)
+    location_names = {'b8': 'Derry', 'c12': 'Belfast', 'd4': 'Sligo', 'd9': 'Monaghan', 'f2': 'Castlebar',
+                      'f11': 'Drogheda', 'h3': 'Galway', 'h7': 'Tullamore', 'h11': 'Dublin', 'j12': 'Wicklow',
+                      'k3': 'Shannon', 'k12': 'Arklow', 'l4': 'Limerick', 'l8': 'Kilkenny', 'l9': 'New Ross',
+                      'm9': 'Waterford', 'n1': 'Killarney', 'o4': 'Cork'}
 
-    app.get_root().bind("<space>", lambda: add_train())
-    app.get_root().bind("<b>", lambda: add_special_interest())
-    app.get_root().bind("<l>", lambda: toggle_location_names())
+    for location, tile_type in locations.items():
+        if location in location_names.keys():
+            Tile(app.get_map_canvas(), location, tile_type, name=location_names.get(location))
+        else:
+            Tile(app.get_map_canvas(), location, tile_type)
+
+    app.get_root().bind("<space>", lambda e: add_train())
+    app.get_root().bind("<b>", lambda e: add_special_interest())
 
     app.get_root().mainloop()
